@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="iso-8859-15" standalone="no"?>
+<classDiagram>
+  <diagramElements defaultViewEntities="ALL" defaultViewEnum="true" defaultViewMethods="TYPE_AND_NAME" defaultVisibleTypes="true" informations="" name="MCR Pattern Command">
+    <inheritance id="67348">
+      <child>67317</child>
+      <parent>67338</parent>
+    </inheritance>
+    <association aggregation="AGGREGATE" direction="BIDIRECTIONAL" id="67339" name="">
+      <role componentId="67314" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+      <role componentId="67338" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+    </association>
+    <entity entityType="INTERFACE" id="67338" isAbstract="true" name="Commande" visibility="PUBLIC">
+      <method isAbstract="true" isStatic="false" name="execute" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <dependency id="67318" label="appel">
+      <source>67317</source>
+      <target>67316</target>
+    </dependency>
+    <entity entityType="CLASS" id="67317" isAbstract="false" name="CommandeConcrète" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="execute" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="67316" isAbstract="false" name="Récepteur" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="action" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="67314" isAbstract="false" name="Invocateur" visibility="PUBLIC"/>
+  </diagramElements>
+  <umlView grid="10" name="Main view" open="true">
+    <relationView color="-12566464" relationId="67318">
+      <line>
+        <point>
+          <x>511</x>
+          <y>321</y>
+        </point>
+        <point>
+          <x>281</x>
+          <y>321</y>
+        </point>
+      </line>
+      <labelAssociation>
+        <x>378</x>
+        <y>330</y>
+        <w>35</w>
+        <h>16</h>
+      </labelAssociation>
+    </relationView>
+    <relationView color="-12566464" relationId="67339">
+      <line>
+        <point>
+          <x>281</x>
+          <y>171</y>
+        </point>
+        <point>
+          <x>511</x>
+          <y>171</y>
+        </point>
+      </line>
+      <labelAssociation>
+        <x>400</x>
+        <y>175</y>
+        <w>0</w>
+        <h>16</h>
+      </labelAssociation>
+      <roleAssociation>
+        <x>285</x>
+        <y>175</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <roleAssociation>
+        <x>475</x>
+        <y>175</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <multipliciteAssociation>
+        <x>285</x>
+        <y>149</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
+      <multipliciteAssociation>
+        <x>497</x>
+        <y>149</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
+    </relationView>
+    <relationView color="-12566464" relationId="67348">
+      <line>
+        <point>
+          <x>591</x>
+          <y>291</y>
+        </point>
+        <point>
+          <x>591</x>
+          <y>215</y>
+        </point>
+      </line>
+    </relationView>
+    <componentView color="-2079" componentID="67314" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>130</x>
+        <y>130</y>
+        <w>150</w>
+        <h>55</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="67316" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>130</x>
+        <y>290</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="67317" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>510</x>
+        <y>290</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="67338" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>510</x>
+        <y>130</y>
+        <w>150</w>
+        <h>84</h>
+      </geometry>
+    </componentView>
+  </umlView>
+</classDiagram>
