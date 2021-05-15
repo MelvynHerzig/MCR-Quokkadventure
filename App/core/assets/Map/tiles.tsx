@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.6.0" name="tiles" tilewidth="64" tileheight="64" tilecount="7" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="tiles" tilewidth="64" tileheight="64" tilecount="8" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -9,9 +9,9 @@
  </tile>
  <tile id="1">
   <properties>
-   <property name="type" value="collectible"/>
+   <property name="type" value="end"/>
   </properties>
-  <image width="64" height="64" source="collectible.png"/>
+  <image width="64" height="64" source="end.png"/>
  </tile>
  <tile id="2">
   <properties>
@@ -30,8 +30,14 @@
  </tile>
  <tile id="6">
   <properties>
-   <property name="type" value="movable"/>
+   <property name="type" value="box"/>
   </properties>
   <image width="64" height="64" source="movable.png"/>
+ </tile>
+ <tile id="7">
+  <properties>
+   <property name="type" value="start"/>
+  </properties>
+  <image width="64" height="64" source="../Quokka/quokka.png"/>
  </tile>
 </tileset>

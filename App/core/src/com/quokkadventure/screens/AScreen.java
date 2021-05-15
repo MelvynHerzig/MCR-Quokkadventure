@@ -1,12 +1,15 @@
 package com.quokkadventure.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -19,7 +22,7 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
  * @author Herzig Melvyn
  * @date 14/05/2021
  */
-public class AScreen implements Screen
+public class AScreen extends InputAdapter implements Screen
 {
    /**
     * Référence sur la classe de base du jeu.
@@ -79,6 +82,9 @@ public class AScreen implements Screen
          }
       });
       game.getStage().addActor(btnMusic);
+
+      InputMultiplexer input = new InputMultiplexer(this, game.getStage());
+      Gdx.input.setInputProcessor(input);
    }
 
    /**
@@ -153,6 +159,7 @@ public class AScreen implements Screen
    @Override
    public void dispose()
    {
+      game.getStage().clear();
       backMusic.dispose();
    }
 }

@@ -3,19 +3,16 @@ package com.quokkadventure.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.screens.listener.NoisyClickListener;
 
 
-public class MainMenu extends AScreen
+public class MainMenuScreen extends AScreen
 {
 
    /**
@@ -30,10 +27,16 @@ public class MainMenu extends AScreen
    Drawable btnQuitTexture;
 
    /**
+    * Bouton pour joueur
+    */
+   private Button btnPlay;
+   Drawable btnPlayTexture;
+
+   /**
     * Constructeur
     * @param game Instance de la classe du jeu.
     */
-   public MainMenu(final QuokkAdventure game)
+   public MainMenuScreen(final QuokkAdventure game)
    {
       super(game, "Music/menuLoop.WAV");
       title = new Texture(Gdx.files.internal("UI/title.png"));
@@ -52,6 +55,23 @@ public class MainMenu extends AScreen
          }
       });
       game.getStage().addActor(btnQuit);
+
+      // Bouton quitter
+      btnPlayTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/btnPlay.png"))));
+      btnPlay = new Button(btnPlayTexture);
+      btnPlay.setPosition(QuokkAdventure.WIDTH /2 - btnQuit.getWidth()/2, btnPlay.getHeight() + 40); // Bas milieu
+      btnPlay.addListener(new NoisyClickListener()
+      {
+         @Override
+         public void clicked(InputEvent event, float x, float y)
+         {
+            super.clicked(event, x, y);
+
+            dispose();
+            game.setScreen(new GameScreen(game, "Music/inGameLoop.wav"));
+         }
+      });
+      game.getStage().addActor(btnPlay);
    }
 
    /**
@@ -77,7 +97,7 @@ public class MainMenu extends AScreen
    @Override
    public void dispose()
    {
+      super.dispose();
       title.dispose();
-
    }
 }

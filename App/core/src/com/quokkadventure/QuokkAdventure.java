@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.quokkadventure.screens.MainMenu;
+import com.quokkadventure.screens.MainMenuScreen;
 
 /**
  * Classe initiale du jeu.
@@ -24,12 +24,12 @@ public class QuokkAdventure extends Game
 	/**
 	 * Largeur initiale de la fenêtre.
 	 */
-	public static final int WIDTH = 1200;
+	public static final int WIDTH = 1600;
 
 	/**
 	 * Heuteur initiale de la fenêtre.
 	 */
-	public static final int HEIGHT = 720 ;
+	public static final int HEIGHT = 960 ;
 
 	/**
 	 * Batch employé pour afficher les éléments
@@ -49,11 +49,10 @@ public class QuokkAdventure extends Game
 	{
 		batch = new SpriteBatch();
 		stage = new Stage(new StretchViewport(WIDTH, HEIGHT));
-		Gdx.input.setInputProcessor(stage);
 
 		Assets.load();
 
-		setScreen(new MainMenu(this));
+		setScreen(new MainMenuScreen(this));
 	}
 
 	@Override
