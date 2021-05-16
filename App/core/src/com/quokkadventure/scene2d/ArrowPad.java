@@ -22,13 +22,31 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
  */
 public class ArrowPad extends Table
 {
+   /**
+    * Écran de jeu qui a invoqué cette scène
+    */
    GameScreen screen;
 
+   /**
+    * Liste des boutons qui y sont affichés.
+    */
    Button btnUp, btnDown, btnLeft, btnRight;
+
+   /**
+    * Liste des textures pour les boutons
+    */
    Drawable btnUpTexture, btnDownTexture, btnLeftTexture, btnRightTexture;
 
+   /**
+    * Tableau dans l'écran de jeu (screen)
+    */
    Tableau tableau;
 
+   /**
+    * Constructeur.
+    * @param screen Écran de jeu invocateur.
+    * @param tableau Tableau associé.
+    */
    public ArrowPad(GameScreen screen, Tableau tableau)
    {
       this.screen = screen;
@@ -37,6 +55,7 @@ public class ArrowPad extends Table
       getColor().a = .6f;
       init();
 
+      // Placement des éléments
       int buttonSize = 60;
       defaults().size(buttonSize);
       add(btnUp).colspan(2).center().padBottom((int) (buttonSize / 3));
@@ -50,6 +69,9 @@ public class ArrowPad extends Table
       pack();
    }
 
+   /**
+    * Création des boutons.
+    */
    private void init()
    {
       btnUpTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/upArrow.png"))));
