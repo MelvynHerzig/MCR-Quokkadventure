@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /**
- * Cette classe est responsable de charger les différents assets
+ * Cette classe est responsable de charger les différents assets globaux
  * @author Herzig Melvyn
  * @date 14/05/2021
  */
@@ -43,7 +43,7 @@ public class Assets
       background = new Sprite(new Texture(Gdx.files.internal("UI/background.png")));
 
       // Chargement du clique
-      clickSound = Gdx.audio.newSound(Gdx.files.internal("Sound/click.wav"));
+      clickSound = Gdx.audio.newSound(Gdx.files.internal("Sound/click.wav"));;
    }
 
    /**

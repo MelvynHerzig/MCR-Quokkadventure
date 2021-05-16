@@ -3,7 +3,6 @@ package com.quokkadventure;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.quokkadventure.screens.MainMenuScreen;
@@ -15,21 +14,20 @@ import com.quokkadventure.screens.MainMenuScreen;
  */
 public class QuokkAdventure extends Game
 {
-
 	/**
 	 * Titre du jeu.
 	 */
 	public static final String TITLE = "Quokk'adventure";
 
 	/**
-	 * Largeur initiale de la fenêtre.
+	 * Largeur initiale de la fenêtre de jeu. Utilisé pour initialisé les lanceurs.
 	 */
 	public static final int WIDTH = 1600;
 
 	/**
-	 * Heuteur initiale de la fenêtre.
+	 * Hauteur initiale de la fenêtre de jeu. Utilisé pour initialisé les lanceurs.
 	 */
-	public static final int HEIGHT = 960 ;
+	public static final int HEIGHT = 960;
 
 	/**
 	 * Batch employé pour afficher les éléments
@@ -48,13 +46,16 @@ public class QuokkAdventure extends Game
 	public void create ()
 	{
 		batch = new SpriteBatch();
-		stage = new Stage(new StretchViewport(WIDTH, HEIGHT));
+		stage = new Stage(new StretchViewport(QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT));
 
 		Assets.load();
 
 		setScreen(new MainMenuScreen(this));
 	}
 
+	/**
+	 * Méthode appelée pour libérer la mémoire.
+	 */
 	@Override
 	public void dispose()
 	{
@@ -90,5 +91,16 @@ public class QuokkAdventure extends Game
 	public void quit()
 	{
 		Gdx.app.exit();
+	}
+
+	/**
+	 * Méthode appelée lorsque le jeu est redimensionné.
+	 * @param width Nouvelle largeur.
+	 * @param height Nouvelle hauteur
+	 */
+	@Override
+	public void resize(int width, int height)
+	{
+		super.resize(width, height);
 	}
 }

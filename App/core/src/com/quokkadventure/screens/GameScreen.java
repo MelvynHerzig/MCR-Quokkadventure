@@ -1,38 +1,71 @@
 package com.quokkadventure.screens;
 
-
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
-import com.quokkadventure.actors.Quokka;
+import com.quokkadventure.actors.Tableau;
+import com.quokkadventure.command.ACommand;
+import com.quokkadventure.command.MoveCommand;
+import com.quokkadventure.command.MoveDirection;
+import com.quokkadventure.scene2d.ArrowPad;
 
+import java.util.Stack;
+
+/**
+ * Classe représentant l'écran de jeu.
+ * @author Herzig Melvyn
+ * @date 15/05/2021
+ */
 public class GameScreen extends AScreen
 {
-   private TiledMap map;
+   /**
+    * Tableau qui est joué.
+    */
+   private Tableau tableau;
+
+   /**
+    * Afficheur de la base de la map contenue dans tableau.
+    */
    private OrthogonalTiledMapRenderer renderer;
+
+   /**
+    * Calque de la map dans tableau.
+    */
    private TiledMapTileLayer mapLayer;
 
-   private Quokka quokka;
+   /**
+    * Commande à exécuter.
+    */
+   private ACommand toExecute;
 
+   /**
+    * Historique des commande déroulée. Pas de limite. Limiter le nombre de coups
+    * pour réussir un niveau ?
+    */
+   private Stack<ACommand> historic;
+
+   /**
+    * Constructeur
+    * @param game Référence sur la classe principale du jeu.
+    * @param musicName Nom de la musique à jouer.
+    */
    public GameScreen(QuokkAdventure game, String musicName)
    {
       super(game, musicName);
-   }
 
-   @Override
-   public void show()
-   {
-      super.show();
-      map = new TmxMapLoader().load("Map/level1.tmx");
-      renderer = new OrthogonalTiledMapRenderer(map);
+      // Préparation de la carte.
+      tableau = new Tableau(1, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
+      renderer = new OrthogonalTiledMapRenderer(tableau.loadMap());
       mapLayer = (TiledMapTileLayer) renderer.getMap().getLayers().get("staticMap");
-      quokka = new Quokka(0,0);
-      game.getStage().addActor(quokka);
 
+      toExecute = null;
+      historic = new Stack<>();
+
+      game.getStage().addActor(tableau);
+
+      game.getStage().addActor(new ArrowPad(this, tableau));
    }
 
    /**
@@ -43,45 +76,82 @@ public class GameScreen extends AScreen
    public void render(float delta)
    {
       super.render(delta);
-
       game.getBatch().end();
 
+      // Exécution de la commande.
+      if(toExecute != null)
+      {
+        if( toExecute.execute())
+        {
+           historic.push(toExecute);
+        }
+        toExecute = null;
+      }
+
+      // Affichage de la base de la carte.
       renderer.setView(camera);
       renderer.getBatch().begin();
       renderer.renderTileLayer(mapLayer);
       renderer.getBatch().end();
 
+      // du reste du stage
       game.getStage().draw();
+
+      game.getBatch().begin();
+      Assets.font.draw(game.getBatch(), "Moves counter " + tableau.getMovesCounter(), 10,30);
+      game.getBatch().end();
+
+      // Niveau fini ?
+      if(tableau.isSolved())
+      {
+         // TODO Afficher un vrai écran digne de ce nom.
+         System.out.println("Level solved!");
+      }
    }
 
-   @Override
-   public void hide()
-   {
-      super.hide();
-      dispose();
-   }
-
+   /**
+    * Méthode appelé lorsque l'écran n'est plus utilisé.
+    */
    @Override
    public void dispose()
    {
       super.dispose();
-      map.dispose();
+      tableau.loadMap().dispose();
+      tableau.dispose();
       renderer.dispose();
    }
 
+   /**
+    * Méthode de récupération des inputs du clavier.
+    * @param keycode Code de la touche.
+    * @return Retourne vrai.
+    */
    @Override
    public boolean keyDown(int keycode)
    {
-
       if (keycode == Input.Keys.RIGHT || keycode == Input.Keys.D)
-         quokka.moveToPosition(quokka.getPosX() + 1, quokka.getPosY());
-      if (keycode == Input.Keys.UP || keycode == Input.Keys.W)
-         quokka.moveToPosition(quokka.getPosX(), quokka.getPosY() + 1);
-      if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A)
-         quokka.moveToPosition(quokka.getPosX() - 1, quokka.getPosY());
-      if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S)
-         quokka.moveToPosition(quokka.getPosX(), quokka.getPosY() - 1);
+         setCommand( new MoveCommand(tableau.getPlayer(), MoveDirection.RIGHT, tableau) );
+      if (keycode == Input.Keys.UP    || keycode == Input.Keys.W)
+         setCommand( new MoveCommand(tableau.getPlayer(), MoveDirection.UP, tableau) );
+      if (keycode == Input.Keys.LEFT  || keycode == Input.Keys.A)
+         setCommand( new MoveCommand(tableau.getPlayer(), MoveDirection.LEFT, tableau) );
+      if (keycode == Input.Keys.DOWN  || keycode == Input.Keys.S)
+         setCommand( new MoveCommand(tableau.getPlayer(), MoveDirection.DOWN, tableau) );
+      if (keycode == Input.Keys.U)
+      {
+         if(!historic.empty())
+            historic.pop().undo();
+      }
 
       return true;
+   }
+
+   /**
+    * Initialise une commande a éxécuter.
+    * @param command Commande a exécuter
+    */
+   public void setCommand(ACommand command)
+   {
+      toExecute = command;
    }
 }

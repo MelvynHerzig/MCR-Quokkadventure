@@ -9,9 +9,11 @@ import com.quokkadventure.QuokkAdventure;
  * @author Herzig Melvyn
  * @date 15/05/2021
  */
-public class DesktopLauncher {
-	public static void main (String[] arg) {
-		// Création et configuration du lanceur
+public class DesktopLauncher
+{
+	public static void main (String[] arg)
+	{
+		// Création et configuration du lanceur.
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setTitle(QuokkAdventure.TITLE);
 		config.setWindowedMode(QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);

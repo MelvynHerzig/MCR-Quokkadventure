@@ -3,7 +3,6 @@ package com.quokkadventure.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -11,12 +10,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.screens.listener.NoisyClickListener;
 
-
+/**
+ * Classe représentant l'écran d'accueil
+ * @author Herzig Melvyn
+ * @date 14/05/2021
+ */
 public class MainMenuScreen extends AScreen
 {
 
    /**
-    * Titre de la page.
+    * Bannière de la page.
     */
    private Texture title;
 
@@ -24,13 +27,13 @@ public class MainMenuScreen extends AScreen
     * Bouton pour quitter.
     */
    private Button btnQuit;
-   Drawable btnQuitTexture;
+   Drawable btnQuitTexture; // Texture btnQuit
 
    /**
     * Bouton pour joueur
     */
    private Button btnPlay;
-   Drawable btnPlayTexture;
+   Drawable btnPlayTexture; // Texture btnPlay
 
    /**
     * Constructeur
@@ -72,10 +75,11 @@ public class MainMenuScreen extends AScreen
          }
       });
       game.getStage().addActor(btnPlay);
+
    }
 
    /**
-    * Méthode appelée lorsque l'écran doit s'afficher.
+    * Méthode appelée pour raffraîchir l'affichage
     * @param delta Temps écoulé depuis le dernier appel.
     */
    @Override
@@ -84,7 +88,7 @@ public class MainMenuScreen extends AScreen
       super.render(delta);
 
       // Centré horizontalement en haut de la page.
-      game.getBatch().draw(title, QuokkAdventure.WIDTH /2 - title.getWidth()/2,QuokkAdventure.HEIGHT - title.getHeight() - 20);
+      game.getBatch().draw(title, QuokkAdventure.WIDTH /2 - title.getWidth()/2, QuokkAdventure.HEIGHT - title.getHeight() - 20);
 
       game.getBatch().end();
 
@@ -92,7 +96,7 @@ public class MainMenuScreen extends AScreen
    }
 
    /**
-    * Méthode appelée quand l'écran doit libérer ses ressources
+    * Méthode appelée quand l'écran doit libérer ses ressources.
     */
    @Override
    public void dispose()

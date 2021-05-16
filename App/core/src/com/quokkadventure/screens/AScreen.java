@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -25,7 +24,8 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
 public class AScreen extends InputAdapter implements Screen
 {
    /**
-    * Référence sur la classe de base du jeu.
+    * Référence sur la classe de base du jeu. Permet de récupérer le batch
+    * et le stage
     */
    protected final QuokkAdventure game;
 
@@ -35,21 +35,26 @@ public class AScreen extends InputAdapter implements Screen
    protected OrthographicCamera camera;
 
    /**
-    * Musique de fond jouée quand l'écran est entré.
+    * Musique de fond.
     */
-   private Music backMusic;
+   protected Music backMusic;
 
    /**
     * Bouton pour couper la musique.
     */
    private Button btnMusic;
-   Drawable btnMusicTextureSoundOn;
-   Drawable btnMusicTextureSoundOff;
+   Drawable btnMusicTextureSoundOn;    // Texture initiale.
+   Drawable btnMusicTextureSoundOff;   // Texture lorsque l'on clique.
 
-
-   public AScreen(final QuokkAdventure game, String musicName)
+   /**
+    * Constructeur
+    * @param game Référence sur le jeu.
+    * @param musicName Nom de la musique de fond.
+    */
+   public AScreen(QuokkAdventure game, String musicName)
    {
       this.game = game;
+      game.getStage().clear();
 
       // Création de la caméra
       camera = new OrthographicCamera();
@@ -60,11 +65,12 @@ public class AScreen extends InputAdapter implements Screen
       backMusic.setLooping(true);
       backMusic.setVolume(0.3f);
 
+      // TODO refactor, ne fonctionne pas dans GameScreen car overlap par le tableau
       // Bouton pour couper la music
       btnMusicTextureSoundOn  = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/btnMusicOn.png"))));
       btnMusicTextureSoundOff = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/btnMusicOff.png"))));
       btnMusic = new Button(btnMusicTextureSoundOn, btnMusicTextureSoundOn, btnMusicTextureSoundOff);
-      btnMusic.setPosition(0 + 10, game.HEIGHT - btnMusic.getHeight() - 10); // haut gauche
+      btnMusic.setPosition(0 + 10, QuokkAdventure.HEIGHT - btnMusic.getHeight() - 10); // haut gauche
       btnMusic.addListener(new NoisyClickListener()
       {
          private boolean musicOn = true;
@@ -74,7 +80,9 @@ public class AScreen extends InputAdapter implements Screen
          {
             super.clicked(event, x, y);
             if(musicOn)
+            {
                backMusic.pause();
+            }
             else
                backMusic.play();
 
@@ -83,7 +91,8 @@ public class AScreen extends InputAdapter implements Screen
       });
       game.getStage().addActor(btnMusic);
 
-      InputMultiplexer input = new InputMultiplexer(this, game.getStage());
+      // Activation des input
+      InputMultiplexer input = new InputMultiplexer(game.getStage(), this);
       Gdx.input.setInputProcessor(input);
    }
 
@@ -112,7 +121,7 @@ public class AScreen extends InputAdapter implements Screen
       Assets.background.draw(game.getBatch());
 
       // Les enfants devront faire super.render et
-      // game.getBatch().end(); pour lancer l'affichage
+      // game.getBatch().end(); pour lancer terminer l'affichage.
    }
 
    /**
@@ -123,7 +132,7 @@ public class AScreen extends InputAdapter implements Screen
    @Override
    public void resize(int width, int height)
    {
-      // méthode auto générée.
+      game.getStage().getViewport().update(width, height, true);
    }
 
    /**
@@ -131,27 +140,21 @@ public class AScreen extends InputAdapter implements Screen
     */
    @Override
    public void pause()
-   {
-      // méthode auto générée.
-   }
+   { /* méthode auto générée. */ }
 
    /**
     * Méthode appelée lorsque le jeu reprend
     */
    @Override
    public void resume()
-   {
-      // méthode auto générée.
-   }
+   { /* méthode auto générée. */ }
 
    /**
     * Appelé lorsque l'écran n'est plus l'écran principal du jeu.
     */
    @Override
    public void hide()
-   {
-      // méthode auto générée.
-   }
+   { /* méthode auto générée. */ }
 
    /**
     * Méthode appelée quand l'écran doit libérer ses ressources
