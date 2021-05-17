@@ -23,17 +23,17 @@ public class GameScreen extends AScreen
    /**
     * Tableau qui est joué.
     */
-   private Tableau tableau;
+   private final Tableau tableau;
 
    /**
     * Afficheur de la base de la map contenue dans tableau.
     */
-   private OrthogonalTiledMapRenderer renderer;
+   private final OrthogonalTiledMapRenderer renderer;
 
    /**
     * Calque de la map dans tableau.
     */
-   private TiledMapTileLayer mapLayer;
+   private final TiledMapTileLayer mapLayer;
 
    /**
     * Commande à exécuter.
@@ -44,7 +44,7 @@ public class GameScreen extends AScreen
     * Historique des commande déroulée. Pas de limite. Limiter le nombre de coups
     * pour réussir un niveau ?
     */
-   private Stack<ACommand> historic;
+   private final Stack<ACommand> historic;
 
    /**
     * Constructeur

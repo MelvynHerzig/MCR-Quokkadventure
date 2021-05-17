@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.6.0" name="tiles" tilewidth="64" tileheight="64" tilecount="8" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="tiles" tilewidth="64" tileheight="64" tilecount="10" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -39,5 +39,17 @@
    <property name="type" value="start"/>
   </properties>
   <image width="64" height="64" source="../Quokka/quokka.png"/>
+ </tile>
+ <tile id="8">
+  <properties>
+   <property name="type" value="heavyBox"/>
+  </properties>
+  <image width="64" height="64" source="heavyMovable.png"/>
+ </tile>
+ <tile id="9">
+  <properties>
+   <property name="type" value="apple"/>
+  </properties>
+  <image width="64" height="64" source="apple.png"/>
  </tile>
 </tileset>
