@@ -98,7 +98,7 @@ public class GameScreen extends AScreen
       game.getStage().draw();
 
       game.getBatch().begin();
-      Assets.font.draw(game.getBatch(), "Moves counter " + tableau.getMovesCounter(), 10,30);
+      Assets.manager.get(Assets.font).draw(game.getBatch(), "Moves counter " + tableau.getMovesCounter(), 10,30);
       game.getBatch().end();
 
       // Niveau fini ?

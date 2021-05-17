@@ -37,7 +37,8 @@ public class QuokkAdventure extends Game
 	/**
 	 * Stage du jeu. Sert principalement à ordoner les acteurs et les inputs.
 	 */
-	protected Stage stage;
+	private Stage stage;
+
 
 	/**
 	 * Méthode appelée lors de la création de l'application.
@@ -49,6 +50,7 @@ public class QuokkAdventure extends Game
 		stage = new Stage(new StretchViewport(QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT));
 
 		Assets.load();
+		Assets.manager.finishLoading();
 
 		setScreen(new MainMenuScreen(this));
 	}
@@ -64,7 +66,7 @@ public class QuokkAdventure extends Game
 		stage.dispose();
 		batch.dispose();
 
-		Assets.unload();
+		Assets.dispose();
 	}
 
 	/**
@@ -84,6 +86,7 @@ public class QuokkAdventure extends Game
 	{
 		return stage;
 	}
+
 
 	/**
 	 * Termine l'application.

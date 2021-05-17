@@ -1,5 +1,6 @@
 package com.quokkadventure.screens.listener;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.quokkadventure.Assets;
@@ -23,6 +24,8 @@ public class NoisyClickListener extends ClickListener
    public void clicked(InputEvent event, float x, float y)
    {
       super.clicked(event, x, y);
-      Assets.clickSound.setVolume( Assets.clickSound.play(), 0.1f);
+
+      Sound clickSound =  Assets.manager.get(Assets.clickSound);
+      clickSound.setVolume( clickSound.play(), 0.1f);
    }
 }

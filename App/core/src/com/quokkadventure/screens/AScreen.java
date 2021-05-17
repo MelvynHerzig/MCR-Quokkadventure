@@ -118,7 +118,7 @@ public class AScreen extends InputAdapter implements Screen
       // Début de l'affichage des éléments
       game.getBatch().begin();
 
-      Assets.background.draw(game.getBatch());
+      game.getBatch().draw(Assets.manager.get(Assets.background),0,0);
 
       // Les enfants devront faire super.render et
       // game.getBatch().end(); pour lancer terminer l'affichage.
