@@ -1,6 +1,7 @@
 package com.quokkadventure.actors;
 
 import com.badlogic.gdx.Gdx;
+import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 
 /**
@@ -17,7 +18,7 @@ public class End extends ActorOnTile
     */
    End(int posX, int posY)
    {
-      super(posX, posY, Gdx.files.internal("Map/end.png"));
+      super(posX, posY, Assets.manager.get(Assets.textEnd));
    }
 
    /**

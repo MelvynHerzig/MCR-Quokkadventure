@@ -49,11 +49,10 @@ public class GameScreen extends AScreen
    /**
     * Constructeur
     * @param game Référence sur la classe principale du jeu.
-    * @param musicName Nom de la musique à jouer.
     */
-   public GameScreen(QuokkAdventure game, String musicName)
+   public GameScreen(QuokkAdventure game)
    {
-      super(game, musicName);
+      super(game, Assets.manager.get(Assets.musicInGame));
 
       // Préparation de la carte.
       tableau = new Tableau(1, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
@@ -117,7 +116,6 @@ public class GameScreen extends AScreen
    {
       super.dispose();
       tableau.loadMap().dispose();
-      tableau.dispose();
       renderer.dispose();
    }
 

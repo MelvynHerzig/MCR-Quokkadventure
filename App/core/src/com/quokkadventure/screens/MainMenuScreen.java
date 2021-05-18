@@ -1,12 +1,14 @@
 package com.quokkadventure.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.screens.listener.NoisyClickListener;
 
@@ -27,13 +29,11 @@ public class MainMenuScreen extends AScreen
     * Bouton pour quitter.
     */
    private Button btnQuit;
-   Drawable btnQuitTexture; // Texture btnQuit
 
    /**
     * Bouton pour joueur
     */
    private Button btnPlay;
-   Drawable btnPlayTexture; // Texture btnPlay
 
    /**
     * Constructeur
@@ -41,12 +41,11 @@ public class MainMenuScreen extends AScreen
     */
    public MainMenuScreen(final QuokkAdventure game)
    {
-      super(game, "Music/menuLoop.WAV");
-      title = new Texture(Gdx.files.internal("UI/title.png"));
+      super(game, Assets.manager.get(Assets.musicMenu));
+      title = Assets.manager.get(Assets.textGameTitle);
 
       // Bouton quitter
-      btnQuitTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/btnQuit.png"))));
-      btnQuit = new Button(btnQuitTexture);
+      btnQuit = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnQuit)));
       btnQuit.setPosition(QuokkAdventure.WIDTH /2 - btnQuit.getWidth()/2, 20); // Bas milieu
       btnQuit.addListener(new NoisyClickListener()
       {
@@ -60,9 +59,8 @@ public class MainMenuScreen extends AScreen
       game.getStage().addActor(btnQuit);
 
       // Bouton quitter
-      btnPlayTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/btnPlay.png"))));
-      btnPlay = new Button(btnPlayTexture);
-      btnPlay.setPosition(QuokkAdventure.WIDTH /2 - btnQuit.getWidth()/2, btnPlay.getHeight() + 40); // Bas milieu
+      btnPlay = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnPlay)));
+      btnPlay.setPosition(QuokkAdventure.WIDTH / 2 - btnQuit.getWidth()/2, btnPlay.getHeight() + 40); // Bas milieu
       btnPlay.addListener(new NoisyClickListener()
       {
          @Override
@@ -71,7 +69,7 @@ public class MainMenuScreen extends AScreen
             super.clicked(event, x, y);
 
             dispose();
-            game.setScreen(new GameScreen(game, "Music/inGameLoop.wav"));
+            game.setScreen(new GameScreen(game));
          }
       });
       game.getStage().addActor(btnPlay);
@@ -93,15 +91,5 @@ public class MainMenuScreen extends AScreen
       game.getBatch().end();
 
       game.getStage().draw();
-   }
-
-   /**
-    * Méthode appelée quand l'écran doit libérer ses ressources.
-    */
-   @Override
-   public void dispose()
-   {
-      super.dispose();
-      title.dispose();
    }
 }

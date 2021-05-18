@@ -4,10 +4,10 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
@@ -41,11 +41,86 @@ public class Assets
     */
    public static final AssetDescriptor<Texture> background = new AssetDescriptor<>("UI/background.png", Texture.class);
 
+   /**
+    * Image bouton audio on
+    */
+   public static final AssetDescriptor<Texture> textAudioOn = new AssetDescriptor<>("UI/btnMusicOn.png", Texture.class);
+
+   /**
+    * Image bouton audio off
+    */
+   public static final AssetDescriptor<Texture> textAudioOff = new AssetDescriptor<>("UI/btnMusicOff.png", Texture.class);
+
+   /**
+    * Image bouton quit
+    */
+   public static final AssetDescriptor<Texture> textBtnQuit = new AssetDescriptor<>("UI/btnQuit.png", Texture.class);
+
+   /**
+    * Image bouton play "UI/title.png"
+    */
+   public static final AssetDescriptor<Texture> textBtnPlay = new AssetDescriptor<>("UI/btnPlay.png", Texture.class);
+
+   /**
+    * Texture titre du jeu
+    */
+   public static final AssetDescriptor<Texture> textGameTitle = new AssetDescriptor<>("UI/title.png", Texture.class);
+
+   /**
+    * Texture bouton déplacement haut
+    */
+   public static final AssetDescriptor<Texture> textBtnUp = new AssetDescriptor<>("UI/upArrow.png", Texture.class);
+
+   /**
+    * Texture bouton déplacement bas
+    */
+   public static final AssetDescriptor<Texture> textBtnDown = new AssetDescriptor<>("UI/downArrow.png", Texture.class);
+
+   /**
+    * Texture bouton déplacement gauche
+    */
+   public static final AssetDescriptor<Texture> textBtnLeft = new AssetDescriptor<>("UI/leftArrow.png", Texture.class);
+
+   /**
+    * Texture bouton déplacement droite
+    */
+   public static final AssetDescriptor<Texture> textBtnRight = new AssetDescriptor<>("UI/rightArrow.png", Texture.class);
+
+   /**
+    * Texture boîte
+    */
+   public static final AssetDescriptor<Texture> textBox = new AssetDescriptor<>("Map/movable.png", Texture.class);
+
+   /**
+    * Texture emplacement de fin
+    */
+   public static final AssetDescriptor<Texture> textEnd = new AssetDescriptor<>("Map/end.png", Texture.class);
+
+   /**
+    * Texture personnage Quokka
+    */
+   public static final AssetDescriptor<Texture> textQuokka = new AssetDescriptor<>("Quokka/quokka.png", Texture.class);
+
+   /**
+    * Texture des murs
+    */
+   public static final AssetDescriptor<Texture> textWall = new AssetDescriptor<>("Map/border.png", Texture.class);
+
    /* ********** Audio ************* */
    /**
     * Son joué au click sur les boutons
     */
    public static final AssetDescriptor<Sound> clickSound = new AssetDescriptor<>("Sound/click.wav", Sound.class);
+
+   /**
+    * Music du menu
+    */
+   public static final AssetDescriptor<Music> musicMenu = new AssetDescriptor<>("Music/menuLoop.wav", Music.class);
+
+   /**
+    * Music en jeu
+    */
+   public static final AssetDescriptor<Music> musicInGame = new AssetDescriptor<>("Music/inGameLoop.wav", Music.class);
 
    /**
     * Méthode appelé au début du jeu pour charger les assets.
@@ -55,9 +130,24 @@ public class Assets
 
       // Texture
       manager.load(background);
+      manager.load(textAudioOn);
+      manager.load(textAudioOff);
+      manager.load(textBtnQuit);
+      manager.load(textBtnPlay);
+      manager.load(textGameTitle);
+      manager.load(textBtnUp);
+      manager.load(textBtnDown);
+      manager.load(textBtnLeft);
+      manager.load(textBtnRight);
+      manager.load(textBox);
+      manager.load(textEnd);
+      manager.load(textQuokka);
+      manager.load(textWall);
 
       // Audio
       manager.load(clickSound);
+      manager.load(musicMenu);
+      manager.load(musicInGame);
 
       // Police
       FileHandleResolver resolver = new InternalFileHandleResolver();

@@ -43,15 +43,13 @@ public class AScreen extends InputAdapter implements Screen
     * Bouton pour couper la musique.
     */
    private Button btnMusic;
-   Drawable btnMusicTextureSoundOn;    // Texture initiale.
-   Drawable btnMusicTextureSoundOff;   // Texture lorsque l'on clique.
 
    /**
     * Constructeur
     * @param game Référence sur le jeu.
-    * @param musicName Nom de la musique de fond.
+    * @param music Musique de fond.
     */
-   public AScreen(QuokkAdventure game, String musicName)
+   public AScreen(QuokkAdventure game, Music music)
    {
       this.game = game;
       game.getStage().clear();
@@ -61,16 +59,17 @@ public class AScreen extends InputAdapter implements Screen
       camera.setToOrtho(false, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
 
       // Chargement de la musique
-      backMusic = Gdx.audio.newMusic(Gdx.files.internal(musicName));
+      backMusic = music;
       backMusic.setLooping(true);
       backMusic.setVolume(0.3f);
 
       // TODO refactor, ne fonctionne pas dans GameScreen car overlap par le tableau
       // Bouton pour couper la music
-      btnMusicTextureSoundOn  = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/btnMusicOn.png"))));
-      btnMusicTextureSoundOff = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/btnMusicOff.png"))));
-      btnMusic = new Button(btnMusicTextureSoundOn, btnMusicTextureSoundOn, btnMusicTextureSoundOff);
-      btnMusic.setPosition(0 + 10, QuokkAdventure.HEIGHT - btnMusic.getHeight() - 10); // haut gauche
+
+      btnMusic = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOn)),
+                            new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)),
+                            new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)));
+      btnMusic.setPosition(10, QuokkAdventure.HEIGHT - btnMusic.getHeight() - 10); // haut gauche
       btnMusic.addListener(new NoisyClickListener()
       {
          private boolean musicOn = true;
@@ -161,8 +160,5 @@ public class AScreen extends InputAdapter implements Screen
     */
    @Override
    public void dispose()
-   {
-      game.getStage().clear();
-      backMusic.dispose();
-   }
+   { /* méthode auto générée. */ }
 }

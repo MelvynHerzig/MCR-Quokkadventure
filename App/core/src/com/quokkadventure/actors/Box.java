@@ -1,6 +1,7 @@
 package com.quokkadventure.actors;
 
 import com.badlogic.gdx.Gdx;
+import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 
 /**
@@ -22,7 +23,7 @@ public class Box extends ActorOnTile
     */
    public Box(int posX, int posY)
    {
-      super(posX, posY, Gdx.files.internal("Map/movable.png"));
+      super(posX, posY, Assets.manager.get(Assets.textBox));
 
       isOnEnd = false;
    }

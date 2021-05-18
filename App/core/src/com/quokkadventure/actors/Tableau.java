@@ -205,23 +205,6 @@ public class Tableau extends Group
    }
 
    /**
-    * Libère les image utilisée par les actor on tile.
-    */
-   public void dispose()
-   {
-      for(int x = 0; x < 25; ++x)
-      {
-         for(int y = 0; y < 15; ++y)
-         {
-            if(acotrsOnTile[x][y] != null)
-            {
-               acotrsOnTile[x][y].dispose();
-            }
-         }
-      }
-   }
-
-   /**
     * Vérifie si le niveau est résolu.
     * @return Retourne vrai si une boite se trouve sur chaque fin.
     */

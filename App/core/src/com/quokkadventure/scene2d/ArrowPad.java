@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.actors.Tableau;
 import com.quokkadventure.command.MoveCommand;
@@ -31,11 +31,6 @@ public class ArrowPad extends Table
     * Liste des boutons qui y sont affichés.
     */
    Button btnUp, btnDown, btnLeft, btnRight;
-
-   /**
-    * Liste des textures pour les boutons
-    */
-   Drawable btnUpTexture, btnDownTexture, btnLeftTexture, btnRightTexture;
 
    /**
     * Tableau dans l'écran de jeu (screen)
@@ -74,8 +69,7 @@ public class ArrowPad extends Table
     */
    private void init()
    {
-      btnUpTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/upArrow.png"))));
-      btnUp = new Button(btnUpTexture);
+      btnUp = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnUp)));
       btnUp.addListener(new NoisyClickListener()
       {
          @Override
@@ -86,8 +80,7 @@ public class ArrowPad extends Table
          }
       });
 
-      btnDownTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/downArrow.png"))));
-      btnDown = new Button(btnDownTexture);
+      btnDown = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnDown)));
       btnDown.addListener(new NoisyClickListener()
       {
          @Override
@@ -98,8 +91,7 @@ public class ArrowPad extends Table
          }
       });
 
-      btnLeftTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/leftArrow.png"))));
-      btnLeft = new Button(btnLeftTexture);
+      btnLeft = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnLeft)));
       btnLeft.addListener(new NoisyClickListener()
       {
          @Override
@@ -110,8 +102,7 @@ public class ArrowPad extends Table
          }
       });
 
-      btnRightTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("UI/rightArrow.png"))));
-      btnRight = new Button(btnRightTexture);
+      btnRight = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnRight)));
       btnRight.addListener(new NoisyClickListener()
       {
          @Override

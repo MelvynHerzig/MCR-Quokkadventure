@@ -34,9 +34,9 @@ public abstract class  ActorOnTile extends Actor
     * Constructeur.
     * @param posX Position x.
     * @param posY Position y.
-    * @param textLoc Texture de l'acteur.
+    * @param texture Texture de l'acteur.
     */
-   ActorOnTile(int posX, int posY, FileHandle textLoc)
+   ActorOnTile(int posX, int posY, Texture texture)
    {
       x = posX;
       y = posY;
@@ -44,7 +44,7 @@ public abstract class  ActorOnTile extends Actor
       setSize(dimension, dimension);
       setPosition(x * dimension, y * dimension);
 
-      img = new Texture(textLoc);
+      img = texture;
    }
 
    /**
@@ -78,14 +78,6 @@ public abstract class  ActorOnTile extends Actor
    public int getPosY()
    {
       return y;
-   }
-
-   /**
-    * Libère l'image
-    */
-   public void dispose()
-   {
-      img.dispose();
    }
 
    /**

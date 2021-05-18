@@ -2,6 +2,7 @@ package com.quokkadventure.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.quokkadventure.Assets;
 
 /**
  * Classe modélisant le quokka (joueur)
@@ -17,7 +18,7 @@ public class Quokka extends ActorOnTile
     */
    public Quokka(int posX, int posY)
    {
-      super(posX, posY, Gdx.files.internal("Quokka/quokka.png"));
+      super(posX, posY, Assets.manager.get(Assets.textQuokka));
    }
 
    /**

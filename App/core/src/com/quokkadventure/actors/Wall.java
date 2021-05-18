@@ -1,6 +1,7 @@
 package com.quokkadventure.actors;
 
 import com.badlogic.gdx.Gdx;
+import com.quokkadventure.Assets;
 
 /**
  * Classe représentant un mur.
@@ -15,7 +16,7 @@ public class Wall extends ActorOnTile
     */
    Wall(int posX, int posY)
    {
-      super(posX, posY, Gdx.files.internal("Map/border.png"));
+      super(posX, posY, Assets.manager.get(Assets.textWall));
    }
 
    /**
