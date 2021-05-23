@@ -3,6 +3,8 @@ package com.quokkadventure.screens;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Timer;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.actors.Tableau;
@@ -10,6 +12,7 @@ import com.quokkadventure.command.ACommand;
 import com.quokkadventure.command.MoveCommand;
 import com.quokkadventure.command.MoveDirection;
 import com.quokkadventure.scene2d.ArrowPad;
+import com.quokkadventure.scene2d.DynamicCounter;
 
 import java.util.Stack;
 
@@ -47,6 +50,21 @@ public class GameScreen extends AScreen
    private final Stack<ACommand> historic;
 
    /**
+    * Label dynamique des mouvements,
+    */
+   private DynamicCounter stepsCounter;
+
+   /**
+    * Label dynamique des mouvements,
+    */
+   private DynamicCounter timeCounter;
+
+   /**
+    * Temps écoulé.
+    */
+   private float elapsedTime;
+
+   /**
     * Constructeur
     * @param game Référence sur la classe principale du jeu.
     */
@@ -62,9 +80,19 @@ public class GameScreen extends AScreen
       toExecute = null;
       historic = new Stack<>();
 
-      game.getStage().addActor(tableau);
+      // Compteur de mouvements
+      stepsCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textStepCounter)), 0, 0);
 
+      // Compteur de temps (secondes)
+      timeCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textTimeCounter)), 0, 100);
+
+      game.getStage().addActor(tableau);
       game.getStage().addActor(new ArrowPad(this, tableau));
+      game.getStage().addActor(stepsCounter);
+      game.getStage().addActor(timeCounter);
+
+      // Instantiation temps
+      elapsedTime = 0;
    }
 
    /**
@@ -74,6 +102,8 @@ public class GameScreen extends AScreen
    @Override
    public void render(float delta)
    {
+      elapsedTime += delta;
+
       super.render(delta);
       game.getBatch().end();
 
@@ -96,17 +126,17 @@ public class GameScreen extends AScreen
       // du reste du stage
       game.getStage().draw();
 
-      game.getBatch().begin();
-      Assets.manager.get(Assets.font).draw(game.getBatch(), "Moves counter " + tableau.getMovesCounter(), 10,30);
-      game.getBatch().end();
-
       // Niveau fini ?
       if(tableau.isSolved())
       {
          // TODO Afficher un vrai écran digne de ce nom.
          System.out.println("Level solved!");
       }
+
+      stepsCounter.update(tableau.getMovesCounter());
+      timeCounter.update((int) elapsedTime);
    }
+
 
    /**
     * Méthode appelé lorsque l'écran n'est plus utilisé.

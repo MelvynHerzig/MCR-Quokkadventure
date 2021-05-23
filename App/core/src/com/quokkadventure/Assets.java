@@ -106,6 +106,16 @@ public class Assets
     */
    public static final AssetDescriptor<Texture> textWall = new AssetDescriptor<>("Map/border.png", Texture.class);
 
+   /**
+    * Texture du compteur de déplacements
+    */
+   public static final AssetDescriptor<Texture> textStepCounter = new AssetDescriptor<>("UI/stepCounter.png", Texture.class);
+
+   /**
+    * Texture du compteur de temps écoulé
+    */
+   public static final AssetDescriptor<Texture> textTimeCounter = new AssetDescriptor<>("UI/timeCounter.png", Texture.class);
+
    /* ********** Audio ************* */
    /**
     * Son joué au click sur les boutons
@@ -143,6 +153,8 @@ public class Assets
       manager.load(textEnd);
       manager.load(textQuokka);
       manager.load(textWall);
+      manager.load(textStepCounter);
+      manager.load(textTimeCounter);
 
       // Audio
       manager.load(clickSound);

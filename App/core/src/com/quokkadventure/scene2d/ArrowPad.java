@@ -47,7 +47,6 @@ public class ArrowPad extends Table
       this.screen = screen;
       this.tableau = tableau;
 
-      getColor().a = .6f;
       init();
 
       // Placement des éléments
@@ -62,6 +61,8 @@ public class ArrowPad extends Table
 
       setPosition(QuokkAdventure.WIDTH - (int) (3.5 * buttonSize) - 20,20);
       pack();
+
+      getColor().a = .8f;
    }
 
    /**

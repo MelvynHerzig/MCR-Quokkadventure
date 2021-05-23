@@ -69,6 +69,7 @@ public class MainMenuScreen extends AScreen
             super.clicked(event, x, y);
 
             dispose();
+            backMusic.stop();
             game.setScreen(new GameScreen(game));
          }
       });
@@ -87,7 +88,6 @@ public class MainMenuScreen extends AScreen
 
       // Centré horizontalement en haut de la page.
       game.getBatch().draw(title, QuokkAdventure.WIDTH /2 - title.getWidth()/2, QuokkAdventure.HEIGHT - title.getHeight() - 20);
-
       game.getBatch().end();
 
       game.getStage().draw();

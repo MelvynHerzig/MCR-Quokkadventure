@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
 
 
 /**
@@ -62,7 +63,7 @@ public class Tableau extends Group
    /**
     * Référence sur la carte chargée.
     */
-   private TiledMap map;
+   private final TiledMap map;
 
    /**
     * Constructeur
@@ -161,6 +162,7 @@ public class Tableau extends Group
       }
    }
 
+
    /**
     * Récupère l'acteur en position x,y
     * @param x Position x.
@@ -252,5 +254,4 @@ public class Tableau extends Group
    {
       --movesCounter;
    }
-
 }

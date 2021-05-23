@@ -40,11 +40,6 @@ public class AScreen extends InputAdapter implements Screen
    protected Music backMusic;
 
    /**
-    * Bouton pour couper la musique.
-    */
-   private Button btnMusic;
-
-   /**
     * Constructeur
     * @param game Référence sur le jeu.
     * @param music Musique de fond.
@@ -66,9 +61,12 @@ public class AScreen extends InputAdapter implements Screen
       // TODO refactor, ne fonctionne pas dans GameScreen car overlap par le tableau
       // Bouton pour couper la music
 
-      btnMusic = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOn)),
-                            new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)),
-                            new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)));
+      /**
+       * Bouton pour couper la musique.
+       */
+      Button btnMusic = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOn)),
+                                   new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)),
+                                   new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)));
       btnMusic.setPosition(10, QuokkAdventure.HEIGHT - btnMusic.getHeight() - 10); // haut gauche
       btnMusic.addListener(new NoisyClickListener()
       {
