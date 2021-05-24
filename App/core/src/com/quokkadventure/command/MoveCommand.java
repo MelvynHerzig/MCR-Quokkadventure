@@ -4,53 +4,19 @@ import com.quokkadventure.actors.ActorOnTile;
 import com.quokkadventure.actors.Tableau;
 
 /**
- * Command servant à déplacer un acteur sur les tuiles.
+ * Commande servant à déplacer un acteur sur les tuiles.
  * @author Herzig Melvyn
  * @date 16/05/2021
  */
-public class MoveCommand extends ACommand
+public class MoveCommand extends AMoveCommand
 {
-   /**
-    * Acteur déplacé
-    */
-   private ActorOnTile actor;
-
-   /**
-    * Ancienne position x de actor.
-    */
-   private int oldX;
-
-   /**
-    * Ancienne position y de actor.
-    */
-   private int oldY;
-
-   /**
-    * Nouvelle position x de actor.
-    */
-   private int newX;
-
-   /**
-    * Nouvelle position y de actor.
-    */
-   private int newY;
-
-   /**
-    * Direction du déplacement.
-    */
-   private MoveDirection direction;
-
-   /**
-    * Tableau dans lequel l'acteur se déplace.
-    */
-   private Tableau tableau;
 
    /**
     * Parfois pour se déplacer on peut pousser un acteur.
     * Cela crée une nouvelle commande qui sera référencée ici.
     * Exploitation du pattern MacroCommand.
     */
-   private MoveCommand otherMovedCommand;
+   private PushCommand otherCommand;
 
    /**
     * Constructeur.
@@ -60,10 +26,8 @@ public class MoveCommand extends ACommand
     */
    public MoveCommand(ActorOnTile actor, MoveDirection direction, Tableau tableau)
    {
-      this.actor = actor;
-      this.direction = direction;
-      this.tableau = tableau;
-      this.otherMovedCommand = null;
+      super(actor, direction, tableau);
+      this.otherCommand = null;
    }
 
    /**
@@ -73,36 +37,23 @@ public class MoveCommand extends ACommand
    @Override
    public boolean execute()
    {
-      // Sauvegarde de l'ancienne position pour undo.
-      oldX = actor.getPosX();
-      oldY = actor.getPosY();
-
-      // Détermination du décalage
-      int offsetX;
-      int offsetY;
-
-      offsetX = (direction == MoveDirection.LEFT ? -1 : (direction == MoveDirection.RIGHT ? +1 : 0));
-      offsetY = (direction == MoveDirection.DOWN ? -1 : (direction == MoveDirection.UP    ? +1 : 0));
-
-      newX = oldX + offsetX;
-      newY = oldY + offsetY;
+      super.execute();
 
       // Récupération de l'acteur sur la destination
       ActorOnTile actorOnDestination = tableau.getActor(newX, newY);
 
-      // Si case vide, départ.
-      if(actorOnDestination == null)
+      // On tente de déplacer le potentiel acteur sur la destination.
+      PushCommand pushCommand = new PushCommand(movedActor, actorOnDestination, direction, tableau);
+
+      // Si case vide ou  peut on pousser l'obstacle?
+      if(actorOnDestination == null || pushCommand.execute())
       {
-         tableau.move(oldX, oldY, newX,  newY, false);
-         return true;
-      }
-      // Sinon , peut on pousser l'obstacle ?
-      else if(actor.canPush() && actorOnDestination.canBePushed(tableau,
-                                       actorOnDestination.getPosX() + offsetX,
-                                       actorOnDestination.getPosY() + offsetY))
-      {
-         otherMovedCommand = new MoveCommand(actorOnDestination, direction, tableau);
-         otherMovedCommand.execute();
+         // Si on est ici et que la destination n'était pas nul, on l'a déplacé.
+         if(actorOnDestination != null)
+         {
+            otherCommand = pushCommand;
+         }
+
          tableau.move(oldX, oldY, newX,  newY, false);
          return true;
       }
@@ -116,9 +67,9 @@ public class MoveCommand extends ACommand
    @Override
    public void undo()
    {
-      tableau.move(newX, newY, oldX, oldY,true);
+      super.undo();
 
-      if(otherMovedCommand != null)
-         otherMovedCommand.undo();
+      if(otherCommand != null)
+         otherCommand.undo();
    }
 }

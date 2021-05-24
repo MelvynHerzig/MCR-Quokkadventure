@@ -30,7 +30,7 @@ public class ArrowPad extends Table
    /**
     * Liste des boutons qui y sont affichés.
     */
-   Button btnUp, btnDown, btnLeft, btnRight;
+   Button btnUp, btnDown, btnLeft, btnRight, btnUndo;
 
    /**
     * Tableau dans l'écran de jeu (screen)
@@ -52,12 +52,13 @@ public class ArrowPad extends Table
       // Placement des éléments
       int buttonSize = 60;
       defaults().size(buttonSize);
-      add(btnUp).colspan(2).center().padBottom((int) (buttonSize / 3));
+      add(btnUp).colspan(3).center().padBottom((int) (buttonSize / 3));
       row();
-      add(btnLeft).left();
-      add(btnRight).right().padLeft((int)(buttonSize * 1.5));
+      add(btnLeft).left().padRight(10);
+      add(btnUndo).center();
+      add(btnRight).right().padLeft(20);
       row();
-      add(btnDown).colspan(2).center().padTop((int)(buttonSize / 3));
+      add(btnDown).colspan(3).center().padTop((int)(buttonSize / 3));
 
       setPosition(QuokkAdventure.WIDTH - (int) (3.5 * buttonSize) - 20,20);
       pack();
@@ -89,6 +90,17 @@ public class ArrowPad extends Table
          {
             super.clicked(event, x, y);
             screen.setCommand(new MoveCommand(tableau.getPlayer(), MoveDirection.DOWN, tableau));
+         }
+      });
+
+      btnUndo = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnUndo)));
+      btnUndo.addListener(new NoisyClickListener()
+      {
+         @Override
+         public void clicked(InputEvent event, float x, float y)
+         {
+            super.clicked(event, x, y);
+            screen.undoCommand();
          }
       });
 

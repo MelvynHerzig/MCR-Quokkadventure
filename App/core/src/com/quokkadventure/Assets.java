@@ -116,6 +116,11 @@ public class Assets
     */
    public static final AssetDescriptor<Texture> textTimeCounter = new AssetDescriptor<>("UI/timeCounter.png", Texture.class);
 
+   /**
+    * Image bouton undo
+    */
+   public static final AssetDescriptor<Texture> textBtnUndo = new AssetDescriptor<>("UI/btnUndo.png", Texture.class);
+
    /* ********** Audio ************* */
    /**
     * Son joué au click sur les boutons
@@ -155,6 +160,7 @@ public class Assets
       manager.load(textWall);
       manager.load(textStepCounter);
       manager.load(textTimeCounter);
+      manager.load(textBtnUndo);
 
       // Audio
       manager.load(clickSound);

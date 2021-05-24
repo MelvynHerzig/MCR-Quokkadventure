@@ -166,10 +166,7 @@ public class GameScreen extends AScreen
       if (keycode == Input.Keys.DOWN  || keycode == Input.Keys.S)
          setCommand( new MoveCommand(tableau.getPlayer(), MoveDirection.DOWN, tableau) );
       if (keycode == Input.Keys.U)
-      {
-         if(!historic.empty())
-            historic.pop().undo();
-      }
+         undoCommand();
 
       return true;
    }
@@ -181,5 +178,14 @@ public class GameScreen extends AScreen
    public void setCommand(ACommand command)
    {
       toExecute = command;
+   }
+
+   /**
+    * Annule la dernière commande exécutée.
+    */
+   public void undoCommand()
+   {
+      if(!historic.empty())
+         historic.pop().undo();
    }
 }
