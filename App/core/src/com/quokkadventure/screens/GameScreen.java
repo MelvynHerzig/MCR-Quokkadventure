@@ -4,7 +4,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Timer;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.actors.Tableau;
@@ -13,6 +12,7 @@ import com.quokkadventure.command.MoveCommand;
 import com.quokkadventure.command.MoveDirection;
 import com.quokkadventure.scene2d.ArrowPad;
 import com.quokkadventure.scene2d.DynamicCounter;
+import com.quokkadventure.scene2d.LevelComplet;
 
 import java.util.Stack;
 
@@ -65,12 +65,31 @@ public class GameScreen extends AScreen
    private float elapsedTime;
 
    /**
+    * Définit si le jeu est en pause
+    */
+   boolean paused;
+
+   /**
+    * Overlay à afficher lorsque le niveau est completé.
+    */
+   LevelComplet endOverlay;
+
+   /**
+    * Numéro du niveau à jouer.
+    */
+   int levelNumber;
+
+   /**
     * Constructeur
     * @param game Référence sur la classe principale du jeu.
     */
-   public GameScreen(QuokkAdventure game)
+   public GameScreen(QuokkAdventure game, int levelNumber)
    {
       super(game, Assets.manager.get(Assets.musicInGame));
+
+      this.levelNumber = levelNumber;
+
+      endOverlay = new LevelComplet(this, game);
 
       // Préparation de la carte.
       tableau = new Tableau(1, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
@@ -90,9 +109,13 @@ public class GameScreen extends AScreen
       game.getStage().addActor(new ArrowPad(this, tableau));
       game.getStage().addActor(stepsCounter);
       game.getStage().addActor(timeCounter);
+      game.getStage().addActor(endOverlay);
 
       // Instantiation temps
       elapsedTime = 0;
+
+      // N'est pas en pause au début
+      paused = false;
    }
 
    /**
@@ -102,20 +125,8 @@ public class GameScreen extends AScreen
    @Override
    public void render(float delta)
    {
-      elapsedTime += delta;
-
       super.render(delta);
       game.getBatch().end();
-
-      // Exécution de la commande.
-      if(toExecute != null)
-      {
-        if( toExecute.execute())
-        {
-           historic.push(toExecute);
-        }
-        toExecute = null;
-      }
 
       // Affichage de la base de la carte.
       renderer.setView(camera);
@@ -126,17 +137,31 @@ public class GameScreen extends AScreen
       // du reste du stage
       game.getStage().draw();
 
+      if(paused) return;
+
+      elapsedTime += delta;
+
+      // Exécution de la commande.
+      if(toExecute != null)
+      {
+         if( toExecute.execute())
+         {
+            historic.push(toExecute);
+         }
+         toExecute = null;
+      }
+
       // Niveau fini ?
       if(tableau.isSolved())
       {
-         // TODO Afficher un vrai écran digne de ce nom.
-         System.out.println("Level solved!");
+         // Affichage de l'overlay
+         endOverlay.show();
       }
 
       stepsCounter.update(tableau.getMovesCounter());
       timeCounter.update((int) elapsedTime);
-   }
 
+   }
 
    /**
     * Méthode appelé lorsque l'écran n'est plus utilisé.
@@ -147,6 +172,16 @@ public class GameScreen extends AScreen
       super.dispose();
       tableau.loadMap().dispose();
       renderer.dispose();
+   }
+
+   /**
+    * Met le jeu en pause/Enlève le jeu de la pause.
+    */
+   @Override
+   public void pause()
+   {
+      super.pause();
+      paused = !paused;
    }
 
    /**
@@ -187,5 +222,14 @@ public class GameScreen extends AScreen
    {
       if(!historic.empty())
          historic.pop().undo();
+   }
+
+   /**
+    * Accesseur du numéro du niveau joué.
+    * @return Retourne le numéro du niveau joué.
+    */
+   public int getLevelNumber()
+   {
+      return levelNumber;
    }
 }

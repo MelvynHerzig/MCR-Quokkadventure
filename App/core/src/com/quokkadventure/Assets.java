@@ -121,6 +121,26 @@ public class Assets
     */
    public static final AssetDescriptor<Texture> textBtnUndo = new AssetDescriptor<>("UI/btnUndo.png", Texture.class);
 
+   /**
+    * Image de livre utilisée pour le menu de fin de niveau.
+    */
+   public static final AssetDescriptor<Texture> imgBook = new AssetDescriptor<>("UI/book.png", Texture.class);
+
+   /**
+    * Image bouton "Menu" principal
+    */
+   public static final AssetDescriptor<Texture> textBtnMenu = new AssetDescriptor<>("UI/btnMenu.png", Texture.class);
+
+   /**
+    * Image bouton "Next" pour changer de niveau.
+    */
+   public static final AssetDescriptor<Texture> textBtnNext = new AssetDescriptor<>("UI/btnNext.png", Texture.class);
+
+   /**
+    * Image bouton "Review" pour exécuter le niveau.
+    */
+   public static final AssetDescriptor<Texture> textBtnReview = new AssetDescriptor<>("UI/btnReview.png", Texture.class);
+
    /* ********** Audio ************* */
    /**
     * Son joué au click sur les boutons
@@ -161,6 +181,10 @@ public class Assets
       manager.load(textStepCounter);
       manager.load(textTimeCounter);
       manager.load(textBtnUndo);
+      manager.load(imgBook);
+      manager.load(textBtnMenu);
+      manager.load(textBtnNext);
+      manager.load(textBtnReview);
 
       // Audio
       manager.load(clickSound);

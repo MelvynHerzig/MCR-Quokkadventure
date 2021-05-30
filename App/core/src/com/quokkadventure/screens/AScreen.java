@@ -6,11 +6,8 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
@@ -133,6 +130,15 @@ public class AScreen extends InputAdapter implements Screen
    }
 
    /**
+    * Méthode appelée quand l'écran doit libérer ses ressources
+    */
+   @Override
+   public void dispose()
+   {
+      backMusic.stop();
+   }
+
+   /**
     * Méthode appelée lorsque le jeu est en pause
     */
    @Override
@@ -151,12 +157,5 @@ public class AScreen extends InputAdapter implements Screen
     */
    @Override
    public void hide()
-   { /* méthode auto générée. */ }
-
-   /**
-    * Méthode appelée quand l'écran doit libérer ses ressources
-    */
-   @Override
-   public void dispose()
    { /* méthode auto générée. */ }
 }
