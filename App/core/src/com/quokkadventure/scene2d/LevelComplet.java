@@ -29,7 +29,7 @@ public class LevelComplet extends Group
    /**
     * Écran de jeu depuis lequel est affiché le menu.
     */
-   private GameScreen gameScreen;
+   private final GameScreen gameScreen;
 
    /**
     * Constructeur.
@@ -40,15 +40,23 @@ public class LevelComplet extends Group
    {
       this.gameScreen = gameScreen;
 
-      setSize(QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
+      // Récupération de l'image de fond.
+      Image background = new Image(Assets.manager.get(Assets.imgBook));
 
+      // Dimensionnement du groupe à la taille minimale c-à-d l'image de fond.
+      setSize(background.getWidth(), background.getHeight());
+
+      // On place le groupe au centre de l'écran
+      setPosition((QuokkAdventure.WIDTH - getWidth()) / 2,  (QuokkAdventure.HEIGHT - getHeight()) / 2);
+
+      // Affichage de l'image.
       addActor(new Image(Assets.manager.get(Assets.imgBook)));
 
       // Ajout du text (page gauche)
       // Création du label
       Label text = new Label("Congratulations \n You finished \n level " + gameScreen.getLevelNumber(), new Label.LabelStyle(Assets.manager.get(Assets.font), Color.BLACK));
       text.setAlignment(Align.center);
-      text.setPosition(500,500);
+      text.setPosition(100,270);
       text.setFontScale(1.5f);
       addActor(text);
 
@@ -95,7 +103,7 @@ public class LevelComplet extends Group
 
       // alignement et placement des boutons
       menu.defaults().expandX();
-      menu.padLeft(380).padBottom(150);
+      menu.padLeft(380).padBottom(100);
       menu.add(btnMenu).padTop(30);
       menu.row();
       menu.add(btnNext).padTop(30);

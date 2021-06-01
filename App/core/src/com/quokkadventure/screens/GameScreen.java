@@ -3,7 +3,10 @@ package com.quokkadventure.screens;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.actors.Tableau;
@@ -52,12 +55,12 @@ public class GameScreen extends AScreen
    /**
     * Label dynamique des mouvements,
     */
-   private DynamicCounter stepsCounter;
+   private final DynamicCounter stepsCounter;
 
    /**
     * Label dynamique des mouvements,
     */
-   private DynamicCounter timeCounter;
+   private final DynamicCounter timeCounter;
 
    /**
     * Temps écoulé.
@@ -88,7 +91,6 @@ public class GameScreen extends AScreen
       super(game, Assets.manager.get(Assets.musicInGame));
 
       this.levelNumber = levelNumber;
-
       endOverlay = new LevelComplet(this, game);
 
       // Préparation de la carte.
@@ -105,11 +107,11 @@ public class GameScreen extends AScreen
       // Compteur de temps (secondes)
       timeCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textTimeCounter)), 0, 100);
 
-      game.getStage().addActor(tableau);
-      game.getStage().addActor(new ArrowPad(this, tableau));
-      game.getStage().addActor(stepsCounter);
-      game.getStage().addActor(timeCounter);
-      game.getStage().addActor(endOverlay);
+      // ajout des éléments au hud
+      huds.addActor(new ArrowPad(this, tableau));
+      huds.addActor(stepsCounter);
+      huds.addActor(timeCounter);
+      huds.addActor(endOverlay);
 
       // Instantiation temps
       elapsedTime = 0;
@@ -122,21 +124,19 @@ public class GameScreen extends AScreen
     * Méthode appelée lorsque l'écran doit s'afficher.
     * @param delta Temps écoulé depuis le dernier appel.
     */
-   @Override
-   public void render(float delta)
+   public void childRender(float delta)
    {
-      super.render(delta);
-      game.getBatch().end();
-
-      // Affichage de la base de la carte.
+      // Affichage de la carte.
       renderer.setView(camera);
       renderer.getBatch().begin();
       renderer.renderTileLayer(mapLayer);
       renderer.getBatch().end();
+      game.getBatch().begin();
+      tableau.draw(game.getBatch(), 1.f);
+      game.getBatch().end();
 
-      // du reste du stage
-      game.getStage().draw();
-
+      // Si en pause on n'effectue pas la mise à jour du temps
+      // ni l'exécution de commandes
       if(paused) return;
 
       elapsedTime += delta;

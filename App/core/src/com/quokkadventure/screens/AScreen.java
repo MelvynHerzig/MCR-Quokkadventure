@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.quokkadventure.Assets;
@@ -18,7 +19,7 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
  * @author Herzig Melvyn
  * @date 14/05/2021
  */
-public class AScreen extends InputAdapter implements Screen
+public abstract class AScreen extends InputAdapter implements Screen
 {
    /**
     * Référence sur la classe de base du jeu. Permet de récupérer le batch
@@ -37,6 +38,11 @@ public class AScreen extends InputAdapter implements Screen
    protected Music backMusic;
 
    /**
+    * Stage regroupant les hud's.
+    */
+   Stage huds;
+
+   /**
     * Constructeur
     * @param game Référence sur le jeu.
     * @param music Musique de fond.
@@ -45,6 +51,7 @@ public class AScreen extends InputAdapter implements Screen
    {
       this.game = game;
       game.getStage().clear();
+      huds = game.getStage();
 
       // Création de la caméra
       camera = new OrthographicCamera();
@@ -55,12 +62,8 @@ public class AScreen extends InputAdapter implements Screen
       backMusic.setLooping(true);
       backMusic.setVolume(0.3f);
 
-      // TODO refactor, ne fonctionne pas dans GameScreen car overlap par le tableau
-      // Bouton pour couper la music
 
-      /**
-       * Bouton pour couper la musique.
-       */
+      // Bouton pour couper la music
       Button btnMusic = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOn)),
                                    new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)),
                                    new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)));
@@ -83,9 +86,9 @@ public class AScreen extends InputAdapter implements Screen
             musicOn = !musicOn;
          }
       });
-      game.getStage().addActor(btnMusic);
+      huds.addActor(btnMusic);
 
-      // Activation des input
+      // Activation des inputs
       InputMultiplexer input = new InputMultiplexer(game.getStage(), this);
       Gdx.input.setInputProcessor(input);
    }
@@ -109,14 +112,24 @@ public class AScreen extends InputAdapter implements Screen
       camera.update();
       game.getBatch().setProjectionMatrix(camera.combined);
 
-      // Début de l'affichage des éléments
+      // 1) Début de l'affichage des éléments "basique"
       game.getBatch().begin();
-
+      // background
       game.getBatch().draw(Assets.manager.get(Assets.background),0,0);
+      game.getBatch().end();
 
-      // Les enfants devront faire super.render et
-      // game.getBatch().end(); pour lancer terminer l'affichage.
+      // 2) Affichage du contenu de l'enfant
+      childRender(delta);
+
+      // 3) Affichage de l'HUD
+      huds.draw();
    }
+
+   /**
+    * Méthode utilisée pour afficher le contenu spécifique à un écran fils.
+    * @param delta Temps écoulé.
+    */
+   protected abstract void childRender(float delta);
 
    /**
     * Méthode appelée pour redimmensionner l'écran.

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.quokkadventure.Assets;
@@ -19,12 +20,6 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
  */
 public class MainMenuScreen extends AScreen
 {
-
-   /**
-    * Bannière de la page.
-    */
-   private Texture title;
-
    /**
     * Bouton pour quitter.
     */
@@ -42,7 +37,6 @@ public class MainMenuScreen extends AScreen
    public MainMenuScreen(final QuokkAdventure game)
    {
       super(game, Assets.manager.get(Assets.musicMenu));
-      title = Assets.manager.get(Assets.textGameTitle);
 
       // Bouton quitter
       btnQuit = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnQuit)));
@@ -74,21 +68,21 @@ public class MainMenuScreen extends AScreen
       });
       game.getStage().addActor(btnPlay);
 
+      // Titre
+      Image title = new Image(Assets.manager.get(Assets.textGameTitle));
+      title.setPosition(QuokkAdventure.WIDTH /2 - title.getWidth()/2, QuokkAdventure.HEIGHT - title.getHeight() - 20);
+      game.getStage().addActor(title);
+
    }
 
    /**
-    * Méthode appelée pour raffraîchir l'affichage
+    * Méthode appelée pour raffraîchir l'affichage.
+    * Utilisé dans render de AScran. les élément affiché à ce moment seront
+    * devant l'image de fond et derrière le stage.
     * @param delta Temps écoulé depuis le dernier appel.
     */
-   @Override
-   public void render(float delta)
+   public void childRender(float delta)
    {
-      super.render(delta);
-
-      // Centré horizontalement en haut de la page.
-      game.getBatch().draw(title, QuokkAdventure.WIDTH /2 - title.getWidth()/2, QuokkAdventure.HEIGHT - title.getHeight() - 20);
-      game.getBatch().end();
-
-      game.getStage().draw();
+      // Vide, aucun contenu spécifique
    }
 }
