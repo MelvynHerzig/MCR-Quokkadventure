@@ -37,16 +37,15 @@ public class MainMenuScreen extends AScreen
 
    /**
     * Constructeur
-    * @param game Instance de la classe du jeu.
     */
-   public MainMenuScreen(final QuokkAdventure game)
+   public MainMenuScreen()
    {
-      super(game, Assets.manager.get(Assets.musicMenu));
+      super( Assets.manager.get(Assets.musicMenu));
       title = Assets.manager.get(Assets.textGameTitle);
 
       // Bouton quitter
       btnQuit = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnQuit)));
-      btnQuit.setPosition(QuokkAdventure.WIDTH /2 - btnQuit.getWidth()/2, 20); // Bas milieu
+      btnQuit.setPosition(game.WIDTH /2 - btnQuit.getWidth()/2, 20); // Bas milieu
       btnQuit.addListener(new NoisyClickListener()
       {
          @Override
@@ -60,7 +59,7 @@ public class MainMenuScreen extends AScreen
 
       // Bouton quitter
       btnPlay = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnPlay)));
-      btnPlay.setPosition(QuokkAdventure.WIDTH / 2 - btnQuit.getWidth()/2, btnPlay.getHeight() + 40); // Bas milieu
+      btnPlay.setPosition(game.WIDTH / 2 - btnQuit.getWidth()/2, btnPlay.getHeight() + 40); // Bas milieu
       btnPlay.addListener(new NoisyClickListener()
       {
          @Override
@@ -69,7 +68,7 @@ public class MainMenuScreen extends AScreen
             super.clicked(event, x, y);
 
             dispose();
-            game.setScreen(new GameScreen(game, 1));
+            game.setScreen(new GameScreen(1));
          }
       });
       game.getStage().addActor(btnPlay);
@@ -86,7 +85,7 @@ public class MainMenuScreen extends AScreen
       super.render(delta);
 
       // Centré horizontalement en haut de la page.
-      game.getBatch().draw(title, QuokkAdventure.WIDTH /2 - title.getWidth()/2, QuokkAdventure.HEIGHT - title.getHeight() - 20);
+      game.getBatch().draw(title, game.WIDTH /2 - title.getWidth()/2, game.HEIGHT - title.getHeight() - 20);
       game.getBatch().end();
 
       game.getStage().draw();

@@ -1,5 +1,6 @@
 package com.quokkadventure.scene2d;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -10,7 +11,10 @@ import com.quokkadventure.actors.Tableau;
 import com.quokkadventure.command.MoveCommand;
 import com.quokkadventure.command.MoveDirection;
 import com.quokkadventure.screens.GameScreen;
+import com.quokkadventure.screens.LevelScreen;
 import com.quokkadventure.screens.listener.NoisyClickListener;
+
+import java.util.logging.Level;
 
 /**
  * Scène ajoutant un pad avec des flèches directionnelles
@@ -39,10 +43,12 @@ public class ArrowPad extends Table
     * @param screen Écran de jeu invocateur.
     * @param tableau Tableau associé.
     */
-   public ArrowPad(GameScreen screen, Tableau tableau)
+   public ArrowPad(Tableau tableau)
    {
-      this.screen = screen;
       this.tableau = tableau;
+
+      if((QuokkAdventure.Get().getCurrentScreen() instanceof GameScreen))
+         screen = (GameScreen) QuokkAdventure.Get().getCurrentScreen();
 
       init();
 
@@ -57,7 +63,7 @@ public class ArrowPad extends Table
       row();
       add(btnDown).colspan(3).center().padTop((int)(buttonSize / 3));
 
-      setPosition(QuokkAdventure.WIDTH - (int) (3.5 * buttonSize) - 20,20);
+      setPosition(QuokkAdventure.Get().WIDTH - (int) (3.5 * buttonSize) - 20,20);
       pack();
 
       getColor().a = .8f;
@@ -68,6 +74,7 @@ public class ArrowPad extends Table
     */
    private void init()
    {
+
       btnUp = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnUp)));
       btnUp.addListener(new NoisyClickListener()
       {

@@ -1,7 +1,10 @@
 package com.quokkadventure.command;
 
+import com.quokkadventure.Vector2D;
 import com.quokkadventure.actors.ActorOnTile;
 import com.quokkadventure.actors.Tableau;
+
+import java.util.Stack;
 
 /**
  * Commande servant déplacer un acteur (par déplacement ou bousculade)
@@ -13,27 +16,11 @@ public abstract class AMoveCommand extends ACommand
    /**
     * Acteur déplacé
     */
-   protected ActorOnTile movedActor;
+   public ActorOnTile movedActor;
 
-   /**
-    * Ancienne position x de actor.
-    */
-   protected int oldX;
+   protected Vector2D from;
 
-   /**
-    * Ancienne position y de actor.
-    */
-   protected int oldY;
-
-   /**
-    * Nouvelle position x de actor.
-    */
-   protected int newX;
-
-   /**
-    * Nouvelle position y de actor.
-    */
-   protected int newY;
+   protected Vector2D to;
 
    /**
     * Direction du déplacement.
@@ -44,6 +31,7 @@ public abstract class AMoveCommand extends ACommand
     * Tableau dans lequel l'acteur se déplace.
     */
    protected Tableau tableau;
+
 
    /**
     * Constructeur.
@@ -56,6 +44,7 @@ public abstract class AMoveCommand extends ACommand
       this.movedActor = movedActor;
       this.direction = direction;
       this.tableau = tableau;
+
    }
 
    /**
@@ -70,10 +59,9 @@ public abstract class AMoveCommand extends ACommand
       {
          return false;
       }
-
       // Sauvegarde de l'ancienne position pour undo.
-      oldX = movedActor.getPosX();
-      oldY = movedActor.getPosY();
+      from = new Vector2D(movedActor.getPosition().X,movedActor.getPosition().Y);
+
 
       // Détermination du décalage
       int offsetX;
@@ -82,8 +70,8 @@ public abstract class AMoveCommand extends ACommand
       offsetX = (direction == MoveDirection.LEFT ? -1 : (direction == MoveDirection.RIGHT ? +1 : 0));
       offsetY = (direction == MoveDirection.DOWN ? -1 : (direction == MoveDirection.UP    ? +1 : 0));
 
-      newX = oldX + offsetX;
-      newY = oldY + offsetY;
+      to = from.add(new Vector2D(offsetX,offsetY)) ;
+
       return false;
    }
 
@@ -93,6 +81,10 @@ public abstract class AMoveCommand extends ACommand
    @Override
    public void undo()
    {
-      tableau.move(newX, newY, oldX, oldY,true);
+      tableau.move(to, from,true);
+   }
+
+   public MoveDirection getDirection() {
+      return direction;
    }
 }

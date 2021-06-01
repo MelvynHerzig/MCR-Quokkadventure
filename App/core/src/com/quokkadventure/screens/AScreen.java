@@ -24,7 +24,7 @@ public class AScreen extends InputAdapter implements Screen
     * Référence sur la classe de base du jeu. Permet de récupérer le batch
     * et le stage
     */
-   protected final QuokkAdventure game;
+   protected  QuokkAdventure game = QuokkAdventure.Get();
 
    /**
     * Camera pour visualiser l'écran.
@@ -41,14 +41,13 @@ public class AScreen extends InputAdapter implements Screen
     * @param game Référence sur le jeu.
     * @param music Musique de fond.
     */
-   public AScreen(QuokkAdventure game, Music music)
+   public AScreen(Music music)
    {
-      this.game = game;
-      game.getStage().clear();
+         game.getStage().clear();
 
       // Création de la caméra
       camera = new OrthographicCamera();
-      camera.setToOrtho(false, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
+      camera.setToOrtho(false, game.WIDTH, game.HEIGHT);
 
       // Chargement de la musique
       backMusic = music;
@@ -64,7 +63,7 @@ public class AScreen extends InputAdapter implements Screen
       Button btnMusic = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOn)),
                                    new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)),
                                    new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)));
-      btnMusic.setPosition(10, QuokkAdventure.HEIGHT - btnMusic.getHeight() - 10); // haut gauche
+      btnMusic.setPosition(10, game.HEIGHT - btnMusic.getHeight() - 10); // haut gauche
       btnMusic.addListener(new NoisyClickListener()
       {
          private boolean musicOn = true;
@@ -83,7 +82,7 @@ public class AScreen extends InputAdapter implements Screen
             musicOn = !musicOn;
          }
       });
-      game.getStage().addActor(btnMusic);
+         game.getStage().addActor(btnMusic);
 
       // Activation des input
       InputMultiplexer input = new InputMultiplexer(game.getStage(), this);
@@ -126,7 +125,7 @@ public class AScreen extends InputAdapter implements Screen
    @Override
    public void resize(int width, int height)
    {
-      game.getStage().getViewport().update(width, height, true);
+         game.getStage().getViewport().update(width, height, true);
    }
 
    /**

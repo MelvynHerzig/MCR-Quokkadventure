@@ -5,7 +5,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.quokkadventure.screens.GameScreen;
+import com.quokkadventure.screens.LevelScreen;
 import com.quokkadventure.screens.MainMenuScreen;
+
+import java.util.logging.Level;
 
 /**
  * Classe initiale du jeu.
@@ -39,7 +43,29 @@ public class QuokkAdventure extends Game
 	 */
 	private Stage stage;
 
+	/**
+	 * ID du niveau courrant
+	 */
+	private int currentLevelID;
 
+
+	private LevelScreen currentScreen;
+	/**
+	 * Singleton instance
+	 */
+	private static QuokkAdventure instance;
+
+
+	public static QuokkAdventure Get(){
+		if(instance == null) {
+			instance = new QuokkAdventure();
+		}
+		return instance;
+	}
+
+	private QuokkAdventure(){
+		super();
+	}
 	/**
 	 * Méthode appelée lors de la création de l'application.
 	 */
@@ -47,13 +73,12 @@ public class QuokkAdventure extends Game
 	public void create ()
 	{
 		batch = new SpriteBatch();
-		stage = new Stage(new StretchViewport(QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT));
+		stage = new Stage(new StretchViewport(QuokkAdventure.Get().WIDTH, Get().HEIGHT));
 
 		Assets.load();
 		Assets.manager.finishLoading();
 
-		setScreen(new MainMenuScreen(this));
-	}
+		setScreen(new MainMenuScreen());	}
 
 	/**
 	 * Méthode appelée pour libérer la mémoire.
@@ -87,7 +112,29 @@ public class QuokkAdventure extends Game
 		return stage;
 	}
 
+	/**
+	 * Retourne l'ID du dernier niveau joué
+	 * @return
+	 */
+	public int getCurrentLevelID()
+	{
+		return currentLevelID;
+	}
 
+	public void setCurrentLevelID(int id)
+	{
+		currentLevelID = id;
+	}
+
+	public LevelScreen getCurrentScreen()
+	{
+		return currentScreen;
+	}
+
+	public void setCurrentScreen(LevelScreen screen)
+	{
+		currentScreen = screen;
+	}
 	/**
 	 * Termine l'application.
 	 */

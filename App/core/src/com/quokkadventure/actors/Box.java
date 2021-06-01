@@ -3,6 +3,7 @@ package com.quokkadventure.actors;
 import com.badlogic.gdx.Gdx;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
+import com.quokkadventure.Vector2D;
 
 /**
  * Classe qui simule une boîte déplaçable par le quokka.
@@ -18,12 +19,11 @@ public class Box extends ActorOnTile
 
    /**
     * Constructeur
-    * @param posX Position x de la boîte.
-    * @param posY Position y de la boîte.
+    * @param pos Position de la boîte
     */
-   public Box(int posX, int posY)
+   public Box(Vector2D pos)
    {
-      super(posX, posY, Assets.manager.get(Assets.textBox));
+      super(pos, Assets.manager.get(Assets.textBox));
 
       isOnEnd = false;
    }
@@ -49,14 +49,13 @@ public class Box extends ActorOnTile
    /**
     * Une boîte peut être poussée.
     * @param tableau Tableau dans lequel vérifier la progression
-    * @param destX position X de destination
-    * @param destY position Y de destination
+    * @param dest position de destination
     * @return Retourne vrai si la destination est libre.
     */
    @Override
-   public boolean canBePushed(Tableau tableau, int destX, int destY)
+   public boolean canBePushed(Tableau tableau, Vector2D dest)
    {
-      return tableau.getActor(destX, destY) == null;
+      return tableau.getActor(dest) == null;
    }
 
    /**

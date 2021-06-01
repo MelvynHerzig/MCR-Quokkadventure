@@ -15,39 +15,16 @@ import com.quokkadventure.scene2d.DynamicCounter;
 import com.quokkadventure.scene2d.LevelComplet;
 
 import java.util.Stack;
+import java.util.logging.Level;
 
 /**
  * Classe représentant l'écran de jeu.
  * @author Herzig Melvyn
  * @date 15/05/2021
  */
-public class GameScreen extends AScreen
+public class GameScreen extends LevelScreen
 {
-   /**
-    * Tableau qui est joué.
-    */
-   private final Tableau tableau;
 
-   /**
-    * Afficheur de la base de la map contenue dans tableau.
-    */
-   private final OrthogonalTiledMapRenderer renderer;
-
-   /**
-    * Calque de la map dans tableau.
-    */
-   private final TiledMapTileLayer mapLayer;
-
-   /**
-    * Commande à exécuter.
-    */
-   private ACommand toExecute;
-
-   /**
-    * Historique des commande déroulée. Pas de limite. Limiter le nombre de coups
-    * pour réussir un niveau ?
-    */
-   private final Stack<ACommand> historic;
 
    /**
     * Label dynamique des mouvements,
@@ -65,39 +42,16 @@ public class GameScreen extends AScreen
    private float elapsedTime;
 
    /**
-    * Définit si le jeu est en pause
-    */
-   boolean paused;
-
-   /**
-    * Overlay à afficher lorsque le niveau est completé.
-    */
-   LevelComplet endOverlay;
-
-   /**
-    * Numéro du niveau à jouer.
-    */
-   int levelNumber;
-
-   /**
     * Constructeur
-    * @param game Référence sur la classe principale du jeu.
     */
-   public GameScreen(QuokkAdventure game, int levelNumber)
+   public GameScreen( int levelNumber)
    {
-      super(game, Assets.manager.get(Assets.musicInGame));
+      super(levelNumber);
 
-      this.levelNumber = levelNumber;
 
-      endOverlay = new LevelComplet(this, game);
 
       // Préparation de la carte.
-      tableau = new Tableau(1, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
-      renderer = new OrthogonalTiledMapRenderer(tableau.loadMap());
-      mapLayer = (TiledMapTileLayer) renderer.getMap().getLayers().get("staticMap");
 
-      toExecute = null;
-      historic = new Stack<>();
 
       // Compteur de mouvements
       stepsCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textStepCounter)), 0, 0);
@@ -105,17 +59,13 @@ public class GameScreen extends AScreen
       // Compteur de temps (secondes)
       timeCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textTimeCounter)), 0, 100);
 
-      game.getStage().addActor(tableau);
-      game.getStage().addActor(new ArrowPad(this, tableau));
+      game.getStage().addActor(new ArrowPad(tableau));
       game.getStage().addActor(stepsCounter);
       game.getStage().addActor(timeCounter);
-      game.getStage().addActor(endOverlay);
 
       // Instantiation temps
       elapsedTime = 0;
 
-      // N'est pas en pause au début
-      paused = false;
    }
 
    /**
@@ -126,18 +76,8 @@ public class GameScreen extends AScreen
    public void render(float delta)
    {
       super.render(delta);
-      game.getBatch().end();
 
-      // Affichage de la base de la carte.
-      renderer.setView(camera);
-      renderer.getBatch().begin();
-      renderer.renderTileLayer(mapLayer);
-      renderer.getBatch().end();
 
-      // du reste du stage
-      game.getStage().draw();
-
-      if(paused) return;
 
       elapsedTime += delta;
 
@@ -206,30 +146,10 @@ public class GameScreen extends AScreen
       return true;
    }
 
-   /**
-    * Initialise une commande a éxécuter.
-    * @param command Commande a exécuter
-    */
-   public void setCommand(ACommand command)
-   {
-      toExecute = command;
-   }
 
-   /**
-    * Annule la dernière commande exécutée.
-    */
-   public void undoCommand()
-   {
-      if(!historic.empty())
-         historic.pop().undo();
-   }
 
-   /**
-    * Accesseur du numéro du niveau joué.
-    * @return Retourne le numéro du niveau joué.
-    */
-   public int getLevelNumber()
+   public Stack<ACommand> getHistoric()
    {
-      return levelNumber;
+      return historic;
    }
 }

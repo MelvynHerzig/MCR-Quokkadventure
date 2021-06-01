@@ -40,7 +40,7 @@ public class MoveCommand extends AMoveCommand
       super.execute();
 
       // Récupération de l'acteur sur la destination
-      ActorOnTile actorOnDestination = tableau.getActor(newX, newY);
+      ActorOnTile actorOnDestination = tableau.getActor(to);
 
       // On tente de déplacer le potentiel acteur sur la destination.
       PushCommand pushCommand = new PushCommand(movedActor, actorOnDestination, direction, tableau);
@@ -54,12 +54,13 @@ public class MoveCommand extends AMoveCommand
             otherCommand = pushCommand;
          }
 
-         tableau.move(oldX, oldY, newX,  newY, false);
+         tableau.move(from,to, false);
          return true;
       }
 
       return false; // L'acteur n'a pas été déplacé.
    }
+
 
    /**
     * Annule la commande.
@@ -71,5 +72,9 @@ public class MoveCommand extends AMoveCommand
 
       if(otherCommand != null)
          otherCommand.undo();
+   }
+
+   public PushCommand subCommand(){
+      return otherCommand;
    }
 }
