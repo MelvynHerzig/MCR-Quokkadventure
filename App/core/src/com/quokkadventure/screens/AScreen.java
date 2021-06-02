@@ -122,6 +122,7 @@ public abstract class AScreen extends InputAdapter implements Screen
       childRender(delta);
 
       // 3) Affichage de l'HUD
+      huds.act();
       huds.draw();
    }
 
@@ -156,14 +157,18 @@ public abstract class AScreen extends InputAdapter implements Screen
     */
    @Override
    public void pause()
-   { /* méthode auto générée. */ }
+   {
+      backMusic.pause();
+   }
 
    /**
     * Méthode appelée lorsque le jeu reprend
     */
    @Override
    public void resume()
-   { /* méthode auto générée. */ }
+   {
+      backMusic.play();
+   }
 
    /**
     * Appelé lorsque l'écran n'est plus l'écran principal du jeu.

@@ -72,4 +72,17 @@ public class MoveCommand extends AMoveCommand
       if(otherCommand != null)
          otherCommand.undo();
    }
+
+   @Override
+   public String toString()
+   {
+      switch(direction)
+      {
+         case LEFT : return "left";
+         case RIGHT: return "right";
+         case UP   : return "up";
+         case DOWN : return "down";
+      }
+      return "unknown";
+   }
 }

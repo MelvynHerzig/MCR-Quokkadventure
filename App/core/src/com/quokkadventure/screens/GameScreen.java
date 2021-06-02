@@ -17,6 +17,7 @@ import com.quokkadventure.command.MoveDirection;
 import com.quokkadventure.scene2d.ArrowPad;
 import com.quokkadventure.scene2d.DynamicCounter;
 import com.quokkadventure.scene2d.LevelComplet;
+import com.quokkadventure.scene2d.MoveHistoric;
 
 import java.util.Stack;
 
@@ -48,12 +49,6 @@ public class GameScreen extends AScreen
    private AMoveCommand toExecute;
 
    /**
-    * Historique des commande déroulée. Pas de limite. Limiter le nombre de coups
-    * pour réussir un niveau ?
-    */
-   private final Stack<AMoveCommand> historic;
-
-   /**
     * Label dynamique des mouvements,
     */
    private final DynamicCounter stepsCounter;
@@ -71,17 +66,22 @@ public class GameScreen extends AScreen
    /**
     * Définit si le jeu est en pause
     */
-   boolean paused;
+   private boolean paused;
+
+   /**
+    * Widget permettant d'afficher l'historique des déplacement et de le gérer
+    */
+   private final MoveHistoric moveHistoric;
 
    /**
     * Overlay à afficher lorsque le niveau est completé.
     */
-   LevelComplet endOverlay;
+   private final LevelComplet endOverlay;
 
    /**
     * Numéro du niveau à jouer.
     */
-   int levelNumber;
+   private final int levelNumber;
 
    /**
     * Constructeur
@@ -100,7 +100,6 @@ public class GameScreen extends AScreen
       mapLayer = (TiledMapTileLayer) renderer.getMap().getLayers().get("staticMap");
 
       toExecute = null;
-      historic = new Stack<>();
 
       // Compteur de mouvements
       stepsCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textStepCounter)), 0, 0);
@@ -108,10 +107,14 @@ public class GameScreen extends AScreen
       // Compteur de temps (secondes)
       timeCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textTimeCounter)), 0, 100);
 
+      // Création de l'historique des déplacement
+      moveHistoric = new MoveHistoric(this);
+
       // ajout des éléments au hud
       huds.addActor(new ArrowPad(this, tableau));
       huds.addActor(stepsCounter);
       huds.addActor(timeCounter);
+      huds.addActor(moveHistoric);
       huds.addActor(endOverlay);
 
       // Instantiation temps
@@ -147,7 +150,7 @@ public class GameScreen extends AScreen
       {
          if( toExecute.execute())
          {
-            historic.push(toExecute);
+            moveHistoric.addCommand(toExecute);
          }
          toExecute = null;
       }
@@ -176,13 +179,23 @@ public class GameScreen extends AScreen
    }
 
    /**
-    * Met le jeu en pause/Enlève le jeu de la pause.
+    * Met le jeu en pause
     */
    @Override
    public void pause()
    {
       super.pause();
-      paused = !paused;
+      paused = true;
+   }
+
+   /**
+    * Enlève le jeu de la pause
+    */
+   @Override
+   public void resume()
+   {
+      super.resume();
+      paused = false;
    }
 
    /**
@@ -221,8 +234,7 @@ public class GameScreen extends AScreen
     */
    public void undoCommand()
    {
-      if(!historic.empty())
-         historic.pop().undo();
+      moveHistoric.undo();
    }
 
    /**

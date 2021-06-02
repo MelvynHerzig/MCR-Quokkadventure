@@ -1,12 +1,7 @@
 package com.quokkadventure.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
@@ -71,18 +66,6 @@ public class MainMenuScreen extends AScreen
       Image title = new Image(Assets.manager.get(Assets.textGameTitle));
       title.setPosition(QuokkAdventure.WIDTH / 2  - title.getWidth()/2, QuokkAdventure.HEIGHT - title.getHeight() - 20);
       huds.addActor(title);
-
-      /*VerticalGroup buttons = new VerticalGroup();
-      buttons.setSize(btnQuit.getWidth(), btnQuit.getHeight() * 2);
-      buttons.addActor(btnPlay);
-      buttons.addActor(btnQuit);
-
-      ScrollPane scroller = new ScrollPane(buttons);
-      scroller.setSize(btnQuit.getWidth(), btnQuit.getHeight());
-      scroller.setScrollbarsVisible(true);
-      scroller.setFlickScroll(true);
-
-      huds.addActor(scroller);*/
    }
 
    /**
