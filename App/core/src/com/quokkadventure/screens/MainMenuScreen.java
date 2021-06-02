@@ -57,7 +57,7 @@ public class MainMenuScreen extends AScreen
             super.clicked(event, x, y);
 
             dispose();
-            game.setScreen(new GameScreen(game, 1));
+            game.setScreen(new GameScreen(game, 2));
          }
       });
       huds.addActor(btnPlay);

@@ -95,7 +95,7 @@ public class GameScreen extends AScreen
       endOverlay = new LevelComplet(this, game);
 
       // Préparation de la carte.
-      tableau = new Tableau(1, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
+      tableau = new Tableau(levelNumber, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
       renderer = new OrthogonalTiledMapRenderer(tableau.loadMap());
       mapLayer = (TiledMapTileLayer) renderer.getMap().getLayers().get("staticMap");
 
