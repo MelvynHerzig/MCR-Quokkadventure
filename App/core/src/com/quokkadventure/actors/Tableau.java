@@ -23,12 +23,12 @@ public class Tableau extends Group
    /**
     * Nombre de tuiles en largeur.
     */
-   private static int nbTileWidth = 25;
+   private static final int nbTileWidth = 25;
 
    /**
     * Nombre de tuiles en hauteur.
     */
-   private static int nbTileHeight = 15;
+   private static final int nbTileHeight = 15;
 
    /**
     * Un tableau fais 25 * 15 tuiles. Ce tableau positionne les acteurs.
@@ -75,7 +75,7 @@ public class Tableau extends Group
       setSize(width, height);
 
       // Initialisation des tables.
-      acotrsOnTile = new ActorOnTile[25][15];
+      acotrsOnTile = new ActorOnTile[nbTileWidth][nbTileHeight];
       ends = new Array<>();
 
       // Chargement de la carte.
@@ -110,10 +110,10 @@ public class Tableau extends Group
       if (layer == null) throw new RuntimeException("Unknown map layer");
 
       // Pour chaque colonne
-      for (int x = 0; x < 25; ++x)
+      for (int x = 0; x < nbTileWidth; ++x)
       {
          // Pour chaque ligne
-         for (int y = 0; y < 15; ++y)
+         for (int y = 0; y < nbTileHeight; ++y)
          {
             // Récupération de la tuile.
             Cell cell = layer.getCell(x, y);

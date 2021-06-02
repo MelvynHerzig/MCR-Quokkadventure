@@ -11,10 +11,6 @@ import com.quokkadventure.QuokkAdventure;
  */
 public class Box extends ActorOnTile
 {
-   /**
-    * La boîte est elle sur une case d'arrivée ?
-    */
-   private boolean isOnEnd;
 
    /**
     * Constructeur
@@ -24,26 +20,6 @@ public class Box extends ActorOnTile
    public Box(int posX, int posY)
    {
       super(posX, posY, Assets.manager.get(Assets.textBox));
-
-      isOnEnd = false;
-   }
-
-   /**
-    * Accesseur de isOnEnd()
-    * @return Retourne isOnEnd().
-    */
-   public boolean isOnEnd()
-   {
-      return isOnEnd;
-   }
-
-   /**
-    * Mutateur de isOnEnd()
-    * @param onEnd Valeur qui est ajoutée à isOnEnd().
-    */
-   public void setOnEnd(boolean onEnd)
-   {
-      isOnEnd = onEnd;
    }
 
    /**

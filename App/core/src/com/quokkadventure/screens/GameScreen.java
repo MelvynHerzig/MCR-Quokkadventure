@@ -11,6 +11,7 @@ import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.actors.Tableau;
 import com.quokkadventure.command.ACommand;
+import com.quokkadventure.command.AMoveCommand;
 import com.quokkadventure.command.MoveCommand;
 import com.quokkadventure.command.MoveDirection;
 import com.quokkadventure.scene2d.ArrowPad;
@@ -44,13 +45,13 @@ public class GameScreen extends AScreen
    /**
     * Commande à exécuter.
     */
-   private ACommand toExecute;
+   private AMoveCommand toExecute;
 
    /**
     * Historique des commande déroulée. Pas de limite. Limiter le nombre de coups
     * pour réussir un niveau ?
     */
-   private final Stack<ACommand> historic;
+   private final Stack<AMoveCommand> historic;
 
    /**
     * Label dynamique des mouvements,
@@ -210,7 +211,7 @@ public class GameScreen extends AScreen
     * Initialise une commande a éxécuter.
     * @param command Commande a exécuter
     */
-   public void setCommand(ACommand command)
+   public void setCommand(AMoveCommand command)
    {
       toExecute = command;
    }
