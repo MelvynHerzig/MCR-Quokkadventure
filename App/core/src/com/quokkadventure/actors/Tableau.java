@@ -8,6 +8,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
+import com.quokkadventure.Vector2D;
 
 
 /**
@@ -125,25 +127,25 @@ public class Tableau extends Group
                      // En fonction de la valeur du type.
                      if (type.equals("start"))
                      {
-                        player = new Quokka(x, y);
+                        player = new Quokka(new Vector2D(x,y));
                         acotrsOnTile[x][y] = player; // Ajout du personnage en position x, y
                         addActor(player);
                      }
                      else if (type.equals("wall"))
                      {
-                        Wall wall = new Wall(x, y);
+                        Wall wall = new Wall(new Vector2D(x,y));
                         acotrsOnTile[x][y] = wall; // Ajout d'un mur en position x,y
                         addActor(wall);
                      }
                      else if (type.equals("box"))
                      {
-                        Box box = new Box(x, y);
+                        Box box = new Box(new Vector2D(x,y));
                         acotrsOnTile[x][y] = box; // Ajout d'une boîte en position x,y
                         addActor(box);
                      }
                      else if (type.equals("end"))
                      {
-                        End end = new End(x, y);
+                        End end = new End(new Vector2D(x,y));
                         ends.add(end); // Ajout d'une case de fin
                         addActor(end);
                      }
@@ -157,15 +159,14 @@ public class Tableau extends Group
 
    /**
     * Récupère l'acteur en position x,y
-    * @param x Position x.
-    * @param y Position y.
+    * @param at position de l'acteur a récupérer
     * @return Retourne l'acteur (peut-être null).
     * @throws  IndexOutOfBoundsException si x et y ne sont pas des numéros
     *          de tuiles valides.
     */
-   public ActorOnTile getActor(int x, int y)
+   public ActorOnTile getActor(Vector2D at)
    {
-      return acotrsOnTile[x][y];
+      return acotrsOnTile[at.X][at.Y];
    }
 
    /**
@@ -179,23 +180,23 @@ public class Tableau extends Group
 
    /**
     * Déplace un actorOnTile.
-    * @param oldX Position x (tuile) de l'acteur à déplacer.
-    * @param oldY Position y (tuile) de l'acteur à déplacer.
-    * @param newX Position x (tuile) de destination.
-    * @param newY Position y (tuile) de destination.
+    * @param from Position (tuile) de l'acteur à déplacer.
+    * @param to Position  (tuile) de destination.
     * @param isUndo Définit si le déplacement est une annulation.
     */
-   public void move(int oldX, int oldY, int newX, int newY, boolean isUndo)
-   {
+   public void move(Vector2D from,Vector2D to, boolean isUndo) {
       // Déplacement du personnage
-      if(acotrsOnTile[oldX][oldY] != null)
-      {
-         acotrsOnTile[oldX][oldY].moveToPosition(newX, newY, this, isUndo);
+
+      if (acotrsOnTile[from.X][from.Y] != null) {
+         acotrsOnTile[from.X][from.Y].moveToPosition(to, this, isUndo);
       }
 
       // Mise à jour du tableau 2d
-      acotrsOnTile[newX][newY] = acotrsOnTile [oldX][oldY];
-      acotrsOnTile [oldX][oldY] = null;
+      acotrsOnTile[to.X][to.Y] = acotrsOnTile[from.X][from.Y];
+      acotrsOnTile[from.X][from.Y] = null;
+
+
+      System.out.println(from + " -> " + to + " " +   acotrsOnTile[to.X][to.Y] );
    }
 
    /**
@@ -207,7 +208,7 @@ public class Tableau extends Group
       for(ActorOnTile aot : ends)
       {
          // Récupération du potientiel acteur sur l'arrivée
-         ActorOnTile actorOnEnd = getActor(aot.getPosX(), aot.getPosY());
+         ActorOnTile actorOnEnd = getActor(aot.getPosition());
 
          // Si personne ou n'est pas une boîte
          if(actorOnEnd == null || actorOnEnd.getType() != ActorType.BOX)

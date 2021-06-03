@@ -3,6 +3,7 @@ package com.quokkadventure.actors;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.quokkadventure.Assets;
+import com.quokkadventure.Vector2D;
 
 /**
  * Classe modélisant le quokka (joueur)
@@ -13,23 +14,21 @@ public class Quokka extends ActorOnTile
 {
    /**
     * Constructeur
-    * @param posX Position de départ x.
-    * @param posY Position de départ y.
+    * @param pos Position de départ .
     */
-   public Quokka(int posX, int posY)
+   public Quokka(Vector2D pos)
    {
-      super(posX, posY, Assets.manager.get(Assets.textQuokka));
+      super(pos, Assets.manager.get(Assets.textQuokka));
    }
 
    /**
     * Le joueur ne peut être poussé
     * @param tableau Tableau dans lequel vérifier la progression (ignoré)
-    * @param destX position X de destination (ignoré)
-    * @param destY position Y de destination (ignoré)
+    * @param dest position  de destination (ignoré)
     * @return Retourne faux
     */
    @Override
-   public boolean canBePushed(Tableau tableau, int destX, int destY)
+   public boolean canBePushed(Tableau tableau, Vector2D dest)
    {
       return false;
    }
@@ -56,14 +55,13 @@ public class Quokka extends ActorOnTile
 
    /**
     * Déplace l'acteur à la poisition posX, posY
-    * @param posX Nouvelle position X.
-    * @param posY Nouvelle position Y.
+    * @param pos Nouvelle position
     * @param tableau Tableau dans lequel l'acteur se déplace.
     * @param isUndo Définit si le déplacement est une annulation.
     */
-   public void moveToPosition(int posX, int posY, Tableau tableau, boolean isUndo)
+   public void moveToPosition(Vector2D pos, Tableau tableau, boolean isUndo)
    {
-      super.moveToPosition(posX, posY, tableau, isUndo);
+      super.moveToPosition(pos,tableau, isUndo);
 
       if(isUndo)
       {

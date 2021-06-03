@@ -145,17 +145,17 @@ public class Assets
    /**
     * Son joué au click sur les boutons
     */
-   public static final AssetDescriptor<Sound> clickSound = new AssetDescriptor<>("Sound/click.wav", Sound.class);
+   public static final AssetDescriptor<Sound> clickSound = new AssetDescriptor<>("Sound/click.WAV", Sound.class);
 
    /**
     * Music du menu
     */
-   public static final AssetDescriptor<Music> musicMenu = new AssetDescriptor<>("Music/menuLoop.wav", Music.class);
+   public static final AssetDescriptor<Music> musicMenu = new AssetDescriptor<>("Music/menuLoop.WAV", Music.class);
 
    /**
     * Music en jeu
     */
-   public static final AssetDescriptor<Music> musicInGame = new AssetDescriptor<>("Music/inGameLoop.wav", Music.class);
+   public static final AssetDescriptor<Music> musicInGame = new AssetDescriptor<>("Music/inGameLoop.WAV", Music.class);
 
    /**
     * Méthode appelé au début du jeu pour charger les assets.

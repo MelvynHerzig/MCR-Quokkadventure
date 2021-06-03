@@ -19,6 +19,6 @@ public class DesktopLauncher
 		config.setWindowedMode(QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
 
 		// Démarrage
-		new Lwjgl3Application(new QuokkAdventure(), config);
+		new Lwjgl3Application(QuokkAdventure.Get(),config);
 	}
 }

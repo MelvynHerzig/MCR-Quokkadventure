@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.quokkadventure.Vector2D;
+
+import java.util.Vector;
 
 /**
  * Classe qui représente les éléments de la carte tuilée.
@@ -15,15 +18,8 @@ public abstract class  ActorOnTile extends Actor
 {
    private static final int dimension = 64;
 
-   /**
-    * Position x (tuile) de l'acteur.
-    */
-   protected int x;
+   Vector2D position;
 
-   /**
-    * Position y (tuile) de l'acteur.
-    */
-   protected int y;
 
    /**
     * Texture de l'acteur.
@@ -32,52 +28,33 @@ public abstract class  ActorOnTile extends Actor
 
    /**
     * Constructeur.
-    * @param posX Position x.
-    * @param posY Position y.
+    * @param pos Position .
     * @param texture Texture de l'acteur.
     */
-   ActorOnTile(int posX, int posY, Texture texture)
+   ActorOnTile(Vector2D pos, Texture texture)
    {
-      x = posX;
-      y = posY;
+      position = new Vector2D(pos.X,pos.Y);
 
       setSize(dimension, dimension);
-      setPosition(x * dimension, y * dimension);
+      setPosition(position.X * dimension, position.Y * dimension);
 
       img = texture;
    }
 
    /**
     * Déplace l'acteur à la poisition posX, posY
-    * @param posX Nouvelle position X.
-    * @param posY Nouvelle position Y.
+    * @param pos Nouvelle position X
     * @param tableau Tableau dans lequel l'acteur se déplace.
     * @param isUndo Définit si le déplacement est une annulation.
     */
-   public void moveToPosition(int posX, int posY, Tableau tableau, boolean isUndo)
+   public void moveToPosition(Vector2D pos,Tableau tableau, boolean isUndo)
    {
-      x = posX;
-      y = posY;
-
-      addAction(Actions.moveTo(x * 64, y * 64, 0f));
+      position = new Vector2D(pos.X,pos.Y);;
+      addAction(Actions.moveTo(position.X * 64, position.Y * 64, 0f));
    }
 
-   /**
-    * Accesseur position x.
-    * @return Retourne la position x (tuile) de l'acteur.
-    */
-   public int getPosX()
-   {
-      return x;
-   }
-
-   /**
-    * Accesseur position y.
-    * @return Retourne la position y (tuile) de l'acteur.
-    */
-   public int getPosY()
-   {
-      return y;
+   public Vector2D getPosition(){
+      return new Vector2D(position.X, position.Y);
    }
 
    /**
@@ -88,17 +65,16 @@ public abstract class  ActorOnTile extends Actor
    @Override
    public void draw(Batch batch, float parentAlpha)
    {
-      batch.draw(img, x * dimension, y * dimension,  dimension , dimension);
+      batch.draw(img, position.X * dimension, position.Y * dimension,  dimension , dimension);
    }
 
    /**
     * Définit si l'acteur peut être poussé.
     * @param tableau Tableau sur lequel l'acteur serait poussé.
-    * @param destX Destination x (tuile).
-    * @param destY Destination y (tuile).
+    * @param to Destination  (tuile)
     * @return Retourne vrai si l'acteur peut être poussé à la destination.
     */
-   public abstract boolean canBePushed(Tableau tableau, int destX, int destY);
+   public abstract boolean canBePushed(Tableau tableau, Vector2D to);
 
    /**
     * Définit si l'acteur peut pousser.

@@ -37,10 +37,10 @@ public class PushCommand extends AMoveCommand
    {
       super.execute();
 
-      if(!pusher.canPush() || !movedActor.canBePushed(tableau, newX, newY))
+      if(!pusher.canPush() || !movedActor.canBePushed(tableau,to))
          return false;
 
-      tableau.move(oldX, oldY, newX, newY, false);
+      tableau.move(from,to,false);
 
       return true;
    }

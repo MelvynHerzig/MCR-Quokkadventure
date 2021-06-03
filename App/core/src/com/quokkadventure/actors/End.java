@@ -3,6 +3,7 @@ package com.quokkadventure.actors;
 import com.badlogic.gdx.Gdx;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
+import com.quokkadventure.Vector2D;
 
 /**
  * Classe qui simule un emplacement final pour une boîte.
@@ -13,34 +14,31 @@ public class End extends ActorOnTile
 {
    /**
     * Constructeur.
-    * @param posX Position x.
-    * @param posY Position y.
+    * @param pos Position
     */
-   End(int posX, int posY)
+   End(Vector2D pos)
    {
-      super(posX, posY, Assets.manager.get(Assets.textEnd));
+      super(pos,Assets.manager.get(Assets.textEnd));
    }
 
    /**
     * Méthode surchargée afin de ne pas pouvoir déplacer le mur.
-    * @param posX Position x de la nouvelle position (ignorée).
-    * @param posY Position y de la nouvelle position (ignorée).
+    * @param pos Position  de la nouvelle position (ignorée)
     * @param tableau Tableau à mettre à jour (ignoré).
     * @param isUndo Définit si le déplacement est une annulation (ignoré).
     */
    @Override
-   public void moveToPosition(int posX, int posY, Tableau tableau, boolean isUndo)
+   public void moveToPosition(Vector2D pos,Tableau tableau, boolean isUndo)
    { /* Surcharge. On ne déplace pas la fin.*/  }
 
    /**
     * Une fin ne peut être poussée
     * @param tableau Tableau dans lequel vérifier la progression (ignoré)
-    * @param destX position X de destination (ignoré)
-    * @param destY position Y de destination (ignoré)
+    * @param dest position  de destination (ignoré)
     * @return Retourne faux
     */
    @Override
-   public boolean canBePushed(Tableau tableau, int destX, int destY)
+   public boolean canBePushed(Tableau tableau, Vector2D dest)
    {
       return false;
    }

@@ -16,33 +16,16 @@ import com.quokkadventure.scene2d.LevelComplet;
 import com.quokkadventure.scene2d.MoveHistoric;
 
 import java.util.Stack;
+import java.util.logging.Level;
 
 /**
  * Classe représentant l'écran de jeu.
  * @author Herzig Melvyn
  * @date 15/05/2021
  */
-public class GameScreen extends AScreen
+public class GameScreen extends LevelScreen
 {
-   /**
-    * Tableau qui est joué.
-    */
-   private final Tableau tableau;
 
-   /**
-    * Afficheur de la base de la map contenue dans tableau.
-    */
-   private final OrthogonalTiledMapRenderer renderer;
-
-   /**
-    * Calque de la map dans tableau.
-    */
-   private final TiledMapTileLayer mapLayer;
-
-   /**
-    * Commande à exécuter.
-    */
-   private AMoveCommand toExecute;
 
    /**
     * Label dynamique des mouvements,
@@ -60,42 +43,17 @@ public class GameScreen extends AScreen
    private float elapsedTime;
 
    /**
-    * Définit si le jeu est en pause
-    */
-   private boolean paused;
-
-   /**
-    * Widget permettant d'afficher l'historique des déplacement et de le gérer
-    */
    private final MoveHistoric moveHistoric;
-
-   /**
-    * Overlay à afficher lorsque le niveau est completé.
-    */
-   private final LevelComplet endOverlay;
-
-   /**
-    * Numéro du niveau à jouer.
-    */
-   private final int levelNumber;
-
-   /**
     * Constructeur
-    * @param game Référence sur la classe principale du jeu.
     */
-   public GameScreen(QuokkAdventure game, int levelNumber)
+   public GameScreen( int levelNumber)
    {
-      super(game, Assets.manager.get(Assets.musicInGame));
+      super(levelNumber);
 
-      this.levelNumber = levelNumber;
-      endOverlay = new LevelComplet(this, game);
+
 
       // Préparation de la carte.
-      tableau = new Tableau(levelNumber, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
-      renderer = new OrthogonalTiledMapRenderer(tableau.loadMap());
-      mapLayer = (TiledMapTileLayer) renderer.getMap().getLayers().get("staticMap");
 
-      toExecute = null;
 
       // Compteur de mouvements
       stepsCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textStepCounter)), 0, 0);
@@ -103,6 +61,9 @@ public class GameScreen extends AScreen
       // Compteur de temps (secondes)
       timeCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textTimeCounter)), 0, 100);
 
+      game.getStage().addActor(new ArrowPad(tableau));
+      game.getStage().addActor(stepsCounter);
+      game.getStage().addActor(timeCounter);
       // Création de l'historique des déplacement
       moveHistoric = new MoveHistoric(this);
 
@@ -116,8 +77,6 @@ public class GameScreen extends AScreen
       // Instantiation temps
       elapsedTime = 0;
 
-      // N'est pas en pause au début
-      paused = false;
    }
 
    /**
@@ -126,18 +85,9 @@ public class GameScreen extends AScreen
     */
    public void childRender(float delta)
    {
-      // Affichage de la carte.
-      renderer.setView(camera);
-      renderer.getBatch().begin();
-      renderer.renderTileLayer(mapLayer);
-      renderer.getBatch().end();
-      game.getBatch().begin();
-      tableau.draw(game.getBatch(), 1.f);
-      game.getBatch().end();
+      super.render(delta);
 
-      // Si en pause on n'effectue pas la mise à jour du temps
-      // ni l'exécution de commandes
-      if(paused) return;
+
 
       elapsedTime += delta;
 
@@ -216,29 +166,10 @@ public class GameScreen extends AScreen
       return true;
    }
 
-   /**
-    * Initialise une commande a éxécuter.
-    * @param command Commande a exécuter
-    */
-   public void setCommand(AMoveCommand command)
-   {
-      toExecute = command;
-   }
 
-   /**
-    * Annule la dernière commande exécutée.
-    */
-   public void undoCommand()
-   {
-      moveHistoric.undo();
-   }
 
-   /**
-    * Accesseur du numéro du niveau joué.
-    * @return Retourne le numéro du niveau joué.
-    */
-   public int getLevelNumber()
+   public Stack<ACommand> getHistoric()
    {
-      return levelNumber;
+      return historic;
    }
 }

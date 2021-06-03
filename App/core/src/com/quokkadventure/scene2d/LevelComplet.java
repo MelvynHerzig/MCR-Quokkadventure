@@ -1,10 +1,9 @@
 package com.quokkadventure.scene2d;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -13,9 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
+import com.quokkadventure.command.ACommand;
 import com.quokkadventure.screens.GameScreen;
+import com.quokkadventure.screens.LevelScreen;
 import com.quokkadventure.screens.MainMenuScreen;
+import com.quokkadventure.screens.ReviewGame;
 import com.quokkadventure.screens.listener.NoisyClickListener;
+
+import java.util.Stack;
 
 /**
  * Scène qui affiche le menu de fin de niveau.
@@ -27,18 +31,13 @@ public class LevelComplet extends Group
 {
 
    /**
-    * Écran de jeu depuis lequel est affiché le menu.
-    */
-   private final GameScreen gameScreen;
-
-   /**
     * Constructeur.
     * @param gameScreen Écran de jeu surlequel l'overlay est affiché.
-    * @param game Instance du jeu manipulée pour changer les écrans.
     */
-   public LevelComplet(final GameScreen gameScreen, final QuokkAdventure game)
+   public LevelComplet(final LevelScreen gameScreen)
    {
-      this.gameScreen = gameScreen;
+      QuokkAdventure.Get().setCurrentScreen(gameScreen);
+      setSize(QuokkAdventure.Get().WIDTH, QuokkAdventure.Get().HEIGHT);
 
       // Récupération de l'image de fond.
       Image background = new Image(Assets.manager.get(Assets.imgBook));
@@ -54,7 +53,7 @@ public class LevelComplet extends Group
 
       // Ajout du text (page gauche)
       // Création du label
-      Label text = new Label("Congratulations \n You finished \n level " + gameScreen.getLevelNumber(), new Label.LabelStyle(Assets.manager.get(Assets.font), Color.BLACK));
+      Label text = new Label("Congratulations \n You finished \n level " + QuokkAdventure.Get().getCurrentLevelID(), new Label.LabelStyle(Assets.manager.get(Assets.font), Color.BLACK));
       text.setAlignment(Align.center);
       text.setPosition(100,270);
       text.setFontScale(1.5f);
@@ -73,7 +72,7 @@ public class LevelComplet extends Group
          {
            super.clicked(event, x, y);
            gameScreen.dispose();
-           game.setScreen(new MainMenuScreen(game));
+           QuokkAdventure.Get().setScreen(new MainMenuScreen());
          }
       });
 
@@ -99,6 +98,11 @@ public class LevelComplet extends Group
          {
             super.clicked(event, x, y);
             //TODO
+            gameScreen.dispose();
+
+            Stack<ACommand> history = ((GameScreen) QuokkAdventure.Get().getCurrentScreen()).getHistoric();
+            ReviewGame review = new ReviewGame(QuokkAdventure.Get().getCurrentLevelID(),history);
+            QuokkAdventure.Get().setScreen(review);
          }
       });
 
@@ -124,7 +128,7 @@ public class LevelComplet extends Group
    public void hide()
    {
       setVisible(false);
-      gameScreen.pause();
+      QuokkAdventure.Get().getCurrentScreen().pause();
    }
 
    /**
@@ -133,6 +137,6 @@ public class LevelComplet extends Group
    public void show()
    {
       setVisible(true);
-      gameScreen.pause();
+      QuokkAdventure.Get().getCurrentScreen().pause();
    }
 }
