@@ -12,7 +12,6 @@ import com.quokkadventure.command.AMoveCommand;
 import com.quokkadventure.screens.GameScreen;
 import com.quokkadventure.screens.listener.NoisyClickListener;
 
-import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -22,16 +21,6 @@ import java.util.Stack;
  */
 public class MoveHistoric extends Group
 {
-   /**
-    * Référence sur l'écran de jeu dans lequel l'élément est affiché.
-    */
-   private GameScreen gameScreen;
-
-   /**
-    * Liste des commandes effectuées par le joueur
-    */
-   private LinkedList<AMoveCommand> commands;
-
    /**
     * Group vertical utilisé pour ajouter les boutons
     * symbolisant les commandes

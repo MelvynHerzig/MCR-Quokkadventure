@@ -40,7 +40,7 @@ public abstract class AScreen extends InputAdapter implements Screen
    /**
     * Stage regroupant les hud's.
     */
-   Stage huds;
+   protected Stage huds;
 
    /**
     * Constructeur

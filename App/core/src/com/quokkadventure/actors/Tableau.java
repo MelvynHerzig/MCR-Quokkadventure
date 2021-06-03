@@ -55,11 +55,6 @@ public class Tableau extends Group
    private int movesCounter;
 
    /**
-    * Numéro du niveau. Sert à la récupération de la carte tuilée.
-    */
-   private int levelNum;
-
-   /**
     * Référence sur la carte chargée.
     */
    private final TiledMap map;
@@ -83,8 +78,6 @@ public class Tableau extends Group
 
       // Récupérations des tuiles "spéciales"
       initMap();
-
-      this.levelNum = levelNum;
 
       movesCounter = 0;
    }

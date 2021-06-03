@@ -84,6 +84,7 @@ public abstract class AMoveCommand extends ACommand
 
       newX = oldX + offsetX;
       newY = oldY + offsetY;
+
       return false;
    }
 
