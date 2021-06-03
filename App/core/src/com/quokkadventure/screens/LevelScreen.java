@@ -73,11 +73,7 @@ public class LevelScreen extends AScreen{
     }
 
     @Override
-    public void render(float delta)
-    {
-        super.render(delta);
-        game.getBatch().end();
-
+    protected void childRender(float delta) {
         // Affichage de la base de la carte.
         renderer.setView(camera);
         renderer.getBatch().begin();
@@ -86,7 +82,6 @@ public class LevelScreen extends AScreen{
 
         // du reste du stage
         game.getStage().draw();
-
     }
 
     /**

@@ -42,6 +42,9 @@ public class GameScreen extends LevelScreen
     */
    private float elapsedTime;
 
+
+   MoveHistoric historic;
+
    /**
    private final MoveHistoric moveHistoric;
     * Constructeur
@@ -49,8 +52,6 @@ public class GameScreen extends LevelScreen
    public GameScreen( int levelNumber)
    {
       super(levelNumber);
-
-
 
       // Préparation de la carte.
 
@@ -65,13 +66,13 @@ public class GameScreen extends LevelScreen
       game.getStage().addActor(stepsCounter);
       game.getStage().addActor(timeCounter);
       // Création de l'historique des déplacement
-      moveHistoric = new MoveHistoric(this);
+      historic = new MoveHistoric(this);
 
       // ajout des éléments au hud
-      huds.addActor(new ArrowPad(this, tableau));
+      huds.addActor(new ArrowPad( tableau));
       huds.addActor(stepsCounter);
       huds.addActor(timeCounter);
-      huds.addActor(moveHistoric);
+      huds.addActor(historic);
       huds.addActor(endOverlay);
 
       // Instantiation temps
@@ -85,10 +86,7 @@ public class GameScreen extends LevelScreen
     */
    public void childRender(float delta)
    {
-      super.render(delta);
-
-
-
+      super.childRender(delta);
       elapsedTime += delta;
 
       // Exécution de la commande.
@@ -96,7 +94,7 @@ public class GameScreen extends LevelScreen
       {
          if( toExecute.execute())
          {
-            moveHistoric.addCommand(toExecute);
+            historic.addCommand((AMoveCommand) toExecute);
          }
          toExecute = null;
       }
@@ -168,7 +166,7 @@ public class GameScreen extends LevelScreen
 
 
 
-   public Stack<ACommand> getHistoric()
+   public MoveHistoric getHistoric()
    {
       return historic;
    }

@@ -108,4 +108,8 @@ public class MoveHistoric extends Group
          historic.pop().undo();
       }
    }
+
+   Stack<AMoveCommand> getHistoric(){
+      return historic;
+   }
 }

@@ -12,7 +12,7 @@ import com.quokkadventure.Vector2D;
  */
 public class Box extends ActorOnTile
 {
-
+   boolean isOnEnd;
    /**
     * Constructeur
     * @param pos Position de la boîte

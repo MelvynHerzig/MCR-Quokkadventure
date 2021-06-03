@@ -85,7 +85,7 @@ public class LevelComplet extends Group
          {
             super.clicked(event, x, y);
             gameScreen.dispose();
-            game.setScreen(new GameScreen(game, gameScreen.getLevelNumber() + 1));
+            QuokkAdventure.Get().setScreen(new GameScreen( QuokkAdventure.Get().getCurrentLevelID() +  1));
          }
       });
 
@@ -100,8 +100,8 @@ public class LevelComplet extends Group
             //TODO
             gameScreen.dispose();
 
-            Stack<ACommand> history = ((GameScreen) QuokkAdventure.Get().getCurrentScreen()).getHistoric();
-            ReviewGame review = new ReviewGame(QuokkAdventure.Get().getCurrentLevelID(),history);
+            MoveHistoric history = ((GameScreen) QuokkAdventure.Get().getCurrentScreen()).getHistoric();
+            ReviewGame review = new ReviewGame(QuokkAdventure.Get().getCurrentLevelID(),history.getHistoric());
             QuokkAdventure.Get().setScreen(review);
          }
       });

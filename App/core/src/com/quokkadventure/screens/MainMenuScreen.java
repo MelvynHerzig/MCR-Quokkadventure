@@ -30,7 +30,6 @@ public class MainMenuScreen extends AScreen
    public MainMenuScreen()
    {
       super( Assets.manager.get(Assets.musicMenu));
-      title = Assets.manager.get(Assets.textGameTitle);
 
       // Bouton quitter
       btnQuit = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnQuit)));

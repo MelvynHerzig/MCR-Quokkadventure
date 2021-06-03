@@ -10,13 +10,14 @@ import java.util.Stack;
 
 public class ReviewGame extends LevelScreen {
 
-    Stack<ACommand> historyToReplay;
+    Stack<AMoveCommand> historyToReplay;
     /**
      * Constructeur
      *
      * @param levelNumber
+     * @param historic
      */
-    public ReviewGame(int levelNumber, Stack<ACommand> historic) {
+    public ReviewGame(int levelNumber, Stack<AMoveCommand> historic) {
         super(levelNumber);
         historyToReplay = historic;
 
