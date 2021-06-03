@@ -44,11 +44,6 @@ public class MoveHistoric extends Group
    private final ScrollPane scroller;
 
    /**
-    * Compte le nombre d'élément dans buttons
-    */
-   private int count;
-
-   /**
     * Historique des commande déroulée. Pas de limite. Limiter le nombre de coups
     * pour réussir un niveau ?
     */
@@ -67,18 +62,16 @@ public class MoveHistoric extends Group
       buttons = new VerticalGroup();
       buttons.space(5);
       buttons.bottom();
+      buttons.columnRight();
 
       // Création du scroller
       scroller = new ScrollPane(buttons);
-      scroller.setSize(110, 700);
+      scroller.setSize(200, 700);
 
-      setPosition(QuokkAdventure.WIDTH - 180,QuokkAdventure.HEIGHT-scroller.getHeight());
+      setPosition(QuokkAdventure.WIDTH - scroller.getWidth() - 20,QuokkAdventure.HEIGHT-scroller.getHeight());
       setColor(100,0,0,0.5f);
 
       addActor(scroller);
-
-      // 0 élément dans l'historique.
-      count = 0;
    }
 
    /**
@@ -89,7 +82,8 @@ public class MoveHistoric extends Group
    {
       historic.push(command);
 
-      final Label lbl = new Label( command.toString(), new Label.LabelStyle(Assets.manager.get(Assets.font), Color.BLACK));
+      final Label lbl = new Label( command.toString() + " " + historic.size(),
+                                    new Label.LabelStyle(Assets.manager.get(Assets.font), Color.BLACK));
       lbl.addListener(new NoisyClickListener()
       {
          // Mémorisation de la position de la commande.

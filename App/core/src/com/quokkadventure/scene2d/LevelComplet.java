@@ -85,7 +85,8 @@ public class LevelComplet extends Group
          public void clicked(InputEvent event, float x, float y)
          {
             super.clicked(event, x, y);
-            //TODO
+            gameScreen.dispose();
+            game.setScreen(new GameScreen(game, gameScreen.getLevelNumber() + 1));
          }
       });
 
