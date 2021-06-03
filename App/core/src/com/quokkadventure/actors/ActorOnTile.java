@@ -1,6 +1,5 @@
 package com.quokkadventure.actors;
 
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -33,10 +32,10 @@ public abstract class  ActorOnTile extends Actor
     */
    ActorOnTile(Vector2D pos, Texture texture)
    {
-      position = new Vector2D(pos.X,pos.Y);
+      position = new Vector2D(pos.getX(),pos.getY());
 
       setSize(dimension, dimension);
-      setPosition(position.X * dimension, position.Y * dimension);
+      setPosition(position.getX() * dimension, position.getY() * dimension);
 
       img = texture;
    }
@@ -49,12 +48,12 @@ public abstract class  ActorOnTile extends Actor
     */
    public void moveToPosition(Vector2D pos,Tableau tableau, boolean isUndo)
    {
-      position = new Vector2D(pos.X,pos.Y);;
-      addAction(Actions.moveTo(position.X * 64, position.Y * 64, 0f));
+      position = new Vector2D(pos.getX(),pos.getY());;
+      addAction(Actions.moveTo(position.getX() * 64, position.getY() * 64, 0f));
    }
 
    public Vector2D getPosition(){
-      return new Vector2D(position.X, position.Y);
+      return new Vector2D(position.getX(), position.getY());
    }
 
    /**
@@ -65,7 +64,7 @@ public abstract class  ActorOnTile extends Actor
    @Override
    public void draw(Batch batch, float parentAlpha)
    {
-      batch.draw(img, position.X * dimension, position.Y * dimension,  dimension , dimension);
+      batch.draw(img, position.getX() * dimension, position.getY() * dimension,  dimension , dimension);
    }
 
    /**

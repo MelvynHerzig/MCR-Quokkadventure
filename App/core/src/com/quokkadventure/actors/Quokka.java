@@ -1,7 +1,5 @@
 package com.quokkadventure.actors;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.quokkadventure.Assets;
 import com.quokkadventure.Vector2D;
 

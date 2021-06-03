@@ -1,10 +1,7 @@
 package com.quokkadventure.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.utils.Timer;
 import com.quokkadventure.command.*;
-import com.quokkadventure.screens.GameScreen;
 
 import java.util.Stack;
 

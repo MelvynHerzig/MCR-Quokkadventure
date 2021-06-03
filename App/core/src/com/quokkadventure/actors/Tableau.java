@@ -8,7 +8,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
 import com.quokkadventure.Vector2D;
 
 
@@ -166,7 +165,7 @@ public class Tableau extends Group
     */
    public ActorOnTile getActor(Vector2D at)
    {
-      return acotrsOnTile[at.X][at.Y];
+      return acotrsOnTile[at.getX()][at.getY()];
    }
 
    /**
@@ -187,16 +186,13 @@ public class Tableau extends Group
    public void move(Vector2D from,Vector2D to, boolean isUndo) {
       // Déplacement du personnage
 
-      if (acotrsOnTile[from.X][from.Y] != null) {
-         acotrsOnTile[from.X][from.Y].moveToPosition(to, this, isUndo);
+      if (acotrsOnTile[from.getX()][from.getY()] != null) {
+         acotrsOnTile[from.getX()][from.getY()].moveToPosition(to, this, isUndo);
       }
 
       // Mise à jour du tableau 2d
-      acotrsOnTile[to.X][to.Y] = acotrsOnTile[from.X][from.Y];
-      acotrsOnTile[from.X][from.Y] = null;
-
-
-      System.out.println(from + " -> " + to + " " +   acotrsOnTile[to.X][to.Y] );
+      acotrsOnTile[to.getX()][to.getY()] = acotrsOnTile[from.getX()][from.getY()];
+      acotrsOnTile[from.getX()][from.getY()] = null;
    }
 
    /**

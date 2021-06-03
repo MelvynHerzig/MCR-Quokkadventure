@@ -60,7 +60,7 @@ public abstract class AMoveCommand extends ACommand
          return false;
       }
       // Sauvegarde de l'ancienne position pour undo.
-      from = new Vector2D(movedActor.getPosition().X,movedActor.getPosition().Y);
+      from = new Vector2D(movedActor.getPosition().getX(),movedActor.getPosition().getY());
 
 
       // Détermination du décalage

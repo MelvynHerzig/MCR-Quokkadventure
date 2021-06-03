@@ -14,15 +14,6 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
  */
 public class MainMenuScreen extends AScreen
 {
-   /**
-    * Bouton pour quitter.
-    */
-   private Button btnQuit;
-
-   /**
-    * Bouton pour joueur
-    */
-   private Button btnPlay;
 
    /**
     * Constructeur
@@ -32,7 +23,7 @@ public class MainMenuScreen extends AScreen
       super( Assets.manager.get(Assets.musicMenu));
 
       // Bouton quitter
-      btnQuit = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnQuit)));
+      Button btnQuit = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnQuit)));
       btnQuit.setPosition(game.WIDTH /2 - btnQuit.getWidth()/2, 20); // Bas milieu
       btnQuit.addListener(new NoisyClickListener()
       {
@@ -46,7 +37,7 @@ public class MainMenuScreen extends AScreen
       huds.addActor(btnQuit);
 
       // Bouton jouer
-      btnPlay = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnPlay)));
+      Button btnPlay = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnPlay)));
       btnPlay.setPosition(game.WIDTH / 2 - btnQuit.getWidth()/2, btnPlay.getHeight() + 40); // Bas milieu
       btnPlay.addListener(new NoisyClickListener()
       {

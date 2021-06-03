@@ -25,7 +25,7 @@ public abstract class AScreen extends InputAdapter implements Screen
     * Référence sur la classe de base du jeu. Permet de récupérer le batch
     * et le stage
     */
-   protected  QuokkAdventure game = QuokkAdventure.Get();
+   protected QuokkAdventure game = QuokkAdventure.Get();
 
    /**
     * Camera pour visualiser l'écran.
@@ -44,18 +44,16 @@ public abstract class AScreen extends InputAdapter implements Screen
 
    /**
     * Constructeur
-    * @param game Référence sur le jeu.
     * @param music Musique de fond.
     */
    public AScreen(Music music)
    {
-      this.game = game;
-      game.getStage().clear();
       huds = game.getStage();
+      huds.clear();
 
       // Création de la caméra
       camera = new OrthographicCamera();
-      camera.setToOrtho(false, game.WIDTH, game.HEIGHT);
+      camera.setToOrtho(false, QuokkAdventure.WIDTH, QuokkAdventure.HEIGHT);
 
       // Chargement de la musique
       backMusic = music;
@@ -67,7 +65,7 @@ public abstract class AScreen extends InputAdapter implements Screen
       Button btnMusic = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOn)),
                                    new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)),
                                    new TextureRegionDrawable(Assets.manager.get(Assets.textAudioOff)));
-      btnMusic.setPosition(10, game.HEIGHT - btnMusic.getHeight() - 10); // haut gauche
+      btnMusic.setPosition(10, QuokkAdventure.HEIGHT - btnMusic.getHeight() - 10); // haut gauche
       btnMusic.addListener(new NoisyClickListener()
       {
          private boolean musicOn = true;
@@ -89,7 +87,7 @@ public abstract class AScreen extends InputAdapter implements Screen
       huds.addActor(btnMusic);
 
       // Activation des inputs
-      InputMultiplexer input = new InputMultiplexer(game.getStage(), this);
+      InputMultiplexer input = new InputMultiplexer(huds, this);
       Gdx.input.setInputProcessor(input);
    }
 

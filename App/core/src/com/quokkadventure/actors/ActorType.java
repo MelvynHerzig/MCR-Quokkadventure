@@ -1,6 +1,5 @@
 package com.quokkadventure.actors;
 
-
 /**
  * Permet de déterminer le type d'un acteur.
  * @author Herzig Melvyn

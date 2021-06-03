@@ -1,8 +1,6 @@
 package com.quokkadventure.actors;
 
-import com.badlogic.gdx.Gdx;
 import com.quokkadventure.Assets;
-import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.Vector2D;
 
 /**

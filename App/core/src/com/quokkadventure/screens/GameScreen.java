@@ -1,22 +1,15 @@
 package com.quokkadventure.screens;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.quokkadventure.Assets;
-import com.quokkadventure.QuokkAdventure;
-import com.quokkadventure.actors.Tableau;
 import com.quokkadventure.command.AMoveCommand;
 import com.quokkadventure.command.MoveCommand;
 import com.quokkadventure.command.MoveDirection;
 import com.quokkadventure.scene2d.ArrowPad;
 import com.quokkadventure.scene2d.DynamicCounter;
-import com.quokkadventure.scene2d.LevelComplet;
 import com.quokkadventure.scene2d.MoveHistoric;
 
-import java.util.Stack;
-import java.util.logging.Level;
 
 /**
  * Classe représentant l'écran de jeu.
@@ -53,18 +46,12 @@ public class GameScreen extends LevelScreen
    {
       super(levelNumber);
 
-      // Préparation de la carte.
-
-
       // Compteur de mouvements
       stepsCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textStepCounter)), 0, 0);
 
       // Compteur de temps (secondes)
       timeCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textTimeCounter)), 0, 100);
 
-      game.getStage().addActor(new ArrowPad(tableau));
-      game.getStage().addActor(stepsCounter);
-      game.getStage().addActor(timeCounter);
       // Création de l'historique des déplacement
       historic = new MoveHistoric(this);
 
@@ -73,7 +60,6 @@ public class GameScreen extends LevelScreen
       huds.addActor(stepsCounter);
       huds.addActor(timeCounter);
       huds.addActor(historic);
-      huds.addActor(endOverlay);
 
       // Instantiation temps
       elapsedTime = 0;
@@ -164,10 +150,16 @@ public class GameScreen extends LevelScreen
       return true;
    }
 
-
-
    public MoveHistoric getHistoric()
    {
       return historic;
+   }
+
+   /**
+    * Annule la dernière commande exécutée.
+    */
+   public void undoCommand()
+   {
+      historic.undo();
    }
 }

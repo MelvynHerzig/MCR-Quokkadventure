@@ -1,6 +1,6 @@
 package com.quokkadventure.scene2d;
 
-import com.badlogic.gdx.Game;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
-import com.quokkadventure.command.ACommand;
 import com.quokkadventure.screens.GameScreen;
 import com.quokkadventure.screens.LevelScreen;
 import com.quokkadventure.screens.MainMenuScreen;
@@ -29,7 +28,6 @@ import java.util.Stack;
  */
 public class LevelComplet extends Group
 {
-
    /**
     * Constructeur.
     * @param gameScreen Écran de jeu surlequel l'overlay est affiché.
@@ -97,9 +95,8 @@ public class LevelComplet extends Group
          public void clicked(InputEvent event, float x, float y)
          {
             super.clicked(event, x, y);
-            //TODO
-            gameScreen.dispose();
 
+            gameScreen.dispose();
             MoveHistoric history = ((GameScreen) QuokkAdventure.Get().getCurrentScreen()).getHistoric();
             ReviewGame review = new ReviewGame(QuokkAdventure.Get().getCurrentLevelID(),history.getHistoric());
             QuokkAdventure.Get().setScreen(review);
@@ -123,16 +120,7 @@ public class LevelComplet extends Group
    }
 
    /**
-    * Cache l'overlay
-    */
-   public void hide()
-   {
-      setVisible(false);
-      QuokkAdventure.Get().getCurrentScreen().pause();
-   }
-
-   /**
-    * Affiche lôverlay
+    * Affiche l'overlay
     */
    public void show()
    {
