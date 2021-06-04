@@ -10,14 +10,17 @@ import com.quokkadventure.Vector2D;
  */
 public class Box extends ActorOnTile
 {
+   private final int weigth;
    boolean isOnEnd;
    /**
     * Constructeur
     * @param pos Position de la boîte
     */
-   public Box(Vector2D pos)
+   public Box(Vector2D pos, int weigth)
    {
-      super(pos, Assets.manager.get(Assets.textBox));
+      super(pos, weigth > 1 ? Assets.manager.get(Assets.textHeavyBox) : Assets.manager.get(Assets.textBox));
+
+      this.weigth = weigth;
 
       isOnEnd = false;
    }
@@ -31,7 +34,7 @@ public class Box extends ActorOnTile
    @Override
    public boolean canBePushed(Tableau tableau, Vector2D dest)
    {
-      return tableau.getActor(dest) == null;
+      return tableau.getActor(dest) == null && tableau.getPlayer().getStrength() >= getWeigth();
    }
 
    /**
@@ -52,5 +55,14 @@ public class Box extends ActorOnTile
    public ActorType getType()
    {
       return ActorType.BOX;
+   }
+
+   /**
+    * Retourne le poids de la boîte
+    * @return Poids de la boîte
+    */
+   public int getWeigth()
+   {
+      return weigth;
    }
 }
