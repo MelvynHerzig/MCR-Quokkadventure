@@ -1,6 +1,7 @@
 package com.quokkadventure.screens;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.quokkadventure.Assets;
 import com.quokkadventure.command.AMoveCommand;
@@ -31,11 +32,19 @@ public class GameScreen extends LevelScreen
    private final DynamicCounter timeCounter;
 
    /**
+    * Flèches directionelles
+    */
+   private final ArrowPad arrows;
+
+   /**
     * Temps écoulé.
     */
    private float elapsedTime;
 
-
+   /**
+    * vérifie si le niveau est complet
+    */
+   private boolean isSolved = false;
 
    /**
     * Constructeur
@@ -50,10 +59,10 @@ public class GameScreen extends LevelScreen
       // Compteur de temps (secondes)
       timeCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textTimeCounter)), 0, 100);
 
-
+      arrows = new ArrowPad( tableau);
 
       // ajout des éléments au hud
-      huds.addActor(new ArrowPad( tableau));
+      huds.addActor(arrows);
       huds.addActor(stepsCounter);
       huds.addActor(timeCounter);
       huds.addActor(historic);
@@ -82,15 +91,23 @@ public class GameScreen extends LevelScreen
          toExecute = null;
       }
 
+      //verfiier a chaque fin de rendu
+      isSolved = tableau.isSolved();
+
       // Niveau fini ?
-      if(tableau.isSolved())
+      if(isSolved)
       {
          // Affichage de l'overlay
          endOverlay.show();
+
+         arrows.setTouchable(Touchable.disabled);
+         historic.setTouchable(Touchable.disabled);
       }
 
-      stepsCounter.update(tableau.getMovesCounter());
-      timeCounter.update((int) elapsedTime);
+      if(!isSolved){
+         stepsCounter.update(tableau.getMovesCounter());
+         timeCounter.update((int) elapsedTime);
+      }
 
    }
 
