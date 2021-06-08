@@ -10,6 +10,7 @@ import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.command.AMoveCommand;
 import com.quokkadventure.screens.GameScreen;
+import com.quokkadventure.screens.LevelScreen;
 import com.quokkadventure.screens.listener.NoisyClickListener;
 
 import java.util.Stack;
@@ -43,7 +44,7 @@ public class MoveHistoric extends Group
     * Constructeur
     * @param gameScreen Écran de jeu sur lequel l'élément est affiché.
     */
-   public MoveHistoric(GameScreen gameScreen)
+   public MoveHistoric(LevelScreen gameScreen)
    {
       historic = new Stack<>();
 

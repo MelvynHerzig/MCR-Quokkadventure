@@ -7,6 +7,7 @@ import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.actors.Tableau;
 import com.quokkadventure.command.ACommand;
 import com.quokkadventure.scene2d.LevelComplet;
+import com.quokkadventure.scene2d.MoveHistoric;
 
 public class LevelScreen extends AScreen
 {
@@ -41,6 +42,11 @@ public class LevelScreen extends AScreen
      */
     LevelComplet endOverlay;
 
+    /**
+     * Historique des mouvements
+     */
+    protected MoveHistoric historic;
+
     public LevelScreen(int levelNumber)
     {
         super(Assets.manager.get(Assets.musicInGame));
@@ -56,6 +62,9 @@ public class LevelScreen extends AScreen
         huds.addActor(endOverlay);
 
         paused = false;
+
+        // Création de l'historique des déplacement
+        historic = new MoveHistoric(this);
     }
 
     @Override
@@ -79,5 +88,14 @@ public class LevelScreen extends AScreen
     public void setCommand(ACommand command)
     {
         toExecute = command;
+    }
+
+    /**
+     * Get the current leve move historic
+     * @return
+     */
+    public MoveHistoric getHistoric()
+    {
+        return historic;
     }
 }
