@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 
+import java.awt.*;
+
 /**
  * Cette classe est responsable de charger les différents assets et de
  * les libérer à la fin du jeu.
@@ -195,6 +197,8 @@ public class Assets
     public static final AssetDescriptor<Music> musicInGame =
             new AssetDescriptor<>("Music/inGameLoop.WAV", Music.class);
 
+    public static final AssetDescriptor<Texture> textBtnFastForward =
+            new AssetDescriptor<>("UI/fastForward.png",Texture.class);
     /**
      * Méthode appelé au début du jeu pour charger les assets.
      */
@@ -225,6 +229,7 @@ public class Assets
         manager.load(textBtnMenu);
         manager.load(textBtnNext);
         manager.load(textBtnReview);
+        manager.load(textBtnFastForward);
 
         // Audio
         manager.load(clickSound);

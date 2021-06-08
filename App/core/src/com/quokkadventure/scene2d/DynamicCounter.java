@@ -52,4 +52,8 @@ public class DynamicCounter extends Table
    {
       value.setText(newValue);
    }
+
+   public void updateFloat(String newValue){
+      value.setText(newValue);
+   }
 }

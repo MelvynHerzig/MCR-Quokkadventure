@@ -1,13 +1,32 @@
 package com.quokkadventure.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.quokkadventure.Assets;
+import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.command.*;
+import com.quokkadventure.scene2d.DynamicCounter;
+import com.quokkadventure.screens.listener.NoisyClickListener;
 
+import java.text.DecimalFormat;
 import java.util.Stack;
+
+import static com.badlogic.gdx.scenes.scene2d.ui.Cell.defaults;
 
 public class ReviewGame extends LevelScreen {
 
     Stack<AMoveCommand> historyToReplay;
+
+
+    Button accelerate;
+    Button deccelerate;
+
+    DynamicCounter speedDisplay;
+    Float speed = 0.2f;
+    Table t;
     /**
      * Constructeur
      *
@@ -18,6 +37,33 @@ public class ReviewGame extends LevelScreen {
         super(levelNumber);
         historyToReplay = historic;
 
+        deccelerate =  new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnFastForward)));
+        accelerate =  new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnUndo)));
+
+        speedDisplay = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textTimeCounter)),QuokkAdventure.Get().WIDTH - (int) (3.5 * 60) - 20,120);
+        accelerate.addListener(new NoisyClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                super.clicked(event,x,y);
+                speed += 0.1f;
+            }
+        });
+
+        deccelerate.addListener(new NoisyClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                super.clicked(event,x,y);
+                speed -= 0.1f;
+            }
+        });
+        t = new Table();
+        t.defaults().size(60);
+        t.add(accelerate).left().padRight(10);
+        t.add(deccelerate).right().padLeft(10);
+        t.row();
+        t.setPosition(QuokkAdventure.Get().WIDTH - (int) (2 * 60),100);
+        huds.addActor(t);
+        huds.addActor(speedDisplay);
 
     }
 
@@ -29,7 +75,7 @@ public class ReviewGame extends LevelScreen {
         super.render(delta);
 
         clock += Gdx.graphics.getDeltaTime();
-        if(clock > 0.2)
+        if(clock > speed)
         {
             if(!historyToReplay.empty())
             {
@@ -53,6 +99,10 @@ public class ReviewGame extends LevelScreen {
             endOverlay.show();
         }
 
+        if(speed < 0)
+            speed = 0.0f;
+
+        speedDisplay.updateFloat(new DecimalFormat("#.##").format(speed));
     }
     @Override
     public boolean keyDown(int keycode)
