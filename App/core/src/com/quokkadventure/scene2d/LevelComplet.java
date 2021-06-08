@@ -97,7 +97,7 @@ public class LevelComplet extends Group
             super.clicked(event, x, y);
 
             gameScreen.dispose();
-            MoveHistoric history = ((GameScreen) QuokkAdventure.Get().getCurrentScreen()).getHistoric();
+            MoveHistoric history = (QuokkAdventure.Get().getCurrentScreen()).getHistoric();
             ReviewGame review = new ReviewGame(QuokkAdventure.Get().getCurrentLevelID(),history.getHistoric());
             QuokkAdventure.Get().setScreen(review);
          }

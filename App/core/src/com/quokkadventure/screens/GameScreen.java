@@ -36,10 +36,8 @@ public class GameScreen extends LevelScreen
    private float elapsedTime;
 
 
-   MoveHistoric historic;
 
    /**
-   private final MoveHistoric moveHistoric;
     * Constructeur
     */
    public GameScreen( int levelNumber)
@@ -52,8 +50,7 @@ public class GameScreen extends LevelScreen
       // Compteur de temps (secondes)
       timeCounter = new DynamicCounter(new TextureRegionDrawable(Assets.manager.get(Assets.textTimeCounter)), 0, 100);
 
-      // Création de l'historique des déplacement
-      historic = new MoveHistoric(this);
+
 
       // ajout des éléments au hud
       huds.addActor(new ArrowPad( tableau));
@@ -150,10 +147,7 @@ public class GameScreen extends LevelScreen
       return true;
    }
 
-   public MoveHistoric getHistoric()
-   {
-      return historic;
-   }
+
 
    /**
     * Annule la dernière commande exécutée.

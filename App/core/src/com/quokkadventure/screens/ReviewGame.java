@@ -28,7 +28,6 @@ public class ReviewGame extends LevelScreen {
     {
         super.render(delta);
 
-
         clock += Gdx.graphics.getDeltaTime();
         if(clock > 0.2)
         {
@@ -38,8 +37,11 @@ public class ReviewGame extends LevelScreen {
 
                 setCommand( new MoveCommand(tableau.getPlayer(), ((AMoveCommand) toExecute).getDirection(), tableau) );
 
-                toExecute.execute();
-                historyToReplay.remove(historyToReplay.firstElement());
+                if(toExecute.execute())
+                {
+                    historyToReplay.remove(historyToReplay.firstElement());
+                    historic.addCommand((AMoveCommand) toExecute);
+                }
 
             }
             clock = 0;
