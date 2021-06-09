@@ -11,6 +11,7 @@ import java.util.Vector;
 /**
  * Classe qui représente les éléments de la carte tuilée.
  * @author Herzig Melvyn
+ * @author Teo Ferrari
  * @date 16/05/2021
  */
 public abstract class  ActorOnTile extends Actor
@@ -67,19 +68,6 @@ public abstract class  ActorOnTile extends Actor
       batch.draw(img, position.getX() * dimension, position.getY() * dimension,  dimension , dimension);
    }
 
-   /**
-    * Définit si l'acteur peut être poussé.
-    * @param tableau Tableau sur lequel l'acteur serait poussé.
-    * @param to Destination  (tuile)
-    * @return Retourne vrai si l'acteur peut être poussé à la destination.
-    */
-   public abstract boolean canBePushed(Tableau tableau, Vector2D to);
-
-   /**
-    * Définit si l'acteur peut pousser.
-    * @return Retourne vrai si l'acteur peut en pousser d'autres.
-    */
-   public abstract boolean canPush();
 
    /**
     * Accesseur type de l'acteur.

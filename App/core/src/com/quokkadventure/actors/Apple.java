@@ -8,9 +8,10 @@ import com.quokkadventure.Vector2D;
  * Classe qui simule une pomme ramassable augmentant la force du Quokka
  *
  * @author Forestier Quentin
+ * @author Teo Ferrari
  * @date 04/06/2021
  */
-public class Apple extends ActorOnTile
+public class Apple extends ActorOnTile implements Collectible
 {
 
     /**
@@ -24,20 +25,13 @@ public class Apple extends ActorOnTile
     }
 
     @Override
-    public boolean canBePushed(Tableau tableau, Vector2D to)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean canPush()
-    {
-        return false;
-    }
-
-    @Override
     public ActorType getType()
     {
         return ActorType.APPLE;
+    }
+
+    @Override
+    public int strengthGiven() {
+        return 1;
     }
 }

@@ -6,6 +6,7 @@ import com.quokkadventure.Vector2D;
 /**
  * Classe qui simule un emplacement final pour une boîte.
  * @author Herzig Melvyn
+ * @author Teo Ferrari
  * @date 15/05/2021
  */
 public class End extends ActorOnTile
@@ -28,28 +29,6 @@ public class End extends ActorOnTile
    @Override
    public void moveToPosition(Vector2D pos,Tableau tableau, boolean isUndo)
    { /* Surcharge. On ne déplace pas la fin.*/  }
-
-   /**
-    * Une fin ne peut être poussée
-    * @param tableau Tableau dans lequel vérifier la progression (ignoré)
-    * @param dest position  de destination (ignoré)
-    * @return Retourne faux
-    */
-   @Override
-   public boolean canBePushed(Tableau tableau, Vector2D dest)
-   {
-      return false;
-   }
-
-   /**
-    * Une fin ne peut pas pousser.
-    * @return Retourne false.
-    */
-   @Override
-   public boolean canPush()
-   {
-      return false;
-   }
 
    /**
     * Retourne le type de l'acteur.

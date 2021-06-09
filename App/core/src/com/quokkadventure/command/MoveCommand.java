@@ -1,13 +1,13 @@
 package com.quokkadventure.command;
 
-import com.quokkadventure.actors.ActorOnTile;
-import com.quokkadventure.actors.ActorType;
-import com.quokkadventure.actors.Tableau;
+import com.quokkadventure.actors.*;
 
 /**
  * Commande servant à déplacer un acteur sur les tuiles.
  *
- * @author Herzig Melvyn, Forestier Quentin
+ * @author Herzig Melvyn
+ * @author Forestier Quentin
+ * @author Teo Ferrari
  * @date 16/05/2021
  */
 public class MoveCommand extends AMoveCommand
@@ -47,31 +47,31 @@ public class MoveCommand extends AMoveCommand
         // Récupération de l'acteur sur la destination
         ActorOnTile actorOnDestination = tableau.getActor(to);
 
-        // On tente de déplacer le potentiel acteur sur la destination.
-        PushCommand pushCommand = new PushCommand(movedActor,
-                actorOnDestination, direction, tableau);
-
-        // On tente de récupérer une pomme sur la destination
-        CollectCommand collectCommand = new CollectCommand(to, tableau);
-
-        // Si case vide ou  peut on pousser l'obstacle?
-        if (actorOnDestination == null || pushCommand.execute() || collectCommand.execute())
-        {
-            // Si on est ici et que la destination n'était pas nul, on l'a
-            // déplacé.
-            if (actorOnDestination != null && actorOnDestination.getType() == ActorType.BOX)
-            {
-                otherCommand = pushCommand;
-            }
-            else if (actorOnDestination != null && actorOnDestination.getType() == ActorType.APPLE)
-            {
-                otherCommand = collectCommand;
-            }
-
+        if(actorOnDestination == null) {
             tableau.move(from, to, false);
             return true;
         }
 
+        if(movedActor instanceof Pusher && actorOnDestination instanceof Pushable){
+            // On tente de déplacer le potentiel acteur sur la destination.
+            PushCommand pushCommand = new PushCommand(movedActor,
+                    actorOnDestination, direction, tableau);
+            if(pushCommand.execute()) {
+                otherCommand = pushCommand;
+                tableau.move(from, to, false);
+                return true;
+            }
+        }
+
+        if(actorOnDestination instanceof Collectible){
+            // On tente de récupérer une pomme sur la destination
+            CollectCommand collectCommand = new CollectCommand(to, tableau);
+            if(collectCommand.execute()) {
+                otherCommand = collectCommand;
+                tableau.move(from, to, false);
+                return true;
+            }
+        }
         return false; // L'acteur n'a pas été déplacé.
     }
 
@@ -103,10 +103,5 @@ public class MoveCommand extends AMoveCommand
                 return "down";
         }
         return "unknown";
-    }
-
-    public ACommand subCommand()
-    {
-        return otherCommand;
     }
 }

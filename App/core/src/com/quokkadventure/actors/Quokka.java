@@ -6,10 +6,12 @@ import com.quokkadventure.Vector2D;
 /**
  * Classe modélisant le quokka (joueur)
  *
- * @author Herzig Melvyn, Forestier Quentin
+ * @author Herzig Melvyn
+ * @author Forestier Quentin
+ * @author Teo Ferrari
  * @date 15/05/2021
  */
-public class Quokka extends ActorOnTile
+public class Quokka extends ActorOnTile implements Pusher
 {
     private int strength = 1;
 
@@ -21,19 +23,6 @@ public class Quokka extends ActorOnTile
     public Quokka(Vector2D pos)
     {
         super(pos, Assets.manager.get(Assets.textQuokka));
-    }
-
-    /**
-     * Le joueur ne peut être poussé
-     *
-     * @param tableau Tableau dans lequel vérifier la progression (ignoré)
-     * @param dest    position  de destination (ignoré)
-     * @return Retourne faux
-     */
-    @Override
-    public boolean canBePushed(Tableau tableau, Vector2D dest)
-    {
-        return false;
     }
 
     /**

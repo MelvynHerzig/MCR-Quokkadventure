@@ -1,22 +1,22 @@
 package com.quokkadventure.command;
 
 import com.quokkadventure.Vector2D;
-import com.quokkadventure.actors.ActorOnTile;
-import com.quokkadventure.actors.ActorType;
-import com.quokkadventure.actors.Apple;
-import com.quokkadventure.actors.Tableau;
+import com.quokkadventure.actors.*;
 
 /**
  * Commande servant à récupérer les pommes sur le terrain
  *
  * @author Forestier Quentin
+ * @author Teo Ferrari
  * @date 04/06/2021
  */
-public class CollectCommand extends ACommand
+public class
+CollectCommand extends ACommand
 {
 
     private Vector2D pos;
     private Tableau tableau;
+    Collectible collectible;
 
     /**
      * Constructeur
@@ -39,9 +39,10 @@ public class CollectCommand extends ACommand
     public boolean execute()
     {
         ActorOnTile actor = tableau.getActor(pos);
-        if (actor.getType() == ActorType.APPLE)
+        if (actor instanceof Collectible)
         {
-            tableau.getPlayer().setStrength(tableau.getPlayer().getStrength() + 1);
+            collectible = (Collectible) actor;
+            tableau.getPlayer().setStrength(tableau.getPlayer().getStrength() + collectible.strengthGiven());
             tableau.removeActor(actor);
             return true;
         }
@@ -54,10 +55,9 @@ public class CollectCommand extends ACommand
     @Override
     public void undo()
     {
-        tableau.getPlayer().setStrength(tableau.getPlayer().getStrength() - 1);
-        Apple apple = new Apple(pos);
-        tableau.addActor(apple);
-        tableau.addActorOnTile(pos, apple);
+        tableau.getPlayer().setStrength(tableau.getPlayer().getStrength() - collectible.strengthGiven());
+        tableau.addActor((ActorOnTile)collectible);
+        tableau.addActorOnTile(pos, (ActorOnTile)collectible);
 
     }
 }

@@ -6,9 +6,10 @@ import com.quokkadventure.Vector2D;
 /**
  * Classe qui simule une boîte déplaçable par le quokka.
  * @author Herzig Melvyn
+ * @author Teo Ferrari
  * @date 15/05/2021
  */
-public class Box extends ActorOnTile
+public class Box extends ActorOnTile implements Pushable
 {
    private final int weigth;
    boolean isOnEnd;
@@ -35,16 +36,6 @@ public class Box extends ActorOnTile
    public boolean canBePushed(Tableau tableau, Vector2D dest)
    {
       return tableau.getActor(dest) == null && tableau.getPlayer().getStrength() >= getWeigth();
-   }
-
-   /**
-    * Une boîte n'a pas de bras, elle ne peut rien pousser.
-    * @return Retourne false.
-    */
-   @Override
-   public boolean canPush()
-   {
-      return false;
    }
 
    /**
