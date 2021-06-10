@@ -1,6 +1,5 @@
 package com.quokkadventure.actors;
 
-
 import com.quokkadventure.Assets;
 import com.quokkadventure.Vector2D;
 

@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.command.AMoveCommand;
-import com.quokkadventure.screens.GameScreen;
 import com.quokkadventure.screens.LevelScreen;
 import com.quokkadventure.screens.listener.NoisyClickListener;
 

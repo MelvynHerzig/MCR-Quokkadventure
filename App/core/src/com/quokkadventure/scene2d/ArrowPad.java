@@ -10,10 +10,7 @@ import com.quokkadventure.actors.Tableau;
 import com.quokkadventure.command.MoveCommand;
 import com.quokkadventure.command.MoveDirection;
 import com.quokkadventure.screens.GameScreen;
-import com.quokkadventure.screens.LevelScreen;
 import com.quokkadventure.screens.listener.NoisyClickListener;
-
-import java.util.logging.Level;
 
 /**
  * Scène ajoutant un pad avec des flèches directionnelles

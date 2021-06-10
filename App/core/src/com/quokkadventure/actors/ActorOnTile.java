@@ -6,8 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.quokkadventure.Vector2D;
 
-import java.util.Vector;
-
 /**
  * Classe qui représente les éléments de la carte tuilée.
  * @author Herzig Melvyn

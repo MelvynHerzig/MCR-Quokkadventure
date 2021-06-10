@@ -8,8 +8,6 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.quokkadventure.screens.LevelScreen;
 import com.quokkadventure.screens.MainMenuScreen;
 
-import java.util.logging.Level;
-
 /**
  * Classe initiale du jeu.
  * @author Herzig Melvyn
