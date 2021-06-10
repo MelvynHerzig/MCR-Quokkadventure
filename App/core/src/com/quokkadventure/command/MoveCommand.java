@@ -10,8 +10,7 @@ import com.quokkadventure.actors.*;
  * @author Teo Ferrari
  * @date 16/05/2021
  */
-public class MoveCommand extends AMoveCommand
-{
+public class MoveCommand extends AMoveCommand {
 
     /**
      * Parfois pour se déplacer on peut pousser un acteur.
@@ -28,8 +27,7 @@ public class MoveCommand extends AMoveCommand
      * @param tableau   Tableau dans lequel l'acteur tente un déplacement.
      */
     public MoveCommand(ActorOnTile actor, MoveDirection direction,
-                       Tableau tableau)
-    {
+                       Tableau tableau) {
         super(actor, direction, tableau);
         this.otherCommand = null;
     }
@@ -40,33 +38,32 @@ public class MoveCommand extends AMoveCommand
      * @return Retourne vrai si le processus s'est bien déroulé sinon faux.
      */
     @Override
-    public boolean execute()
-    {
+    public boolean execute() {
         super.execute();
 
         // Récupération de l'acteur sur la destination
         ActorOnTile actorOnDestination = tableau.getActor(to);
 
-        if(actorOnDestination == null) {
+        if (actorOnDestination == null) {
             tableau.move(from, to, false);
             return true;
         }
 
-        if(movedActor instanceof Pusher && actorOnDestination instanceof Pushable){
+        if (movedActor.getType() == ActorType.PUSHER && actorOnDestination.getType() == ActorType.PUSHABLE) {
             // On tente de déplacer le potentiel acteur sur la destination.
             PushCommand pushCommand = new PushCommand(movedActor,
                     actorOnDestination, direction, tableau);
-            if(pushCommand.execute()) {
+            if (pushCommand.execute()) {
                 otherCommand = pushCommand;
                 tableau.move(from, to, false);
                 return true;
             }
         }
 
-        if(actorOnDestination instanceof Collectible){
+        if (actorOnDestination.getType() == ActorType.COLLECTIBLE) {
             // On tente de récupérer une pomme sur la destination
             CollectCommand collectCommand = new CollectCommand(to, tableau);
-            if(collectCommand.execute()) {
+            if (collectCommand.execute()) {
                 otherCommand = collectCommand;
                 tableau.move(from, to, false);
                 return true;
@@ -80,8 +77,7 @@ public class MoveCommand extends AMoveCommand
      * Annule la commande.
      */
     @Override
-    public void undo()
-    {
+    public void undo() {
         super.undo();
 
         if (otherCommand != null)
@@ -89,10 +85,8 @@ public class MoveCommand extends AMoveCommand
     }
 
     @Override
-    public String toString()
-    {
-        switch (direction)
-        {
+    public String toString() {
+        switch (direction) {
             case LEFT:
                 return "left";
             case RIGHT:

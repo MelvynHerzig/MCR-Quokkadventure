@@ -240,7 +240,7 @@ public class Tableau extends Group
             ActorOnTile actorOnEnd = getActor(aot.getPosition());
 
             // Si personne ou n'est pas une boîte
-            if (actorOnEnd == null || actorOnEnd.getType() != ActorType.BOX)
+            if (actorOnEnd == null || actorOnEnd.getType() != ActorType.PUSHABLE)
             {
                 return false;
             }

@@ -68,6 +68,55 @@ public abstract class  ActorOnTile extends Actor
       batch.draw(img, position.getX() * dimension, position.getY() * dimension,  dimension , dimension);
    }
 
+   /**
+    * Définit la force donnée par cet acteur à l'acteur qui l'a collecté
+    * @return force donnée
+    */
+   public int strengthGiven(){
+      return 0;
+   }
+
+   /**
+    * Définit si l'acteur peut être poussé.
+    * @param tableau Tableau sur lequel l'acteur serait poussé.
+    * @param to Destination  (tuile)
+    * @return Retourne vrai si l'acteur peut être poussé à la destination.
+    */
+   public boolean canBePushed(Tableau tableau, Vector2D to){
+      return false;
+   }
+
+   /**
+    * Retourne le poids de l'acteur
+    * @return Poids de l'acteur
+    */
+   public int getWeigth(){
+      return 0;
+   }
+
+   /**
+    * Définit si l'acteur peut pousser.
+    * @return Retourne vrai si l'acteur peut en pousser d'autres.
+    */
+   public boolean canPush(){
+      return false;
+   }
+
+   /**
+    * Récupère la force de l'acteur
+    *
+    * @return Retourne la force
+    */
+   public int getStrength(){
+      return 0;
+   }
+
+   /**
+    * Défini la force de l'acteur
+    *
+    * @param newStrength Nouvelle force
+    */
+   public void setStrength(int newStrength){}
 
    /**
     * Accesseur type de l'acteur.

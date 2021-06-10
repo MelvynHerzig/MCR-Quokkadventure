@@ -11,8 +11,7 @@ import com.quokkadventure.Vector2D;
  * @author Teo Ferrari
  * @date 15/05/2021
  */
-public class Quokka extends ActorOnTile implements Pusher
-{
+public class Quokka extends ActorOnTile {
     private int strength = 1;
 
     /**
@@ -44,7 +43,7 @@ public class Quokka extends ActorOnTile implements Pusher
     @Override
     public ActorType getType()
     {
-        return ActorType.QUOKKA;
+        return ActorType.PUSHER;
     }
 
     /**

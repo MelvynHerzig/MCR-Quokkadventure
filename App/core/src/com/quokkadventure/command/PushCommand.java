@@ -1,8 +1,6 @@
 package com.quokkadventure.command;
 
 import com.quokkadventure.actors.ActorOnTile;
-import com.quokkadventure.actors.Pushable;
-import com.quokkadventure.actors.Pusher;
 import com.quokkadventure.actors.Tableau;
 
 /**
@@ -16,7 +14,7 @@ public class PushCommand extends AMoveCommand
    /**
     * Acteur déplaceur
     */
-   private Pusher pusher;
+   private ActorOnTile pusher;
 
    /**
     * Constructeur.
@@ -28,7 +26,7 @@ public class PushCommand extends AMoveCommand
    public PushCommand(ActorOnTile pusher, ActorOnTile pushed, MoveDirection direction, Tableau tableau)
    {
       super(pushed, direction, tableau);
-      this.pusher = (Pusher) pusher;
+      this.pusher = pusher;
    }
 
    /**
@@ -40,7 +38,7 @@ public class PushCommand extends AMoveCommand
    {
       super.execute();
 
-      if(!pusher.canPush() || !((Pushable)movedActor).canBePushed(tableau,to))
+      if(!pusher.canPush() || !movedActor.canBePushed(tableau,to))
          return false;
 
       tableau.move(from,to,false);

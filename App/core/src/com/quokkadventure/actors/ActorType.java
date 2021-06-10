@@ -7,5 +7,5 @@ package com.quokkadventure.actors;
  */
 public enum ActorType
 {
-   QUOKKA, WALL, END, BOX, APPLE
+   WALL, END, PUSHABLE, PUSHER, COLLECTIBLE
 }

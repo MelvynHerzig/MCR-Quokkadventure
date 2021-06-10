@@ -9,8 +9,7 @@ import com.quokkadventure.Vector2D;
  * @author Teo Ferrari
  * @date 15/05/2021
  */
-public class Box extends ActorOnTile implements Pushable
-{
+public class Box extends ActorOnTile {
    private final int weigth;
    boolean isOnEnd;
    /**
@@ -45,7 +44,7 @@ public class Box extends ActorOnTile implements Pushable
    @Override
    public ActorType getType()
    {
-      return ActorType.BOX;
+      return ActorType.PUSHABLE;
    }
 
    /**

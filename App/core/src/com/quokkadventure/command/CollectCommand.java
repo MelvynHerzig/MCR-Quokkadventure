@@ -16,7 +16,7 @@ CollectCommand extends ACommand
 
     private Vector2D pos;
     private Tableau tableau;
-    Collectible collectible;
+    ActorOnTile collectible;
 
     /**
      * Constructeur
@@ -39,9 +39,9 @@ CollectCommand extends ACommand
     public boolean execute()
     {
         ActorOnTile actor = tableau.getActor(pos);
-        if (actor instanceof Collectible)
+        if (actor.getType() == ActorType.COLLECTIBLE)
         {
-            collectible = (Collectible) actor;
+            collectible = actor;
             tableau.getPlayer().setStrength(tableau.getPlayer().getStrength() + collectible.strengthGiven());
             tableau.removeActor(actor);
             return true;
@@ -56,8 +56,8 @@ CollectCommand extends ACommand
     public void undo()
     {
         tableau.getPlayer().setStrength(tableau.getPlayer().getStrength() - collectible.strengthGiven());
-        tableau.addActor((ActorOnTile)collectible);
-        tableau.addActorOnTile(pos, (ActorOnTile)collectible);
+        tableau.addActor(collectible);
+        tableau.addActorOnTile(pos, collectible);
 
     }
 }

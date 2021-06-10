@@ -39,7 +39,6 @@ public class ArrowPad extends Table
 
    /**
     * Constructeur.
-    * @param screen Écran de jeu invocateur.
     * @param tableau Tableau associé.
     */
    public ArrowPad(Tableau tableau)

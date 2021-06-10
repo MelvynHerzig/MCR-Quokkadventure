@@ -11,7 +11,7 @@ import com.quokkadventure.Vector2D;
  * @author Teo Ferrari
  * @date 04/06/2021
  */
-public class Apple extends ActorOnTile implements Collectible
+public class Apple extends ActorOnTile
 {
 
     /**
@@ -27,7 +27,7 @@ public class Apple extends ActorOnTile implements Collectible
     @Override
     public ActorType getType()
     {
-        return ActorType.APPLE;
+        return ActorType.COLLECTIBLE;
     }
 
     @Override
