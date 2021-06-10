@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import com.quokkadventure.Vector2D;
 
-
 /**
  * Cette classe implémente un tableau.
  * Un tableau est essentiellement une TiledMap.

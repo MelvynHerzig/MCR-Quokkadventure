@@ -12,8 +12,6 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 
-import java.awt.*;
-
 /**
  * Cette classe est responsable de charger les différents assets et de
  * les libérer à la fin du jeu.

@@ -14,8 +14,6 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
 import java.text.DecimalFormat;
 import java.util.Stack;
 
-import static com.badlogic.gdx.scenes.scene2d.ui.Cell.defaults;
-
 public class ReviewGame extends LevelScreen {
 
     Stack<AMoveCommand> historyToReplay;

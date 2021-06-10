@@ -4,8 +4,6 @@ import com.quokkadventure.Vector2D;
 import com.quokkadventure.actors.ActorOnTile;
 import com.quokkadventure.actors.Tableau;
 
-import java.util.Stack;
-
 /**
  * Commande servant déplacer un acteur (par déplacement ou bousculade)
  * @author Herzig Melvyn

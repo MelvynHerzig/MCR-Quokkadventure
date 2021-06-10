@@ -1,6 +1,5 @@
 package com.quokkadventure.scene2d;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -17,8 +16,6 @@ import com.quokkadventure.screens.LevelScreen;
 import com.quokkadventure.screens.MainMenuScreen;
 import com.quokkadventure.screens.ReviewGame;
 import com.quokkadventure.screens.listener.NoisyClickListener;
-
-import java.util.Stack;
 
 /**
  * Scène qui affiche le menu de fin de niveau.

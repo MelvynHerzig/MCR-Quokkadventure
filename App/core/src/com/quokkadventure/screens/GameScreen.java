@@ -9,8 +9,6 @@ import com.quokkadventure.command.MoveCommand;
 import com.quokkadventure.command.MoveDirection;
 import com.quokkadventure.scene2d.ArrowPad;
 import com.quokkadventure.scene2d.DynamicCounter;
-import com.quokkadventure.scene2d.MoveHistoric;
-
 
 /**
  * Classe représentant l'écran de jeu.
