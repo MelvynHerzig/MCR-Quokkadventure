@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.6.0" name="tiles" tilewidth="64" tileheight="64" tilecount="10" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="tiles" tilewidth="64" tileheight="64" tilecount="9" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -12,12 +12,6 @@
    <property name="type" value="end"/>
   </properties>
   <image width="64" height="64" source="end.png"/>
- </tile>
- <tile id="2">
-  <properties>
-   <property name="type" value="fire"/>
-  </properties>
-  <image width="64" height="64" source="fire.png"/>
  </tile>
  <tile id="3">
   <image width="64" height="64" source="pathFire.png"/>
