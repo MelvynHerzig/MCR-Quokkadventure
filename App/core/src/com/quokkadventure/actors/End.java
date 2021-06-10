@@ -21,16 +21,6 @@ public class End extends ActorOnTile
    }
 
    /**
-    * Méthode surchargée afin de ne pas pouvoir déplacer le mur.
-    * @param pos Position  de la nouvelle position (ignorée)
-    * @param tableau Tableau à mettre à jour (ignoré).
-    * @param isUndo Définit si le déplacement est une annulation (ignoré).
-    */
-   @Override
-   public void moveToPosition(Vector2D pos,Tableau tableau, boolean isUndo)
-   { /* Surcharge. On ne déplace pas la fin.*/  }
-
-   /**
     * Retourne le type de l'acteur.
     * @return Retourne ActorType.End
     */
