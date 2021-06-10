@@ -74,18 +74,18 @@ public class LevelComplet extends Group
          }
       });
 
-      // Création du bouton de changement de niveau
-      Button btnNext = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnNext)));
-      btnNext.addListener(new NoisyClickListener()
-      {
-         @Override
-         public void clicked(InputEvent event, float x, float y)
-         {
-            super.clicked(event, x, y);
-            gameScreen.dispose();
-            QuokkAdventure.Get().setScreen(new GameScreen( QuokkAdventure.Get().getCurrentLevelID() +  1));
-         }
-      });
+
+         // Création du bouton de changement de niveau
+         Button btnNext = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnNext)));
+         btnNext.addListener(new NoisyClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+               super.clicked(event, x, y);
+               gameScreen.dispose();
+               QuokkAdventure.Get().setScreen(new GameScreen(QuokkAdventure.Get().getCurrentLevelID() + 1));
+            }
+         });
+
 
       // Création du bouton qui démarre le replay.
       Button btnReview = new Button(new TextureRegionDrawable(Assets.manager.get(Assets.textBtnReview)));
@@ -117,6 +117,8 @@ public class LevelComplet extends Group
 
       // A la création le menu est invisible.
       setVisible(false);
+
+      btnNext.setVisible(QuokkAdventure.Get().getCurrentLevelID() < QuokkAdventure.NB_LEVEL);
    }
 
    /**

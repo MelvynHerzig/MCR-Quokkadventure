@@ -17,7 +17,9 @@ import com.quokkadventure.Vector2D;
  * Cette classe s'occupe de charger la carte, vérifier son état,
  * l'afficher et la libérer une fois finie.
  *
- * @author Herzig Melvyn, Forestier Quentin
+ * @author Herzig Melvyn
+ * @author Forestier Quentin
+ * @author Teo Ferrari
  * @date 25/05/2021
  */
 public class Tableau extends Group
@@ -37,7 +39,7 @@ public class Tableau extends Group
      * Cela inclut le quokka, les caisses et les murs.
      * (0,0) est considéré comme étant en bas à gauche.
      */
-    private ActorOnTile[][] acotrsOnTile;
+    private ActorOnTile[][] actorsOnTile;
 
     /**
      * Ce tableau garde les points d'arrivées qui seront interrogé à chaque fin
@@ -73,7 +75,7 @@ public class Tableau extends Group
         setSize(width, height);
 
         // Initialisation des tables.
-        acotrsOnTile = new ActorOnTile[nbTileWidth][nbTileHeight];
+        actorsOnTile = new ActorOnTile[nbTileWidth][nbTileHeight];
         ends = new Array<>();
 
         // Chargement de la carte.
@@ -133,35 +135,35 @@ public class Tableau extends Group
                             if (type.equals("start"))
                             {
                                 player = new Quokka(new Vector2D(x, y));
-                                acotrsOnTile[x][y] = player; // Ajout du
+                                actorsOnTile[x][y] = player; // Ajout du
                                 // personnage en position x, y
                                 addActor(player);
                             }
                             else if (type.equals("wall"))
                             {
                                 Wall wall = new Wall(new Vector2D(x, y));
-                                acotrsOnTile[x][y] = wall; // Ajout d'un mur
+                                actorsOnTile[x][y] = wall; // Ajout d'un mur
                                 // en position x,y
                                 addActor(wall);
                             }
                             else if (type.equals("box"))
                             {
                                 Box box = new Box(new Vector2D(x, y), 1);
-                                acotrsOnTile[x][y] = box; // Ajout d'une
+                                actorsOnTile[x][y] = box; // Ajout d'une
                                 // boîte en position x,y
                                 addActor(box);
                             }
                             else if (type.equals("heavyBox"))
                             {
                                 Box box = new Box(new Vector2D(x, y), 2);
-                                acotrsOnTile[x][y] = box; // Ajout d'une
+                                actorsOnTile[x][y] = box; // Ajout d'une
                                 // boîte lourde en position x,y
                                 addActor(box);
                             }
                             else if (type.equals("apple"))
                             {
                                 Apple apple = new Apple(new Vector2D(x, y));
-                                acotrsOnTile[x][y] = apple; // Ajout d'une
+                                actorsOnTile[x][y] = apple; // Ajout d'une
                                 // pomme en position x,y
                                 addActor(apple);
                             }
@@ -189,7 +191,7 @@ public class Tableau extends Group
      */
     public ActorOnTile getActor(Vector2D at)
     {
-        return acotrsOnTile[at.getX()][at.getY()];
+        return actorsOnTile[at.getX()][at.getY()];
     }
 
     /**
@@ -213,16 +215,16 @@ public class Tableau extends Group
     {
         // Déplacement du personnage
 
-        if (acotrsOnTile[from.getX()][from.getY()] != null)
+        if (actorsOnTile[from.getX()][from.getY()] != null)
         {
-            acotrsOnTile[from.getX()][from.getY()].moveToPosition(to, this,
+            actorsOnTile[from.getX()][from.getY()].moveToPosition(to, this,
                     isUndo);
         }
 
         // Mise à jour du tableau 2d
-        acotrsOnTile[to.getX()][to.getY()] =
-                acotrsOnTile[from.getX()][from.getY()];
-        acotrsOnTile[from.getX()][from.getY()] = null;
+        actorsOnTile[to.getX()][to.getY()] =
+                actorsOnTile[from.getX()][from.getY()];
+        actorsOnTile[from.getX()][from.getY()] = null;
     }
 
     /**
@@ -238,7 +240,7 @@ public class Tableau extends Group
             ActorOnTile actorOnEnd = getActor(aot.getPosition());
 
             // Si personne ou n'est pas une boîte
-            if (actorOnEnd == null || actorOnEnd.getType() != ActorType.BOX)
+            if (actorOnEnd == null || actorOnEnd.getType() != ActorType.PUSHABLE)
             {
                 return false;
             }
@@ -286,6 +288,6 @@ public class Tableau extends Group
      */
     public void addActorOnTile(Vector2D pos, ActorOnTile actor)
     {
-        acotrsOnTile[pos.getX()][pos.getY()] = actor;
+        actorsOnTile[pos.getX()][pos.getY()] = actor;
     }
 }
