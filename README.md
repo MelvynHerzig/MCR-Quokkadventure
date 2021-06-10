@@ -1,11 +1,34 @@
-# MCR Quokkadventure Pattern Command
+# Quokkadventure
 
-## Description
-Un petit Quokka doit se libérer d’une pièce / un environnement ayant ses sorties bloqué par des boîtes. 
-Il doit également éviter des petits pièges situés dans l’environnement et doit donc les éviter afin de ne pas décéder.
-Le Quokka aurait la possibilité de manger des petites bananes (ou autre nourriture) afin de gagner de la force et donc pouvoir déplacer de plus grosses caisses.
+## Autheurs
+- Berney Alec
+- Ferrari Teo
+- Forestier Quentin
+- Herzig Melvyn
+- Janssens Emmanuel
 
-## Documents annexes
-Idée: https://docs.google.com/document/d/1irv9yQSfFwHiAMZz9DpxnxnF6cBQTa-7Ej3pD7yaccg/edit#heading=h.zccu6qy1etgw
+## Contexte
+Ce projet a été réalisé dans le cadre du projet de fin de semestre du cours "modèles de conception réutilisables" </br> à la HEIG-VD durant le semestre de printemps 2021.
 
-Présentation: https://docs.google.com/presentation/d/1toxuSgcaPzVZvMlUq_kWzzW-LfdU0Wlji098PzszNBk/edit#slide=id.p
+Le cours est encadré par:
+- Rosat Sébastien (professeur)
+- Decorvet Grégoire (assistant)
+- Sousa e Silva Fábio (assistant)
+
+Chaque groupe s'est vu attribuer un design pattern pour réaliser une application autours de ce dernier. 
+Nous avons reçu le Command design pattern. 
+
+## Repository
+Ce repository contient les sources des notre projet. Il a été développé en Java avec la librairie [libgdx](https://libgdx.com/) en version 1.10.
+
+## Sources
+Les images, sons et musiques présents dans ce projet ne sont pas le fruit de notre création.
+- Background: réalisé par [Dangerous Zone](https://www.artstation.com/artwork/gJDwLE)
+- Notes musique : réalisé par [Black Panther](https://www.clipartmax.com/middle/m2i8Z5m2G6Z5K9m2_music-note-pixel-art-from-the-basic-pack-of-picroad-black-panther/)
+- Éléments de base l'UI : réalisé par [REXARD](https://www.unrealengine.com/marketplace/en-US/product/wooden-ui)
+- Sons : réalisé par [ViRiX Dreamcore](https://www.unrealengine.com/marketplace/en-US/product/ui-and-magical-sound-effects)
+- Musiques : réalisé par [John Leonard French](https://www.unrealengine.com/marketplace/en-US/product/ultimate-game-music-collection)
+- Textures des tuiles : réalisé par [Mojang](https://minecraft.fandom.com/wiki/List_of_block_textures)
+- Quokka : [Hamster Colosseum](https://devpost.com/software/hamster-colosseum)
+
+> Nous précisions que ce projet a été créé dans un but pédagogique et qu'en raison des droits d'auteurs, il doit rester ainsi tant que les ressources utilisées ne seront pas libres.
