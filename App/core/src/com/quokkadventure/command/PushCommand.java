@@ -6,6 +6,7 @@ import com.quokkadventure.actors.Tableau;
 /**
  * Commande servant à pousser un acteur.
  * @author Herzig Melvyn
+ * @author Teo Ferrari
  * @date 24/05/2021
  */
 public class PushCommand extends AMoveCommand

@@ -9,6 +9,7 @@ import com.quokkadventure.Vector2D;
 /**
  * Classe qui représente les éléments de la carte tuilée.
  * @author Herzig Melvyn
+ * @author Teo Ferrari
  * @date 16/05/2021
  */
 public abstract class  ActorOnTile extends Actor
@@ -66,18 +67,54 @@ public abstract class  ActorOnTile extends Actor
    }
 
    /**
+    * Définit la force donnée par cet acteur à l'acteur qui l'a collecté
+    * @return force donnée
+    */
+   public int strengthGiven(){
+      return 0;
+   }
+
+   /**
     * Définit si l'acteur peut être poussé.
     * @param tableau Tableau sur lequel l'acteur serait poussé.
     * @param to Destination  (tuile)
     * @return Retourne vrai si l'acteur peut être poussé à la destination.
     */
-   public abstract boolean canBePushed(Tableau tableau, Vector2D to);
+   public boolean canBePushed(Tableau tableau, Vector2D to){
+      return false;
+   }
+
+   /**
+    * Retourne le poids de l'acteur
+    * @return Poids de l'acteur
+    */
+   public int getWeigth(){
+      return 0;
+   }
 
    /**
     * Définit si l'acteur peut pousser.
     * @return Retourne vrai si l'acteur peut en pousser d'autres.
     */
-   public abstract boolean canPush();
+   public boolean canPush(){
+      return false;
+   }
+
+   /**
+    * Récupère la force de l'acteur
+    *
+    * @return Retourne la force
+    */
+   public int getStrength(){
+      return 0;
+   }
+
+   /**
+    * Défini la force de l'acteur
+    *
+    * @param newStrength Nouvelle force
+    */
+   public void setStrength(int newStrength){}
 
    /**
     * Accesseur type de l'acteur.

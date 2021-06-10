@@ -15,6 +15,8 @@ import com.quokkadventure.screens.MainMenuScreen;
  */
 public class QuokkAdventure extends Game
 {
+	public static final int NB_LEVEL = 10;
+
 	/**
 	 * Titre du jeu.
 	 */
@@ -118,20 +120,33 @@ public class QuokkAdventure extends Game
 		return currentLevelID;
 	}
 
+	/**
+	 * Definit l'id du niveau en cours
+	 * @param id
+	 */
 	public void setCurrentLevelID(int id)
 	{
 		currentLevelID = id;
 	}
 
+	/**
+	 * Retourne l'écran du niveau
+	 * @return écran du niveau
+	 */
 	public LevelScreen getCurrentScreen()
 	{
 		return currentScreen;
 	}
 
+	/**
+	 * Définit l'écran du niveau
+	 * @param screen écran a définir
+	 */
 	public void setCurrentScreen(LevelScreen screen)
 	{
 		currentScreen = screen;
 	}
+
 	/**
 	 * Termine l'application.
 	 */
