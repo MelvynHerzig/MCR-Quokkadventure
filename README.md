@@ -21,6 +21,8 @@ Nous avons reçu le Command design pattern.
 ## Repository
 Ce repository contient les sources des notre projet. Il a été développé en Java avec la librairie [libgdx](https://libgdx.com/) en version 1.10.
 
+Le projet consiste en un Sokoban. Le joueur fait évoluer un quokka à travers 10 niveaux. Nous axploitons le design pattern command en permettant au joueur de revenir en arrière, de voir la liste de ses déplacement et de pouvoir rejouer ses déplacements une fois le niveau terminé.
+
 ## Sources
 Les images, sons et musiques présents dans ce projet ne sont pas le fruit de notre création.
 - Background: réalisé par [Dangerous Zone](https://www.artstation.com/artwork/gJDwLE)
