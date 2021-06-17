@@ -1,13 +1,18 @@
 package com.quokkadventure.command;
 
 import com.quokkadventure.Vector2D;
-import com.quokkadventure.actors.*;
+import com.quokkadventure.actors.ActorOnTile;
+import com.quokkadventure.actors.ActorType;
+import com.quokkadventure.actors.Tableau;
 
 /**
- * Commande servant à récupérer les pommes sur le terrain
+ * Commande servant à récupérer les pommes sur le terrain.
  *
+ * @author Berney Alec
+ * @author Ferrari Teo
  * @author Forestier Quentin
- * @author Teo Ferrari
+ * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 04/06/2021
  */
 public class
@@ -19,10 +24,10 @@ CollectCommand extends ACommand
     ActorOnTile collectible;
 
     /**
-     * Constructeur
+     * Constructeur.
      *
-     * @param pos     Position à collecter
-     * @param tableau Tableau dans lequel il y a un potentiel collectible
+     * @param pos Position à collecter.
+     * @param tableau Tableau dans lequel il y a un potentiel collectible.
      */
     public CollectCommand(Vector2D pos, Tableau tableau)
     {
@@ -50,7 +55,7 @@ CollectCommand extends ACommand
     }
 
     /**
-     * Annule la commande
+     * Annule la commande.
      */
     @Override
     public void undo()

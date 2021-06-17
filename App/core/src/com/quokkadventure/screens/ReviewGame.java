@@ -7,17 +7,28 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
-import com.quokkadventure.command.*;
+import com.quokkadventure.command.AMoveCommand;
+import com.quokkadventure.command.MoveCommand;
 import com.quokkadventure.scene2d.DynamicCounter;
 import com.quokkadventure.screens.listener.NoisyClickListener;
 
 import java.text.DecimalFormat;
 import java.util.Stack;
 
+/**
+ * Classe représentant le rejeu du dernier niveau réussi.
+ * Rejoue tous les coups réalisés pour réussir le niveau.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
+ * @author Herzig Melvyn
+ * @author Janssens Emmanuel
+ * @date 14/05/2021
+ */
 public class ReviewGame extends LevelScreen {
 
     Stack<AMoveCommand> historyToReplay;
-
 
     Button accelerate;
     Button deccelerate;
@@ -25,11 +36,12 @@ public class ReviewGame extends LevelScreen {
     DynamicCounter speedDisplay;
     Float speed = 0.2f;
     Table t;
+
     /**
-     * Constructeur
+     * Constructeur.
      *
-     * @param levelNumber Le numéro du niveau
-     * @param historic L'historique des mouvements
+     * @param levelNumber Le numéro du niveau.
+     * @param historic L'historique des mouvements.
      */
     public ReviewGame(int levelNumber, Stack<AMoveCommand> historic) {
         super(levelNumber);
@@ -107,6 +119,7 @@ public class ReviewGame extends LevelScreen {
     {
         return true;
     }
+
     /**
      * Méthode appelé lorsque l'écran n'est plus utilisé.
      */

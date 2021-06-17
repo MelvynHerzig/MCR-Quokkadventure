@@ -17,14 +17,18 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
 /**
  * Classe abstraite commune aux écrans de Quokk'adventure.
  *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 14/05/2021
  */
 public abstract class AScreen extends InputAdapter implements Screen
 {
     /**
-     * Référence sur la classe de base du jeu. Permet de récupérer le batch
-     * et le stage
+     * Référence sur la classe de base du jeu.
+     * Permet de récupérer le batch et le stage.
      */
     protected QuokkAdventure game = QuokkAdventure.Get();
 
@@ -44,7 +48,7 @@ public abstract class AScreen extends InputAdapter implements Screen
     protected Stage huds;
 
     /**
-     * Constructeur
+     * Constructeur.
      *
      * @param music Musique de fond.
      */
@@ -150,7 +154,7 @@ public abstract class AScreen extends InputAdapter implements Screen
     }
 
     /**
-     * Méthode appelée quand l'écran doit libérer ses ressources
+     * Méthode appelée quand l'écran doit libérer ses ressources.
      */
     @Override
     public void dispose()
@@ -159,7 +163,7 @@ public abstract class AScreen extends InputAdapter implements Screen
     }
 
     /**
-     * Méthode appelée lorsque le jeu est en pause
+     * Méthode appelée lorsque le jeu est en pause.
      */
     @Override
     public void pause()
@@ -168,7 +172,7 @@ public abstract class AScreen extends InputAdapter implements Screen
     }
 
     /**
-     * Méthode appelée lorsque le jeu reprend
+     * Méthode appelée lorsque le jeu reprend.
      */
     @Override
     public void resume()

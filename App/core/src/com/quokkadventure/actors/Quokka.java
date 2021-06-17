@@ -4,20 +4,22 @@ import com.quokkadventure.Assets;
 import com.quokkadventure.Vector2D;
 
 /**
- * Classe modélisant le quokka (joueur)
+ * Classe modélisant le Quokka (joueur).
  *
- * @author Herzig Melvyn
+ * @author Berney Alec
+ * @author Ferrari Teo
  * @author Forestier Quentin
- * @author Teo Ferrari
+ * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 15/05/2021
  */
 public class Quokka extends ActorOnTile {
     private int strength = 1;
 
     /**
-     * Constructeur
+     * Constructeur.
      *
-     * @param pos Position de départ .
+     * @param pos Position de départ.
      */
     public Quokka(Vector2D pos)
     {
@@ -25,7 +27,7 @@ public class Quokka extends ActorOnTile {
     }
 
     /**
-     * Le joueur peut pousser d'autres éléments
+     * Le joueur peut pousser d'autres éléments.
      *
      * @return Retourne faux.
      */
@@ -38,7 +40,7 @@ public class Quokka extends ActorOnTile {
     /**
      * Retourne le type de l'acteur.
      *
-     * @return Retourne ActorType.QUOKKA
+     * @return Retourne ActorType.QUOKKA.
      */
     @Override
     public ActorType getType()
@@ -47,11 +49,11 @@ public class Quokka extends ActorOnTile {
     }
 
     /**
-     * Déplace l'acteur à la poisition posX, posY
+     * Déplace l'acteur à la poisition posX, posY.
      *
-     * @param pos     Nouvelle position
+     * @param pos Nouvelle position.
      * @param tableau Tableau dans lequel l'acteur se déplace.
-     * @param isUndo  Définit si le déplacement est une annulation.
+     * @param isUndo Définit si le déplacement est une annulation.
      */
     public void moveToPosition(Vector2D pos, Tableau tableau, boolean isUndo)
     {
@@ -68,9 +70,9 @@ public class Quokka extends ActorOnTile {
     }
 
     /**
-     * Récupère la force du Quokka
+     * Récupère la force du Quokka.
      *
-     * @return Retourne la force
+     * @return La force.
      */
     public int getStrength()
     {
@@ -78,9 +80,9 @@ public class Quokka extends ActorOnTile {
     }
 
     /**
-     * Défini la force du Quokka
+     * Défini la force du Quokka.
      *
-     * @param newStrength Nouvelle force
+     * @param newStrength Nouvelle force du Quokka.
      */
     public void setStrength(int newStrength)
     {

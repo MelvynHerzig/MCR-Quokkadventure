@@ -8,8 +8,12 @@ import com.quokkadventure.Vector2D;
 
 /**
  * Classe qui représente les éléments de la carte tuilée.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
- * @author Teo Ferrari
+ * @author Janssens Emmanuel
  * @date 16/05/2021
  */
 public abstract class  ActorOnTile extends Actor
@@ -18,7 +22,6 @@ public abstract class  ActorOnTile extends Actor
 
    Vector2D position;
 
-
    /**
     * Texture de l'acteur.
     */
@@ -26,7 +29,7 @@ public abstract class  ActorOnTile extends Actor
 
    /**
     * Constructeur.
-    * @param pos Position .
+    * @param pos Position.
     * @param texture Texture de l'acteur.
     */
    ActorOnTile(Vector2D pos, Texture texture)
@@ -40,8 +43,9 @@ public abstract class  ActorOnTile extends Actor
    }
 
    /**
-    * Déplace l'acteur à la poisition posX, posY
-    * @param pos Nouvelle position X
+    * Déplace l'acteur à la poisition posX, posY.
+    *
+    * @param pos Nouvelle position X.
     * @param tableau Tableau dans lequel l'acteur se déplace.
     * @param isUndo Définit si le déplacement est une annulation.
     */
@@ -67,8 +71,8 @@ public abstract class  ActorOnTile extends Actor
    }
 
    /**
-    * Définit la force donnée par cet acteur à l'acteur qui l'a collecté
-    * @return force donnée
+    * Définit La force donnée par cet acteur à l'acteur qui l'a collecté.
+    * @return La force donnée.
     */
    public int strengthGiven(){
       return 0;
@@ -77,7 +81,7 @@ public abstract class  ActorOnTile extends Actor
    /**
     * Définit si l'acteur peut être poussé.
     * @param tableau Tableau sur lequel l'acteur serait poussé.
-    * @param to Destination  (tuile)
+    * @param to Destination  (tuile).
     * @return Retourne vrai si l'acteur peut être poussé à la destination.
     */
    public boolean canBePushed(Tableau tableau, Vector2D to){
@@ -85,8 +89,8 @@ public abstract class  ActorOnTile extends Actor
    }
 
    /**
-    * Retourne le poids de l'acteur
-    * @return Poids de l'acteur
+    * Retourne Le poids de l'acteur.
+    * @return Poids de l'acteur.
     */
    public int getWeigth(){
       return 0;
@@ -101,18 +105,18 @@ public abstract class  ActorOnTile extends Actor
    }
 
    /**
-    * Récupère la force de l'acteur
+    * Récupère la force de l'acteur.
     *
-    * @return Retourne la force
+    * @return Retourne la force.
     */
    public int getStrength(){
       return 0;
    }
 
    /**
-    * Défini la force de l'acteur
+    * Défini la force de l'acteur.
     *
-    * @param newStrength Nouvelle force
+    * @param newStrength Nouvelle force.
     */
    public void setStrength(int newStrength){}
 

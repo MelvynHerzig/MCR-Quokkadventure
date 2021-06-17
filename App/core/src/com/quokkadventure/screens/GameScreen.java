@@ -12,25 +12,28 @@ import com.quokkadventure.scene2d.DynamicCounter;
 
 /**
  * Classe représentant l'écran de jeu.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 15/05/2021
  */
 public class GameScreen extends LevelScreen
 {
-
-
    /**
-    * Label dynamique des mouvements,
+    * Label dynamique des mouvements.
     */
    private final DynamicCounter stepsCounter;
 
    /**
-    * Label dynamique des mouvements,
+    * Label dynamique des mouvements.
     */
    private final DynamicCounter timeCounter;
 
    /**
-    * Flèches directionelles
+    * Flèches directionelles.
     */
    private final ArrowPad arrows;
 
@@ -40,14 +43,14 @@ public class GameScreen extends LevelScreen
    private float elapsedTime;
 
    /**
-    * vérifie si le niveau est complet
+    * Vérifie si le niveau est complet / réussi.
     */
    private boolean isSolved = false;
 
    /**
-    * Constructeur
+    * Constructeur.
     *
-    * @param levelNumber Le numéro du niveau
+    * @param levelNumber Le numéro du niveau.
     */
    public GameScreen( int levelNumber)
    {
@@ -123,7 +126,7 @@ public class GameScreen extends LevelScreen
    }
 
    /**
-    * Met le jeu en pause
+    * Met le jeu en pause.
     */
    @Override
    public void pause()
@@ -133,7 +136,7 @@ public class GameScreen extends LevelScreen
    }
 
    /**
-    * Enlève le jeu de la pause
+    * Enlève le jeu de la pause.
     */
    @Override
    public void resume()

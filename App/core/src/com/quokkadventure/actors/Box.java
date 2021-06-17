@@ -4,18 +4,23 @@ import com.quokkadventure.Assets;
 import com.quokkadventure.Vector2D;
 
 /**
- * Classe qui simule une boîte déplaçable par le quokka.
+ * Classe qui simule une boîte déplaçable par le Quokka.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
- * @author Teo Ferrari
+ * @author Janssens Emmanuel
  * @date 15/05/2021
  */
 public class Box extends ActorOnTile {
    private final int weigth;
    boolean isOnEnd;
+
    /**
-    * Constructeur
-    * @param pos Position de la boîte
-    * @param weigth Poids de la boîte
+    * Constructeur.
+    * @param pos Position de la boîte.
+    * @param weigth Poids de la boîte.
     */
    public Box(Vector2D pos, int weigth)
    {
@@ -28,8 +33,8 @@ public class Box extends ActorOnTile {
 
    /**
     * Une boîte peut être poussée.
-    * @param tableau Tableau dans lequel vérifier la progression
-    * @param dest position de destination
+    * @param tableau Tableau dans lequel vérifier la progression.
+    * @param dest position de destination.
     * @return Retourne vrai si la destination est libre.
     */
    @Override
@@ -40,7 +45,7 @@ public class Box extends ActorOnTile {
 
    /**
     * Retourne le type de l'acteur.
-    * @return Retourne ActorType.Box
+    * @return Retourne ActorType.Box.
     */
    @Override
    public ActorType getType()
@@ -49,8 +54,8 @@ public class Box extends ActorOnTile {
    }
 
    /**
-    * Retourne le poids de la boîte
-    * @return Poids de la boîte
+    * Retourne le poids de la boîte.
+    * @return Poids de la boîte.
     */
    public int getWeigth()
    {

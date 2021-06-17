@@ -16,9 +16,11 @@ import com.quokkadventure.Vector2D;
  * Cette classe s'occupe de charger la carte, vérifier son état,
  * l'afficher et la libérer une fois finie.
  *
- * @author Herzig Melvyn
+ * @author Berney Alec
+ * @author Ferrari Teo
  * @author Forestier Quentin
- * @author Teo Ferrari
+ * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 25/05/2021
  */
 public class Tableau extends Group
@@ -66,8 +68,8 @@ public class Tableau extends Group
      * Constructeur
      *
      * @param levelNum Numéro de la carte à charger.
-     * @param width    Largeur du jeu
-     * @param height   Hauteur du jeu
+     * @param width    Largeur du jeu.
+     * @param height   Hauteur du jeu.
      */
     public Tableau(int levelNum, int width, int height)
     {
@@ -98,7 +100,7 @@ public class Tableau extends Group
 
     /**
      * Travaille sur la couche "specials" de la tiledMap.
-     * Récupère est place les éléments dans actorsOnTile
+     * Récupère est place les éléments dans actorsOnTile.
      *
      * @throws RuntimeException Si le layer "specials" n'est pas trouvé.
      */
@@ -181,9 +183,9 @@ public class Tableau extends Group
 
 
     /**
-     * Récupère l'acteur en position x,y
+     * Récupère l'acteur en position x,y.
      *
-     * @param at position de l'acteur a récupérer
+     * @param at position de l'acteur a récupérer.
      * @return Retourne l'acteur (peut-être null).
      * @throws IndexOutOfBoundsException si x et y ne sont pas des numéros
      *                                   de tuiles valides.
@@ -260,8 +262,8 @@ public class Tableau extends Group
     }
 
     /**
-     * Mutateur du nombre de coups. ++movesCounter
-     *
+     * Mutateur du nombre de coups.
+     * ++movesCounter
      */
     public void addMovesCounter()
     {
@@ -269,8 +271,8 @@ public class Tableau extends Group
     }
 
     /**
-     * Mutateur du nombre de coups. --movesCounter
-     *
+     * Mutateur du nombre de coups.
+     * --movesCounter
      */
     public void subMovesCounter()
     {
@@ -278,10 +280,10 @@ public class Tableau extends Group
     }
 
     /**
-     * Ajout un acteur sur le tableau
+     * Ajout un acteur sur le tableau.
      *
-     * @param pos   Position où l'acteur doit être ajouté
-     * @param actor Acteur à ajouter
+     * @param pos   Position où l'acteur doit être ajouté.
+     * @param actor Acteur à ajouter.
      */
     public void addActorOnTile(Vector2D pos, ActorOnTile actor)
     {

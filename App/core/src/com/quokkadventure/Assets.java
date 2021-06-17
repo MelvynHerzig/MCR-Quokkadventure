@@ -15,10 +15,14 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 /**
  * Cette classe est responsable de charger les différents assets et de
  * les libérer à la fin du jeu.
- * Comme le jeu est léger et que les assets sont peut nombreux
+ * Comme le jeu est léger et que les assets sont peu nombreux.
  * TOUS les assets sont chargés au démarrage de l'application.
  *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 14/05/2021
  */
 public class Assets
@@ -30,7 +34,7 @@ public class Assets
 
     /* ********** Police ************* */
     /**
-     * Police principale
+     * Police principale.
      */
     private static final String fontName = "Font/bits.ttf";
     public static final AssetDescriptor<BitmapFont> font =
@@ -39,115 +43,115 @@ public class Assets
 
     /* ********** Texture ************* */
     /**
-     * Image de fond
+     * Image de fond.
      */
     public static final AssetDescriptor<Texture> background =
             new AssetDescriptor<>("UI/background.png", Texture.class);
 
     /**
-     * Image bouton audio on
+     * Image bouton audio on.
      */
     public static final AssetDescriptor<Texture> textAudioOn =
             new AssetDescriptor<>("UI/btnMusicOn.png", Texture.class);
 
     /**
-     * Image bouton audio off
+     * Image bouton audio off.
      */
     public static final AssetDescriptor<Texture> textAudioOff =
             new AssetDescriptor<>("UI/btnMusicOff.png", Texture.class);
 
     /**
-     * Image bouton quit
+     * Image bouton quit.
      */
     public static final AssetDescriptor<Texture> textBtnQuit =
             new AssetDescriptor<>("UI/btnQuit.png", Texture.class);
 
     /**
-     * Image bouton play "UI/title.png"
+     * Image bouton play "UI/title.png".
      */
     public static final AssetDescriptor<Texture> textBtnPlay =
             new AssetDescriptor<>("UI/btnPlay.png", Texture.class);
 
     /**
-     * Texture titre du jeu
+     * Texture titre du jeu.
      */
     public static final AssetDescriptor<Texture> textGameTitle =
             new AssetDescriptor<>("UI/title.png", Texture.class);
 
     /**
-     * Texture bouton déplacement haut
+     * Texture bouton déplacement haut.
      */
     public static final AssetDescriptor<Texture> textBtnUp =
             new AssetDescriptor<>("UI/upArrow.png", Texture.class);
 
     /**
-     * Texture bouton déplacement bas
+     * Texture bouton déplacement bas.
      */
     public static final AssetDescriptor<Texture> textBtnDown =
             new AssetDescriptor<>("UI/downArrow.png", Texture.class);
 
     /**
-     * Texture bouton déplacement gauche
+     * Texture bouton déplacement gauche.
      */
     public static final AssetDescriptor<Texture> textBtnLeft =
             new AssetDescriptor<>("UI/leftArrow.png", Texture.class);
 
     /**
-     * Texture bouton déplacement droite
+     * Texture bouton déplacement droite.
      */
     public static final AssetDescriptor<Texture> textBtnRight =
             new AssetDescriptor<>("UI/rightArrow.png", Texture.class);
 
     /**
-     * Texture pomme
+     * Texture pomme.
      */
     public static final AssetDescriptor<Texture> textApple =
             new AssetDescriptor<>("Map/apple.png", Texture.class);
 
     /**
-     * Texture boîte
+     * Texture boîte.
      */
     public static final AssetDescriptor<Texture> textBox =
             new AssetDescriptor<>("Map/movable.png", Texture.class);
 
     /**
-     * Texture boîte lourde
+     * Texture boîte lourde.
      */
     public static final AssetDescriptor<Texture> textHeavyBox =
             new AssetDescriptor<>("Map/heavyMovable.png", Texture.class);
 
     /**
-     * Texture emplacement de fin
+     * Texture emplacement de fin.
      */
     public static final AssetDescriptor<Texture> textEnd =
             new AssetDescriptor<>("Map/end.png", Texture.class);
 
     /**
-     * Texture personnage Quokka
+     * Texture personnage Quokka.
      */
     public static final AssetDescriptor<Texture> textQuokka =
             new AssetDescriptor<>("Quokka/quokka.png", Texture.class);
 
     /**
-     * Texture des murs
+     * Texture des murs.
      */
     public static final AssetDescriptor<Texture> textWall =
             new AssetDescriptor<>("Map/border.png", Texture.class);
 
     /**
-     * Texture du compteur de déplacements
+     * Texture du compteur de déplacements.
      */
     public static final AssetDescriptor<Texture> textStepCounter =
             new AssetDescriptor<>("UI/stepCounter.png", Texture.class);
 
     /**
-     * Texture du compteur de temps écoulé
+     * Texture du compteur de temps écoulé.
      */
     public static final AssetDescriptor<Texture> textTimeCounter =
             new AssetDescriptor<>("UI/timeCounter.png", Texture.class);
 
     /**
-     * Image bouton undo
+     * Image bouton undo.
      */
     public static final AssetDescriptor<Texture> textBtnUndo =
             new AssetDescriptor<>("UI/btnUndo.png", Texture.class);
@@ -159,7 +163,7 @@ public class Assets
             new AssetDescriptor<>("UI/book.png", Texture.class);
 
     /**
-     * Image bouton "Menu" principal
+     * Image bouton "Menu" principal.
      */
     public static final AssetDescriptor<Texture> textBtnMenu =
             new AssetDescriptor<>("UI/btnMenu.png", Texture.class);
@@ -178,19 +182,19 @@ public class Assets
 
     /* ********** Audio ************* */
     /**
-     * Son joué au click sur les boutons
+     * Son joué au click sur les boutons.
      */
     public static final AssetDescriptor<Sound> clickSound =
             new AssetDescriptor<>("Sound/click.WAV", Sound.class);
 
     /**
-     * Music du menu
+     * Music du menu.
      */
     public static final AssetDescriptor<Music> musicMenu =
             new AssetDescriptor<>("Music/menuLoop.WAV", Music.class);
 
     /**
-     * Music en jeu
+     * Music en jeu.
      */
     public static final AssetDescriptor<Music> musicInGame =
             new AssetDescriptor<>("Music/inGameLoop.WAV", Music.class);

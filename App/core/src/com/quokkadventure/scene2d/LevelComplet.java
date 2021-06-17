@@ -20,14 +20,18 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
 /**
  * Scène qui affiche le menu de fin de niveau.
  *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 30/05/2021
  */
 public class LevelComplet extends Group
 {
    /**
     * Constructeur.
-    * @param gameScreen Écran de jeu surlequel l'overlay est affiché.
+    * @param gameScreen Écran de jeu sur lequel l'overlay est affiché.
     */
    public LevelComplet(final LevelScreen gameScreen)
    {
@@ -119,7 +123,7 @@ public class LevelComplet extends Group
    }
 
    /**
-    * Affiche l'overlay
+    * Affiche l'overlay.
     */
    public void show()
    {

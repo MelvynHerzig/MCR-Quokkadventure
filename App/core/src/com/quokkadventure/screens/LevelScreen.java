@@ -9,9 +9,18 @@ import com.quokkadventure.command.ACommand;
 import com.quokkadventure.scene2d.LevelComplet;
 import com.quokkadventure.scene2d.MoveHistoric;
 
+/**
+ * Classe représentant l'écran de jeu d'un niveau.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
+ * @author Herzig Melvyn
+ * @author Janssens Emmanuel
+ * @date 15/05/2021
+ */
 public class LevelScreen extends AScreen
 {
-
     /**
      * Commande à exécuter.
      */
@@ -33,7 +42,7 @@ public class LevelScreen extends AScreen
     protected final TiledMapTileLayer mapLayer;
 
     /**
-     * Définit si le jeu est en pause
+     * Définit si le jeu est en pause.
      */
     boolean paused;
 
@@ -43,7 +52,7 @@ public class LevelScreen extends AScreen
     LevelComplet endOverlay;
 
     /**
-     * Historique des mouvements
+     * Historique des mouvements.
      */
     protected MoveHistoric historic;
 
@@ -83,7 +92,7 @@ public class LevelScreen extends AScreen
 
     /**
      * Initialise une commande a éxécuter.
-     * @param command Commande a exécuter
+     * @param command Commande a exécuter.
      */
     public void setCommand(ACommand command)
     {
@@ -91,8 +100,8 @@ public class LevelScreen extends AScreen
     }
 
     /**
-     * Retourne l'historique des mouvements
-     * @return l'historique des mouvements
+     * Retourne l'historique des mouvements.
+     * @return l'historique des mouvements.
      */
     public MoveHistoric getHistoric()
     {

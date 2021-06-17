@@ -5,13 +5,20 @@ import com.quokkadventure.Vector2D;
 
 /**
  * Classe représentant un mur.
- * Est utilisé dans la liste des acteurs
+ * Est utilisé dans la liste des acteurs.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
+ * @author Herzig Melvyn
+ * @author Janssens Emmanuel
+ * @date 17/06/2021
  */
 public class Wall extends ActorOnTile
 {
    /**
     * Constructeur.
-    * @param pos Position  du mur
+    * @param pos Position  du mur.
     */
    Wall(Vector2D pos)
    {
@@ -20,7 +27,7 @@ public class Wall extends ActorOnTile
 
    /**
     * Retourne le type de l'acteur.
-    * @return Retourne ActorType.WALL
+    * @return Retourne ActorType.WALL.
     */
    @Override
    public ActorType getType()

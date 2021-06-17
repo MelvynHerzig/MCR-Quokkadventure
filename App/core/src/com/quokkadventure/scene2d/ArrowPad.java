@@ -13,14 +13,19 @@ import com.quokkadventure.screens.GameScreen;
 import com.quokkadventure.screens.listener.NoisyClickListener;
 
 /**
- * Scène ajoutant un pad avec des flèches directionnelles
+ * Scène ajoutant un pad avec des flèches directionnelles.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 16/05/2021
  */
 public class ArrowPad extends Table
 {
    /**
-    * Écran de jeu qui a invoqué cette scène
+    * Écran de jeu qui a invoqué cette scène.
     */
    GameScreen screen;
 
@@ -30,7 +35,7 @@ public class ArrowPad extends Table
    Button btnUp, btnDown, btnLeft, btnRight, btnUndo;
 
    /**
-    * Tableau dans l'écran de jeu (screen)
+    * Tableau dans l'écran de jeu (screen).
     */
    Tableau tableau;
 

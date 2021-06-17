@@ -9,13 +9,18 @@ import com.quokkadventure.Assets;
  * Implémente notre version des clickListener de libgdx.
  * Le comportement est le même sauf que l'ont ajoute un son qui sera
  * joué lors du click.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 14/05/2021
  */
 public class NoisyClickListener extends ClickListener
 {
    /**
-    * Méthode appelé lorsque l'élément est cliqué
+    * Méthode appelé lorsque l'élément est cliqué.
     * @param event Événement.
     * @param x Position x.
     * @param y Position y.

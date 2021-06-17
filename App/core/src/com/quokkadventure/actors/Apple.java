@@ -4,10 +4,13 @@ import com.quokkadventure.Assets;
 import com.quokkadventure.Vector2D;
 
 /**
- * Classe qui simule une pomme ramassable augmentant la force du Quokka
+ * Classe qui simule une pomme ramassable augmentant la force du Quokka.
  *
+ * @author Berney Alec
+ * @author Ferrari Teo
  * @author Forestier Quentin
- * @author Teo Ferrari
+ * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 04/06/2021
  */
 public class Apple extends ActorOnTile
@@ -16,7 +19,7 @@ public class Apple extends ActorOnTile
     /**
      * Constructeur.
      *
-     * @param pos Position .
+     * @param pos Position de la pomme.
      */
     public Apple(Vector2D pos)
     {

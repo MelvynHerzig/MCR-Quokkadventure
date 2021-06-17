@@ -1,22 +1,28 @@
 package com.quokkadventure.screens;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.quokkadventure.Assets;
 import com.quokkadventure.QuokkAdventure;
 import com.quokkadventure.screens.listener.NoisyClickListener;
 
 /**
- * Classe représentant l'écran d'accueil
+ * Classe représentant l'écran d'accueil.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 14/05/2021
  */
 public class MainMenuScreen extends AScreen
 {
 
    /**
-    * Constructeur
+    * Constructeur.
     */
    public MainMenuScreen()
    {

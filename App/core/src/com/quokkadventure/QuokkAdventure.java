@@ -10,11 +10,19 @@ import com.quokkadventure.screens.MainMenuScreen;
 
 /**
  * Classe initiale du jeu.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 15/05/2021
  */
 public class QuokkAdventure extends Game
 {
+	/**
+	 * Nombre de niveaux contenus dans le jeu.
+	 */
 	public static final int NB_LEVEL = 10;
 
 	/**
@@ -33,7 +41,7 @@ public class QuokkAdventure extends Game
 	public static final int HEIGHT = 960;
 
 	/**
-	 * Batch employé pour afficher les éléments
+	 * Batch employé pour afficher les éléments.
 	 */
 	private SpriteBatch batch;
 
@@ -43,18 +51,25 @@ public class QuokkAdventure extends Game
 	private Stage stage;
 
 	/**
-	 * ID du niveau courrant
+	 * ID du niveau courrant.
 	 */
 	private int currentLevelID;
 
-
-	private LevelScreen currentScreen;
 	/**
-	 * Singleton instance
+	 * Écran d'affichage du niveau en cours.
+	 */
+	private LevelScreen currentScreen;
+
+	/**
+	 * Instance du Singleton.
 	 */
 	private static QuokkAdventure instance;
 
-
+	/**
+	 * Accesseur de l'instance du singleton QuokkAdventure.
+	 *
+	 * @return L'instance de QuokkAdventure.
+	 */
 	public static QuokkAdventure Get(){
 		if(instance == null) {
 			instance = new QuokkAdventure();
@@ -62,9 +77,13 @@ public class QuokkAdventure extends Game
 		return instance;
 	}
 
+	/**
+	 * Constructeur privé pour le Singleton.
+	 */
 	private QuokkAdventure(){
 		super();
 	}
+
 	/**
 	 * Méthode appelée lors de la création de l'application.
 	 */
@@ -112,8 +131,8 @@ public class QuokkAdventure extends Game
 	}
 
 	/**
-	 * Retourne l'ID du niveau en cours
-	 * @return l'ID du niveau en cours
+	 * Retourne l'ID du niveau en cours.
+	 * @return l'ID du niveau en cours.
 	 */
 	public int getCurrentLevelID()
 	{
@@ -121,8 +140,8 @@ public class QuokkAdventure extends Game
 	}
 
 	/**
-	 * Definit l'id du niveau en cours
-	 * @param id l'ID du niveau à définri comme en cours
+	 * Definit l'id du niveau en cours.
+	 * @param id l'ID du niveau à définir comme en cours.
 	 */
 	public void setCurrentLevelID(int id)
 	{
@@ -130,8 +149,8 @@ public class QuokkAdventure extends Game
 	}
 
 	/**
-	 * Retourne l'écran du niveau
-	 * @return écran du niveau
+	 * Retourne l'écran du niveau.
+	 * @return écran du niveau.
 	 */
 	public LevelScreen getCurrentScreen()
 	{
@@ -139,8 +158,8 @@ public class QuokkAdventure extends Game
 	}
 
 	/**
-	 * Définit l'écran du niveau
-	 * @param screen écran a définir
+	 * Définit l'écran du niveau.
+	 * @param screen écran a définir.
 	 */
 	public void setCurrentScreen(LevelScreen screen)
 	{
@@ -158,7 +177,7 @@ public class QuokkAdventure extends Game
 	/**
 	 * Méthode appelée lorsque le jeu est redimensionné.
 	 * @param width Nouvelle largeur.
-	 * @param height Nouvelle hauteur
+	 * @param height Nouvelle hauteur.
 	 */
 	@Override
 	public void resize(int width, int height)

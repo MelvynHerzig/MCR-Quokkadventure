@@ -1,13 +1,17 @@
 package com.quokkadventure.command;
 
-import com.quokkadventure.actors.*;
+import com.quokkadventure.actors.ActorOnTile;
+import com.quokkadventure.actors.ActorType;
+import com.quokkadventure.actors.Tableau;
 
 /**
  * Commande servant à déplacer un acteur sur les tuiles.
  *
- * @author Herzig Melvyn
+ * @author Berney Alec
+ * @author Ferrari Teo
  * @author Forestier Quentin
- * @author Teo Ferrari
+ * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 16/05/2021
  */
 public class MoveCommand extends AMoveCommand {
@@ -22,9 +26,9 @@ public class MoveCommand extends AMoveCommand {
     /**
      * Constructeur.
      *
-     * @param actor     Acteur à déplacer.
+     * @param actor Acteur à déplacer.
      * @param direction Direction du déplacement.
-     * @param tableau   Tableau dans lequel l'acteur tente un déplacement.
+     * @param tableau Tableau dans lequel l'acteur tente un déplacement.
      */
     public MoveCommand(ActorOnTile actor, MoveDirection direction,
                        Tableau tableau) {

@@ -5,14 +5,19 @@ import com.quokkadventure.actors.ActorOnTile;
 import com.quokkadventure.actors.Tableau;
 
 /**
- * Commande servant déplacer un acteur (par déplacement ou bousculade)
+ * Commande servant déplacer un acteur (par déplacement ou bousculade).
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 24/05/2021
  */
 public abstract class AMoveCommand extends ACommand
 {
    /**
-    * Acteur déplacé
+    * Acteur déplacé.
     */
    public ActorOnTile movedActor;
 

@@ -15,26 +15,30 @@ import com.quokkadventure.screens.listener.NoisyClickListener;
 import java.util.Stack;
 
 /**
- * Classe permettant d'afficher l'historique des commandes
+ * Classe permettant d'afficher l'historique des commandes.
+ *
+ * @author Berney Alec
+ * @author Ferrari Teo
+ * @author Forestier Quentin
  * @author Herzig Melvyn
+ * @author Janssens Emmanuel
  * @date 02/06/2021
  */
 public class MoveHistoric extends Group
 {
    /**
     * Group vertical utilisé pour ajouter les boutons
-    * symbolisant les commandes
+    * symbolisant les commandes.
     */
    private final VerticalGroup buttons;
 
    /**
-    * Scroller permettant de faire défiler buttons
+    * Scroller permettant de faire défiler les boutons.
     */
    private final ScrollPane scroller;
 
    /**
-    * Historique des commande déroulée. Pas de limite. Limiter le nombre de coups
-    * pour réussir un niveau ?
+    * Historique des commandes déroulées.
     */
    private final Stack<AMoveCommand> historic;
 
