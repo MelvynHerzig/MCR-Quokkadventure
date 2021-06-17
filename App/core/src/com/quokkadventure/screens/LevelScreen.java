@@ -91,8 +91,8 @@ public class LevelScreen extends AScreen
     }
 
     /**
-     * Get the current leve move historic
-     * @return
+     * Retourne l'historique des mouvements
+     * @return l'historique des mouvements
      */
     public MoveHistoric getHistoric()
     {

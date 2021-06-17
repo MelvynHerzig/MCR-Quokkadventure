@@ -15,6 +15,7 @@ public class Box extends ActorOnTile {
    /**
     * Constructeur
     * @param pos Position de la boîte
+    * @param weigth Poids de la boîte
     */
    public Box(Vector2D pos, int weigth)
    {

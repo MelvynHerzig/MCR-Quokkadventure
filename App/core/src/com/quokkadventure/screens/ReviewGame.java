@@ -28,8 +28,8 @@ public class ReviewGame extends LevelScreen {
     /**
      * Constructeur
      *
-     * @param levelNumber
-     * @param historic
+     * @param levelNumber Le numéro du niveau
+     * @param historic L'historique des mouvements
      */
     public ReviewGame(int levelNumber, Stack<AMoveCommand> historic) {
         super(levelNumber);
