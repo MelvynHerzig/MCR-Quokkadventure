@@ -23,9 +23,9 @@ public class DynamicCounter extends Table
 
    /**
     * Constructeur.
-    * @param background Imm
-    * @param posX
-    * @param posY
+    * @param background Texture à utiliser
+    * @param posX Position x de l'objet
+    * @param posY Position y de l'objet
     */
    public DynamicCounter(TextureRegionDrawable background, int posX, int posY)
    {

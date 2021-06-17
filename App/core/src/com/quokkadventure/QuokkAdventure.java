@@ -112,8 +112,8 @@ public class QuokkAdventure extends Game
 	}
 
 	/**
-	 * Retourne l'ID du dernier niveau joué
-	 * @return
+	 * Retourne l'ID du niveau en cours
+	 * @return l'ID du niveau en cours
 	 */
 	public int getCurrentLevelID()
 	{
@@ -122,7 +122,7 @@ public class QuokkAdventure extends Game
 
 	/**
 	 * Definit l'id du niveau en cours
-	 * @param id
+	 * @param id l'ID du niveau à définri comme en cours
 	 */
 	public void setCurrentLevelID(int id)
 	{

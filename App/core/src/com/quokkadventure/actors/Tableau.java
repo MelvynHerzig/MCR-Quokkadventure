@@ -262,7 +262,6 @@ public class Tableau extends Group
     /**
      * Mutateur du nombre de coups. ++movesCounter
      *
-     * @return Retourne movesCounter.
      */
     public void addMovesCounter()
     {
@@ -272,7 +271,6 @@ public class Tableau extends Group
     /**
      * Mutateur du nombre de coups. --movesCounter
      *
-     * @return Retourne movesCounter.
      */
     public void subMovesCounter()
     {

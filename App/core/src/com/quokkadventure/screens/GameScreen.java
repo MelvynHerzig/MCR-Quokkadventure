@@ -46,6 +46,8 @@ public class GameScreen extends LevelScreen
 
    /**
     * Constructeur
+    *
+    * @param levelNumber Le numéro du niveau
     */
    public GameScreen( int levelNumber)
    {
